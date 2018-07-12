@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+<div class="card border-primary">
+    <div class="card-body">
+        A complete list of accessions is available via
+        <a href="https://pfam.xfam.org/families">https://pfam.xfam.org/families</a>
+    </div>
+</div>
+{% from "_macros.html" import render_form %}
+{{ render_form(form, action_url='/', action_text='Visualise', btn_class='btn btn-outline-primary') }}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

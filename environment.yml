@@ -1,6 +1,6 @@
 name: ptm-mapper
 dependencies:
-  - beautifulsoup4=
+  - beautifulsoup4
   - flask
   - lxml
   - markdown

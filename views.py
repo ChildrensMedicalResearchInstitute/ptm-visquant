@@ -1,6 +1,6 @@
 from app import app
 from forms import PtmForm
-from mapper import get_pfam_family
+from mapper import get_protein_domains
 
 from flask import Flask, Markup
 from flask import render_template, request
@@ -12,7 +12,7 @@ from markdown.extensions.extra import ExtraExtension
 def index():
     form = PtmForm(request.form)
     if request.method == 'POST' and form.validate():
-        data = get_pfam_family(form.accession.data)
+        data = get_protein_domains(form.accession.data)
         # TODO: extract info from data
     return render_template('ptm_mapper.html', form=form)
 

@@ -15,7 +15,7 @@ class ValidUniProtProtein(object):
 
 class PtmForm(Form):
     accession = StringField(
-        'Protein Entry Name  Accession',
+        'Protein Entry Name or Accession',
         [validators.InputRequired(), ValidUniProtProtein()]
     )
     ptm = FileField(

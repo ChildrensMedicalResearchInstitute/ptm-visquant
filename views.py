@@ -20,6 +20,22 @@ def index():
         context=context,
     )
 
+@app.route('/default')
+def default():
+    """
+    For debugging only. 
+    Skip external HTTP requests and load JSON from file.
+    """
+    form = PtmForm(request.form)
+    import json
+    with open('static/O88778.json') as f:
+        context = json.load(f)
+    return render_template(
+        'ptm_mapper.html',
+        form=form,
+        context=context,
+    )
+
 @app.route('/about')
 def about():
     try:

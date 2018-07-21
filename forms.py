@@ -20,5 +20,4 @@ class PtmForm(Form):
     )
     ptm = FileField(
         'Post-translational modifications file',
-        [validators.InputRequired()]
     )

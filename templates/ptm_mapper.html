@@ -23,9 +23,11 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    var context = JSON.parse('{{ context | tojson | safe }}');
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
-<script src="{{ url_for('static', filename='js/visualisation.js') }}"></script>
+{% if context %}
+    <script>
+        var context = JSON.parse('{{ context | tojson | safe }}');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="{{ url_for('static', filename='js/visualisation.js') }}"></script>
+{% endif %}
 {% endblock %}

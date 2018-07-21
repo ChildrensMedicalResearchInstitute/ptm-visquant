@@ -1,6 +1,5 @@
 
 // MAGIC NUMBERS
-var PIXELS_PER_AMINO_ACID = 3;
 var BACKBONE_Y = 50;
 var BACKBONE_HEIGHT = 8;
 var MOTIF_HEIGHT = BACKBONE_HEIGHT * 2;
@@ -9,6 +8,8 @@ var REGION_HEIGHT = BACKBONE_HEIGHT * 3.5;
 var REGION_OPACITY = 0.90;
 var REGION_RECT_RADIUS = 16;
 
+var PIXELS_PER_AMINO_ACID = 3;
+var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
@@ -20,6 +21,11 @@ var svg = d3.select('div.vis-box')
   .append('svg')
   .attr('width', CANVAS_WIDTH)
   .attr('height', CANVAS_HEIGHT);
+
+var xAxis = d3.axisBottom(scaleCoordToCanvas)
+  .tickValues(d3.range(0, context.length, TICK_STEP));
+var xAxisGroup = svg.append("g")
+  .call(xAxis)
 
 var backbone = svg.append('rect')
   .attr('x', 0)

@@ -12,15 +12,9 @@ var REGION_RECT_RADIUS = 16;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
-// Map number from in range to out range
-function mapToRange(number, in_min, in_max, out_min, out_max) {
-  return (number - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-// Map coordinate on protein to x-value on canvas
-function mapToCanvas(coordinate) {
-  return mapToRange(coordinate, 0, context.length, 0, CANVAS_WIDTH);
-}
+var scaleCoordToCanvas = d3.scaleLinear()
+  .domain([0, context.length])
+  .range([0, CANVAS_WIDTH]);
 
 var svg = d3.select('div.vis-box')
   .append('svg')
@@ -39,9 +33,9 @@ var motifs = svg.selectAll('motif')
     motif => motif.display !== false
   )).enter()
   .append('rect')
-  .attr('x', motif => mapToCanvas(motif.start))
+  .attr('x', motif => scaleCoordToCanvas(motif.start))
   .attr('y', motif => BACKBONE_Y - MOTIF_HEIGHT/2)
-  .attr('width', motif => mapToCanvas(motif.end - motif.start))
+  .attr('width', motif => scaleCoordToCanvas(motif.end - motif.start))
   .attr('height', MOTIF_HEIGHT)
   .style('fill', motif => motif.colour)
   .style('fill-opacity', MOTIF_OPACITY);
@@ -53,9 +47,9 @@ var regions = svg.selectAll('region')
   .append('rect')
   .attr("rx", REGION_RECT_RADIUS)
   .attr("ry", REGION_RECT_RADIUS)
-  .attr('x', region => mapToCanvas(region.start))
+  .attr('x', region => scaleCoordToCanvas(region.start))
   .attr('y', BACKBONE_Y - REGION_HEIGHT/2)
-  .attr('width', region => mapToCanvas(region.end - region.start))
+  .attr('width', region => scaleCoordToCanvas(region.end - region.start))
   .attr('height', REGION_HEIGHT)
   .style('fill', region => region.colour)
   .style('fill-opacity', REGION_OPACITY)

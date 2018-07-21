@@ -71,16 +71,14 @@ regions.append('text')
   .attr("dy", REGION_HEIGHT * 2)
   .text(region => region.metadata.identifier);
 
-if (context.hasOwnProperty('markups')) {
-  var markup = svg.selectAll('markup')
-    .data(context.markups.filter(
-      markup => markup.display !== false
-    )).enter()
-    .append('line')
-    .attr('x1', markup => scaleCoordToCanvas(markup.start))
-    .attr('y1', BACKBONE_Y)
-    .attr('x2', markup => scaleCoordToCanvas(markup.start))
-    .attr('y2', BACKBONE_Y - MARKUP_HEIGHT)
-    .attr('stroke', markup => markup.lineColour)
-    .attr('stroke-width', MARKUP_STROKE_WIDTH);
-}
+var markup = svg.selectAll('markup')
+  .data(context.markups.filter(
+    markup => markup.display !== false
+  )).enter()
+  .append('line')
+  .attr('x1', markup => scaleCoordToCanvas(markup.start))
+  .attr('y1', BACKBONE_Y)
+  .attr('x2', markup => scaleCoordToCanvas(markup.start))
+  .attr('y2', BACKBONE_Y - MARKUP_HEIGHT)
+  .attr('stroke', markup => markup.lineColour)
+  .attr('stroke-width', MARKUP_STROKE_WIDTH);

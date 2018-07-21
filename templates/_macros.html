@@ -12,21 +12,6 @@
     </div>
 {%- endmacro %}
 
-{% macro render_file_field(field) -%}
-    <div class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">
-        <label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label for="{{ field.id }}" class="custom-file-label">Choose file</label>
-        </div>
-        {% if field.errors %}
-            {% for e in field.errors %}
-                <p class="field-error">{{ e }}</p>
-            {% endfor %}
-        {% endif %}
-    </div>
-{%- endmacro %}
-
 {% macro render_form(form, action_url='', action_text='Submit', class_='', btn_class='btn btn-primary') -%}
     <form method="POST" action="{{ action_url }}" role="form" class="{{ class_ }}">
         {{ form.hidden_tag() if form.hidden_tag }}
@@ -34,11 +19,7 @@
             {{ caller() }}
         {% else %}
             {% for f in form %}
-                {% if f.type == 'FileField' %}
-                    {{ render_field(f) }}
-                {% else %}
-                    {{ render_field(f) }}
-              {% endif %}
+                {{ render_field(f) }}
             {% endfor %}
         {% endif %}
         <button type="submit" class="{{ btn_class }}">{{ action_text }} </button>

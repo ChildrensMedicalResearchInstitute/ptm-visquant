@@ -17,3 +17,7 @@ h1 {
 .field-error {
     color: red;
 }
+
+.vis-box {
+    overflow-x: auto;
+}

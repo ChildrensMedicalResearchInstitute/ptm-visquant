@@ -11,10 +11,14 @@ from markdown.extensions.extra import ExtraExtension
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = PtmForm(request.form)
+    context = None
     if request.method == 'POST' and form.validate():
-        data = get_protein_domains(form.accession.data)
-        # TODO: extract info from data
-    return render_template('ptm_mapper.html', form=form)
+        context = get_protein_domains(form.accession.data)
+    return render_template(
+        'ptm_mapper.html', 
+        form=form,
+        context=context,
+    )
 
 @app.route('/about')
 def about():

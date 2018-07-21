@@ -7,6 +7,8 @@ var MOTIF_OPACITY = 0.65;
 var REGION_HEIGHT = BACKBONE_HEIGHT * 3.5;
 var REGION_OPACITY = 0.90;
 var REGION_RECT_RADIUS = 16;
+var MARKUP_HEIGHT = REGION_HEIGHT;
+var MARKUP_STROKE_WIDTH = 2;
 
 var PIXELS_PER_AMINO_ACID = 3;
 var TICK_STEP = 50;
@@ -68,3 +70,17 @@ regions.append('text')
   .attr("y", BACKBONE_Y - REGION_HEIGHT/2)
   .attr("dy", REGION_HEIGHT * 2)
   .text(region => region.metadata.identifier);
+
+if (context.hasOwnProperty('markups')) {
+  var markup = svg.selectAll('markup')
+    .data(context.markups.filter(
+      markup => markup.display !== false
+    )).enter()
+    .append('line')
+    .attr('x1', markup => scaleCoordToCanvas(markup.start))
+    .attr('y1', BACKBONE_Y)
+    .attr('x2', markup => scaleCoordToCanvas(markup.start))
+    .attr('y2', BACKBONE_Y - MARKUP_HEIGHT)
+    .attr('stroke', markup => markup.lineColour)
+    .attr('stroke-width', MARKUP_STROKE_WIDTH);
+}

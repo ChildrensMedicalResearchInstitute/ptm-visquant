@@ -3,6 +3,28 @@ import re
 import requests
 
 from bs4 import BeautifulSoup
+from csv import DictReader
+
+MARKUP_LINE_COLOUR = {
+    'phosphorylation': '#FE4EDA',
+}
+
+def markup_object(mtype, coord):
+    return {
+        "type" : mtype,
+        "start" : coord,
+        "end" : coord,
+        "lineColour" : MARKUP_LINE_COLOUR.get(mtype, 'black'),
+        "colour" : "#000000",
+        "display" : True,
+        "v_align" : "top",
+        "metadata" : {
+            "type" : mtype,
+            "start" : coord,
+            "end" : coord,
+            "database" : "User defined",
+        },
+    }
 
 def request_soup(url, parser='lxml'):
     response = requests.get(url)
@@ -23,4 +45,9 @@ def get_protein_domains(id):
             return json.loads(result.group())
 
 def parse_ptm_file(ptm_file):
-    pass
+    markup = []
+    with open(ptm_file) as f:
+        reader = DictReader(f, fieldnames=['type', 'coord'])
+        for row in reader:
+            markup.append(markup_object(row['type'], row['coord']))
+    return markup

@@ -1,6 +1,6 @@
 from app import app
 from forms import PtmForm
-from mapper import get_protein_domains
+from mapper import get_protein_domains, parse_ptm_file
 
 from flask import Flask, Markup
 from flask import render_template, request
@@ -15,7 +15,7 @@ def index():
     if request.method == 'POST' and form.validate():
         context = get_protein_domains(form.accession.data)
     return render_template(
-        'ptm_mapper.html', 
+        'ptm_mapper.html',
         form=form,
         context=context,
     )
@@ -23,13 +23,14 @@ def index():
 @app.route('/default')
 def default():
     """
-    For debugging only. 
+    For debugging only.
     Skip external HTTP requests and load JSON from file.
     """
     form = PtmForm(request.form)
     import json
     with open('static/O88778.json') as f:
         context = json.load(f)
+        context['markups'] += parse_ptm_file('static/markup-sites.csv')
     return render_template(
         'ptm_mapper.html',
         form=form,

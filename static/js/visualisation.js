@@ -50,7 +50,9 @@ var regions = svg.selectAll('region')
   .data(context.regions.filter(
     region => region.display !== false
   )).enter()
-  .append('rect')
+  .append('g');
+
+regions.append('rect')
   .attr("rx", REGION_RECT_RADIUS)
   .attr("ry", REGION_RECT_RADIUS)
   .attr('x', region => scaleCoordToCanvas(region.start))
@@ -59,4 +61,10 @@ var regions = svg.selectAll('region')
   .attr('height', REGION_HEIGHT)
   .style('fill', region => region.colour)
   .style('fill-opacity', REGION_OPACITY)
-  .style('stroke', region => region.colour);
+  .style('stroke', 'black');
+
+regions.append('text')
+  .attr("x", region => scaleCoordToCanvas(region.start))
+  .attr("y", BACKBONE_Y - REGION_HEIGHT/2)
+  .attr("dy", REGION_HEIGHT * 2)
+  .text(region => region.metadata.identifier);

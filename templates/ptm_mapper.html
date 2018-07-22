@@ -19,7 +19,7 @@
         </div>
         <div class="vis-box"></div>
     </div>
-{% endif %}  
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
@@ -28,6 +28,7 @@
         var context = JSON.parse('{{ context | tojson | safe }}');
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script src="{{ url_for('static', filename='js/visualisation.js') }}"></script>
 {% endif %}
 {% endblock %}

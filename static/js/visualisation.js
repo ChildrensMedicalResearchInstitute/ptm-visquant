@@ -49,6 +49,46 @@ var motifs = svg.selectAll('motif')
   .style('fill', motif => motif.colour)
   .style('fill-opacity', MOTIF_OPACITY);
 
+// As defined by Pfam http://pfam.xfam.org/help#tabview=tab10
+var motifTypes = [
+  {
+    "type": "disorder",
+    "colour": "#cccccc"
+  },
+  {
+    "type": "low_complexity",
+    "colour": "#0FF"
+  },
+  {
+    "type": "coiled_coil",
+    "colour": "#9cff00"
+  },
+  {
+    "type": "sig_p",
+    "colour": "#ff9c00"
+  },
+  {
+    "type": "transmembrane",
+    "colour": "#F00"
+  }
+]
+
+var legendScale = d3.scaleOrdinal()
+.domain(motifTypes.map(motif => motif.type))
+.range(motifTypes.map(motif => motif.colour));
+
+var legendStyle = d3.legendColor()
+  .shape("path", d3.symbol().type(d3.symbolCircle).size(150)())
+  .shapePadding(10)
+  // filter out motifs which do not appear in this context
+  .cellFilter(d => context.motifs.map(m => m.type).indexOf(d.label) > -1)
+  .scale(legendScale);
+
+var legend = svg.append("g")
+  .attr("class", "legendOrdinal")
+  .attr("transform", "translate(20,50)")
+  .call(legendStyle);
+
 var regions = svg.selectAll('region')
   .data(context.regions.filter(
     region => region.display !== false

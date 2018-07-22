@@ -10,8 +10,8 @@
         <a href="https://www.uniprot.org/uniprot/">https://www.uniprot.org/uniprot/</a>
     </div>
 </div>
-{% from "_macros.html" import render_form %}
-{{ render_form(form, action_url='/', action_text='Visualise', btn_class='btn btn-outline-primary') }}
+{% from '_macros.html' import render_form %}
+{{ render_form(form, action_url='/', action_text='Visualise', btn_class='btn btn-outline-primary', enctype='multipart/form-data') }}
 {% if context %}
 <div class="card">
         <div class="card-body">

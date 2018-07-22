@@ -1,5 +1,7 @@
 import requests
-from wtforms import Form, FileField, StringField, validators, ValidationError
+from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed, FileField
+from wtforms import StringField, validators, ValidationError
 
 class ValidUniProtProtein(object):
     def __init__(self, message=None):
@@ -13,11 +15,12 @@ class ValidUniProtProtein(object):
         if response.status_code != 200:
             raise ValidationError(self.message.format(field.data))
 
-class PtmForm(Form):
+class PtmForm(FlaskForm):
     accession = StringField(
         'Protein Entry Name or Accession',
         [validators.InputRequired(), ValidUniProtProtein()]
     )
-    ptm = FileField(
+    csv_file = FileField(
         'Post-translational modifications file',
+        [FileAllowed(['csv'], 'File must be in CSV format.')]
     )

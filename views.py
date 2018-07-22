@@ -10,10 +10,14 @@ from markdown.extensions.extra import ExtraExtension
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    form = PtmForm(request.form)
+    form = PtmForm()
     context = None
     if request.method == 'POST' and form.validate():
         context = get_protein_domains(form.accession.data)
+        f = form.csv_file.data
+        if f:
+            lines = [line.decode() for line in f.readlines()]
+            context['markups'] += parse_ptm_file(lines)
     return render_template(
         'ptm_mapper.html',
         form=form,
@@ -30,7 +34,8 @@ def default():
     import json
     with open('static/O88778.json') as f:
         context = json.load(f)
-        context['markups'] += parse_ptm_file('static/markup-sites.csv')
+    with open('static/markup-sites.csv') as f:
+        context['markups'] += parse_ptm_file(f)
     return render_template(
         'ptm_mapper.html',
         form=form,

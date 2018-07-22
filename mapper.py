@@ -46,8 +46,11 @@ def get_protein_domains(id):
 
 def parse_ptm_file(ptm_file):
     markup = []
+    coords = set()
     with open(ptm_file) as f:
         reader = DictReader(f, fieldnames=['type', 'coord'])
         for row in reader:
-            markup.append(markup_object(row['type'], row['coord']))
+            if row['coord'] not in coords:
+                coords.add(row['coord'])
+                markup.append(markup_object(row['type'], row['coord']))
     return markup

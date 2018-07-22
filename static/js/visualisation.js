@@ -157,3 +157,9 @@ markupLabel.sort((a,b) => (a.start - b.start))
       }
     })
   });
+
+
+d3.select('#download')
+  .on('click', function() {
+    new Simg(svg.node()).download();
+});

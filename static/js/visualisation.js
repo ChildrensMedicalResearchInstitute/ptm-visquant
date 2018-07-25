@@ -16,35 +16,52 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
-var scaleCoordToCanvas = d3.scaleLinear()
-  .domain([0, context.length])
-  .range([0, CANVAS_WIDTH]);
-
-var svg = d3.select('div.vis-box')
+class Protein {
+  constructor(data) {
+    this.data = data;
+    this.svg = d3.select('div.vis-box')
   .append('svg')
   .attr('width', CANVAS_WIDTH)
   .attr('height', CANVAS_HEIGHT);
+    this.scale = d3.scaleLinear()
+      .domain([0, this.data.length])
+      .range([0, CANVAS_WIDTH]);
+  }
 
-var xAxis = d3.axisBottom(scaleCoordToCanvas)
-  .tickValues(d3.range(0, context.length, TICK_STEP));
-var xAxisGroup = svg.append("g")
+  draw() {
+    this.drawAxis();
+    this.drawBackbone();
+    this.drawLabels();
+    this.drawMarkup();
+    this.drawMotifs();
+    this.drawRegions();
+  }
+
+  drawAxis() {
+    let xAxis = d3.axisBottom(this.scale)
+      .tickValues(d3.range(0, this.data.length, TICK_STEP));
+    this.svg.append("g")
   .call(xAxis)
+  }
 
-var backbone = svg.append('rect')
+  drawBackbone() {
+    this.svg.append('rect')
   .attr('x', 0)
   .attr('y', BACKBONE_Y - BACKBONE_HEIGHT/2)
   .attr('width', CANVAS_WIDTH)
   .attr('height', BACKBONE_HEIGHT)
   .attr('fill', 'grey');
+  }
 
-var motifs = svg.selectAll('motif')
-  .data(context.motifs.filter(
-    motif => motif.display !== false
+  drawMotifs() {
+    this.svg.selectAll('motif')
+      .data(this.data.motifs.filter(
+        d => d.display !== false
   )).enter()
   .append('rect')
-  .attr('x', motif => scaleCoordToCanvas(motif.start))
+      .attr('x', motif => this.scale(motif.start))
   .attr('y', motif => BACKBONE_Y - MOTIF_HEIGHT/2)
-  .attr('width', motif => scaleCoordToCanvas(motif.end - motif.start))
+      .attr('width', motif => this.scale(motif.end - motif.start))
   .attr('height', MOTIF_HEIGHT)
   .style('fill', motif => motif.colour)
   .style('fill-opacity', MOTIF_OPACITY);
@@ -73,64 +90,70 @@ var motifTypes = [
   }
 ]
 
-var legendScale = d3.scaleOrdinal()
-.domain(motifTypes.map(motif => motif.type))
-.range(motifTypes.map(motif => motif.colour));
+    let legendScale = d3.scaleOrdinal()
+    .domain(motifTypes.map(d => d.type))
+    .range(motifTypes.map(d => d.colour));
 
-var legendStyle = d3.legendColor()
+    let legendStyle = d3.legendColor()
   .shape("path", d3.symbol().type(d3.symbolCircle).size(150)())
   .shapePadding(10)
   // filter out motifs which do not appear in this context
-  .cellFilter(d => context.motifs.map(m => m.type).indexOf(d.label) > -1)
+      .cellFilter(d => this.data.motifs.map(m => m.type).indexOf(d.label) > -1)
   .scale(legendScale);
 
-var legend = svg.append("g")
+    this.svg.append("g")
   .attr("class", "legendOrdinal")
   .attr("transform", "translate(20,50)")
   .call(legendStyle);
+  }
 
-var regions = svg.selectAll('region')
-  .data(context.regions.filter(
-    region => region.display !== false
+  drawRegions() {
+    let regions = this.svg.selectAll('region')
+      .data(this.data.regions.filter(
+        d => d.display !== false
   )).enter()
   .append('g');
 
 regions.append('rect')
   .attr("rx", REGION_RECT_RADIUS)
   .attr("ry", REGION_RECT_RADIUS)
-  .attr('x', region => scaleCoordToCanvas(region.start))
+      .attr('x', region => this.scale(region.start))
   .attr('y', BACKBONE_Y - REGION_HEIGHT/2)
-  .attr('width', region => scaleCoordToCanvas(region.end - region.start))
+      .attr('width', region => this.scale(region.end - region.start))
   .attr('height', REGION_HEIGHT)
   .style('fill', region => region.colour)
   .style('fill-opacity', REGION_OPACITY)
   .style('stroke', 'black');
 
 regions.append('text')
-  .attr("x", region => scaleCoordToCanvas(region.start))
+      .attr("x", region => this.scale(region.start))
   .attr("y", BACKBONE_Y - REGION_HEIGHT/2)
   .attr("dy", REGION_HEIGHT * 2)
   .text(region => region.metadata.identifier);
+  }
 
-var markup = svg.selectAll('markup')
-  .data(context.markups.filter(
+  drawMarkup() {
+    this.svg.selectAll('markup')
+      .data(this.data.markups.filter(
     markup => markup.display !== false
   )).enter()
   .append('line')
-  .attr('x1', markup => scaleCoordToCanvas(markup.start))
+      .attr('x1', markup => this.scale(markup.start))
   .attr('y1', BACKBONE_Y)
-  .attr('x2', markup => scaleCoordToCanvas(markup.start))
+      .attr('x2', markup => this.scale(markup.start))
   .attr('y2', MARKUP_Y)
   .attr('stroke', markup => markup.lineColour)
   .attr('stroke-width', MARKUP_STROKE_WIDTH);
+  }
 
-var markupLabel = svg.selectAll('markup-label')
-  .data(context.markups.filter(
+  drawLabels() {
+    let markupLabels = this.svg.selectAll('markup-label')
+      .data(this.data.markups.filter(
     markup => markup.display !== false
   )).enter()
   .append('text')
   .text(markup => markup.start)
-  .attr('x', markup => scaleCoordToCanvas(markup.start))
+      .attr('x', markup => this.scale(markup.start))
   .attr('y', MARKUP_Y);
 
 
@@ -145,19 +168,24 @@ function intersects(bbox1, bbox2) {
 }
 
 // Update label locations to prevent overlap
-markupLabel.sort((a,b) => (a.start - b.start))
+    markupLabels.sort((a,b) => (a.start - b.start))
   .each(function() {
     let that = this;
-    markupLabel.each(function() {
+        markupLabels.each(function() {
       let thisBBox = this.getBBox();
       if (that != this && intersects(thisBBox, that.getBBox())) {
         let currentHeight = d3.select(that).attr('y');
         let delta = thisBBox.height * 1.1;
-        d3.select(this).attr('y', +currentHeight - delta);
+            d3.select(this).attr('y', (+currentHeight) - delta);
       }
     })
   });
 
+  }
+}
+
+let main = new Protein(context);
+main.draw();
 
 d3.select('#download')
   .on('click', function() {

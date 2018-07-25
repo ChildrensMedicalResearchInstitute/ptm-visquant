@@ -40,12 +40,6 @@ def markup_object(mtype, coord):
         },
     }
 
-def string_to_colour(s):
-    h = hash(s)
-    r = (h & 0xFF0000) >> 16
-    g = (h & 0x00FF00) >> 8
-    b = (h & 0x0000FF) >> 0
-    return "#{:02X}{:02X}{:02X}".format(r, g, b)
 
 def parse_ptm_file(ptm_file):
     markup = []

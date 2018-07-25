@@ -2,6 +2,7 @@ import json
 import re
 import requests
 
+from .markup_schema import MarkupSchema
 from bs4 import BeautifulSoup
 from csv import DictReader
 
@@ -23,30 +24,17 @@ def get_protein_domains(id):
         if result:
             return json.loads(result.group())
 
-def markup_object(mtype, coord):
-    return {
-        "type" : mtype,
-        "start" : coord,
-        "end" : coord,
-        "lineColour" : 'black',
-        "colour" : "#000000",
-        "display" : True,
-        "v_align" : "top",
-        "metadata" : {
-            "type" : mtype,
-            "start" : coord,
-            "end" : coord,
-            "database" : "User defined",
-        },
-    }
-
-
 def parse_ptm_file(ptm_file):
     markup = []
-    coords = set()
+    schema = MarkupSchema()
     reader = DictReader(ptm_file)
+    coordinates = set()
     for row in reader:
-        if row['start'] not in coords:
-            coords.add(row['start'])
-            markup.append(markup_object(row['type'], row['start']))
+        start = row.get('start')
+        end = row.get('end')
+        data = schema.dump(row)
+        print(data, type(data))
+        if (start, end) not in coordinates:
+            coordinates.add((start, end))
+            markup.append(data)
     return markup

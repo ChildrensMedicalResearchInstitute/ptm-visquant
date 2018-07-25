@@ -8,6 +8,6 @@ dependencies:
   - flask-wtf
   - lxml
   - markdown
-  - marshmallow
+  - marshmallow=3
   - requests
   - wtforms

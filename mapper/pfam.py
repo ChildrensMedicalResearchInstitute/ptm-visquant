@@ -5,27 +5,6 @@ import requests
 from bs4 import BeautifulSoup
 from csv import DictReader
 
-MARKUP_LINE_COLOUR = {
-    'phosphorylation': '#FE4EDA',
-}
-
-def markup_object(mtype, coord):
-    return {
-        "type" : mtype,
-        "start" : coord,
-        "end" : coord,
-        "lineColour" : MARKUP_LINE_COLOUR.get(mtype, 'black'),
-        "colour" : "#000000",
-        "display" : True,
-        "v_align" : "top",
-        "metadata" : {
-            "type" : mtype,
-            "start" : coord,
-            "end" : coord,
-            "database" : "User defined",
-        },
-    }
-
 def request_soup(url, parser='lxml'):
     response = requests.get(url)
     if response.status_code == 200:
@@ -44,12 +23,29 @@ def get_protein_domains(id):
         if result:
             return json.loads(result.group())
 
+def markup_object(mtype, coord):
+    return {
+        "type" : mtype,
+        "start" : coord,
+        "end" : coord,
+        "lineColour" : 'black',
+        "colour" : "#000000",
+        "display" : True,
+        "v_align" : "top",
+        "metadata" : {
+            "type" : mtype,
+            "start" : coord,
+            "end" : coord,
+            "database" : "User defined",
+        },
+    }
+
 def parse_ptm_file(ptm_file):
     markup = []
     coords = set()
-    reader = DictReader(ptm_file, fieldnames=['type', 'coord'])
+    reader = DictReader(ptm_file)
     for row in reader:
-        if row['coord'] not in coords:
-            coords.add(row['coord'])
-            markup.append(markup_object(row['type'], row['coord']))
+        if row['start'] not in coords:
+            coords.add(row['start'])
+            markup.append(markup_object(row['type'], row['start']))
     return markup

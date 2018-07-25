@@ -1,9 +1,13 @@
 name: ptm-mapper
+channels:
+  - default
+  - conda-forge
 dependencies:
   - beautifulsoup4
   - flask
   - flask-wtf
   - lxml
   - markdown
+  - marshmallow
   - requests
   - wtforms

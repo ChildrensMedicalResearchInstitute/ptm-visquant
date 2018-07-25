@@ -2,13 +2,14 @@ from marshmallow import fields, pre_dump, Schema, validate
 
 COLOUR_PATTERN = '^#?[0-9a-fA-F]{3,6}$'
 
+
 class MarkupSchema(Schema):
     type = fields.String(
         required=True,
         validate=[validate.Length(min=1, error="Type cannot be empty")],
     )
     colour = fields.String(
-        validate=[validate.Regexp(COLOUR_PATTERN),]
+        validate=[validate.Regexp(COLOUR_PATTERN)],
     )
     lineColour = fields.String(
         validate=[validate.Regexp(COLOUR_PATTERN)],

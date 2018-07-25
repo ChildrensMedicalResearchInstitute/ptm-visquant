@@ -5,6 +5,7 @@ from flask_wtf.file import FileAllowed, FileField
 from wtforms import StringField
 from wtforms.validators import InputRequired
 
+
 class PtmForm(FlaskForm):
     accession = StringField('Protein Entry Name or Accession', [
         InputRequired(),

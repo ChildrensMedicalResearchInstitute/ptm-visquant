@@ -4,6 +4,7 @@ from .markup_schema import MarkupSchema
 from csv import DictReader
 from wtforms import StringField, ValidationError
 
+
 class ValidUniProtProtein():
     def __init__(self, message=None):
         self.ENDPOINT = 'http://www.uniprot.org/uniprot/{}.xml'
@@ -20,6 +21,7 @@ class ValidUniProtProtein():
             raise ValidationError(self.timeout_message)
         if response.status_code != 200:
             raise ValidationError(self.message.format(field.data))
+
 
 class ValidMarkupFile():
     def __init__(self, message=None):

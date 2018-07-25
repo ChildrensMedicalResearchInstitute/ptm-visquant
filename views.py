@@ -1,12 +1,13 @@
 from app import app
 from forms import PtmForm
-from mapper.pfam import get_protein_domains, parse_ptm_file
+from mapper.pfam import get_protein_domains, to_markup_list
 
 from flask import Flask, Markup
 from flask import render_template, request
 from markdown import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.extra import ExtraExtension
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -18,12 +19,13 @@ def index():
         if f:
             f.seek(0)  # Previously read by validators
             lines = [line.decode() for line in f.readlines()]
-            context['markups'] += parse_ptm_file(lines)
+            context['markups'] += to_markup_list(lines)
     return render_template(
         'ptm_mapper.html',
         form=form,
         context=context,
     )
+
 
 @app.route('/default')
 def default():
@@ -36,12 +38,13 @@ def default():
     with open('static/O88778.json') as f:
         context = json.load(f)
     with open('static/markup-sites.csv') as f:
-        context['markups'] += parse_ptm_file(f)
+        context['markups'] += to_markup_list(f)
     return render_template(
         'ptm_mapper.html',
         form=form,
         context=context,
     )
+
 
 @app.route('/about')
 def about():
@@ -54,6 +57,7 @@ def about():
         content=content,
     )
 
+
 @app.route('/how-to')
 def how_to():
     try:
@@ -64,6 +68,7 @@ def how_to():
         'article.html',
         content=content,
     )
+
 
 def read_markdown(filename):
     try:

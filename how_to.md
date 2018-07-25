@@ -1,111 +1,23 @@
-## How to use markdown
+## How to use PTM Mapper
 
-#### Emphasis
+#### Protein Entry Name or Accession
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+Specify a protein of interest by the protein's UniProt entry name or accession code. You can find a comprehensive and searchable list proteins with their corresponding entry name and accession code available on the UniProt website: https://www.uniprot.org/uniprot/.
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+The UniProt database is used to validate any input into this field. Protein motif and domain information is sourced from PFAM: http://pfam.xfam.org.
 
-Combined emphasis with **asterisks and _underscores_**.
+#### Post-translational modifications file
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+One may optionally upload a post-translational modifications file in CSV format. The application will attempt to convert this information to markup for visualisation on the protein diagram.
 
-#### Lists
+The first line of the CSV file should be a header which identifies the information which can be found in each column. Each line following the header will define a new protein markup.
 
-1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item.
-
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-
-#### Links
-
-[I'm an inline-style link](https://www.google.com)
-
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
-
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com or <http://www.example.com> and sometimes
-example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
-
-#### Images
-
-Here's our logo (hover to see the title text):
-
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
-Reference-style:
-![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-
-#### Code
-
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
-```
-
-```python
-s = "Python syntax highlighting"
-print s
-```
-
-```
-No language indicated, so no syntax highlighting.
-But let's throw in a <b>tag</b>.
-```
-
-#### Tables
-
-Colons can be used to align columns.
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the
-raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
-
-#### Blockquotes
-
-> Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+|Column name|Required|Description|
+|-:|:-:|:-|
+|`type`|Yes|Type of markup (for example: phosphorylation). Must be at least 1 character in length.|
+|`colour`|No|Colour of markup region. Useful if markup spans a region along the protein. This field accepts any valid hexadecimal colour representation.|
+|`lineColour`|No|Colour of markup line. Useful if the markup starts and ends at the same coordinate along the protein. This field accepts any valid hexadecimal colour representation.|
+|`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
+|`end`|No|The end coordinate of the markup. If this field is not specified, then the markup will end at the start coordinate. Must be an integer with a minimum value of zero.|
+|`display`|No|A `true` or `false` value denoting whether the markup should be displayed on the graphic.|
+|`v_align`|No|This field accepts either a value of `top` or `bottom` to denote the direction of the markup relative to the protein backbond. If this field is not specified, markup will default to `top`.|

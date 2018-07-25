@@ -4,8 +4,9 @@ COLOUR_PATTERN = '^#?[0-9a-fA-F]{3,6}$'
 
 class MarkupSchema(Schema):
     markup_type = fields.String(
-        required=True,
         data_key='type',
+        required=True,
+        validate=[validate.Length(min=1, error="Type cannot be empty")],
     )
     colour = fields.String(validate=[
         validate.Regexp(COLOUR_PATTERN),
@@ -15,8 +16,8 @@ class MarkupSchema(Schema):
         data_key='lineColour',
     )
     start = fields.Integer(
-        validate=[validate.Range(min=0)],
         required=True,
+        validate=[validate.Range(min=0)],
     )
     end = fields.Integer(validate=[
         validate.Range(min=0),

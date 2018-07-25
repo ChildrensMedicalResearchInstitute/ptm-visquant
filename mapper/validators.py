@@ -6,13 +6,18 @@ from wtforms import StringField, ValidationError
 
 class ValidUniProtProtein():
     def __init__(self, message=None):
-        if not message:
-            message = 'Protein "{}" not found in UniProt database.'
-        self.message = message
+        self.ENDPOINT = 'http://www.uniprot.org/uniprot/{}.xml'
+        self.message = 'Protein "{}" not found in UniProt database.'
+        self.timeout_message = "UniProt server might be offline."
 
     def __call__(self, form, field):
-        ENDPOINT = 'http://www.uniprot.org/uniprot/{}.xml'
-        response = requests.get(ENDPOINT.format(field.data))
+        try:
+            response = requests.get(
+                self.ENDPOINT.format(field.data),
+                timeout=5,
+            )
+        except requests.exceptions.Timeout:
+            raise ValidationError(self.timeout_message)
         if response.status_code != 200:
             raise ValidationError(self.message.format(field.data))
 

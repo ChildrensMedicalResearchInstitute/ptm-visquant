@@ -42,7 +42,6 @@ def to_markup_list(csv_file):
         start = row.get('start')
         end = row.get('end')
         data = schema.dump(row)
-        print(data, type(data))
         if (start, end) not in coordinates:
             coordinates.add((start, end))
             markup.append(data)

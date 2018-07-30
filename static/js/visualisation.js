@@ -198,5 +198,5 @@ let main = new Protein(context);
 main.draw();
 
 d3.select("#download").on("click", function() {
-  new Simg(svg.node()).download();
+  new Simg(main.svg.node()).download();
 });

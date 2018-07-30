@@ -194,9 +194,25 @@ class Protein {
   }
 }
 
+function saveSvg(svgElement, filename) {
+  svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  let svgData = svgElement.outerHTML;
+  let preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  let svgBlob = new Blob([preface, svgData], {
+    type: "image/svg+xml;charset=utf-8"
+  });
+  let svgUrl = URL.createObjectURL(svgBlob);
+  let downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = filename;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
 let main = new Protein(context);
 main.draw();
 
 d3.select("#download").on("click", function() {
-  new Simg(main.svg.node()).download();
+  saveSvg(main.svg.node(), main.data.metadata.identifier);
 });

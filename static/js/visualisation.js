@@ -76,7 +76,7 @@ class Protein {
       },
       {
         type: "low_complexity",
-        colour: "#0FF"
+        colour: "#86bcff"
       },
       {
         type: "coiled_coil",

@@ -15,9 +15,14 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
+class Config {
+  constructor() {}
+}
+
 class Protein {
-  constructor(data) {
+  constructor(data, config) {
     this.data = data;
+    this.config = config;
     this.svg = d3
       .select("div.vis-box")
       .append("svg")
@@ -33,9 +38,9 @@ class Protein {
     this.drawAxis();
     this.drawBackbone();
     this.drawLabels();
-    this.drawMarkup();
     this.drawMotifs();
     this.drawRegions();
+    this.drawMarkup();
   }
 
   drawAxis() {
@@ -215,4 +220,13 @@ main.draw();
 
 d3.select("#download").on("click", function() {
   saveSvg(main.svg.node(), main.data.metadata.identifier);
+});
+
+d3.select("#update").on("click", function() {
+  main.svg.remove();
+  PIXELS_PER_AMINO_ACID = d3.select("#aa-per-pixel").node().value;
+  TICK_STEP = d3.select("#tick-step").node().value;
+  CANVAS_WIDTH = main.data.length * PIXELS_PER_AMINO_ACID;
+  main = new Protein(context);
+  main.draw();
 });

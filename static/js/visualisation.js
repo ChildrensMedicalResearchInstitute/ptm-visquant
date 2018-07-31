@@ -15,9 +15,14 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
+class Config {
+  constructor() {}
+}
+
 class Protein {
-  constructor(data) {
+  constructor(data, config) {
     this.data = data;
+    this.config = config;
     this.svg = d3
       .select("div.vis-box")
       .append("svg")
@@ -33,9 +38,9 @@ class Protein {
     this.drawAxis();
     this.drawBackbone();
     this.drawLabels();
-    this.drawMarkup();
     this.drawMotifs();
     this.drawRegions();
+    this.drawMarkup();
   }
 
   drawAxis() {
@@ -76,7 +81,7 @@ class Protein {
       },
       {
         type: "low_complexity",
-        colour: "#0FF"
+        colour: "#86bcff"
       },
       {
         type: "coiled_coil",
@@ -194,9 +199,34 @@ class Protein {
   }
 }
 
+function saveSvg(svgElement, filename) {
+  svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  let svgData = svgElement.outerHTML;
+  let preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  let svgBlob = new Blob([preface, svgData], {
+    type: "image/svg+xml;charset=utf-8"
+  });
+  let svgUrl = URL.createObjectURL(svgBlob);
+  let downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = filename;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
 let main = new Protein(context);
 main.draw();
 
 d3.select("#download").on("click", function() {
-  new Simg(svg.node()).download();
+  saveSvg(main.svg.node(), main.data.metadata.identifier);
+});
+
+d3.select("#update").on("click", function() {
+  main.svg.remove();
+  PIXELS_PER_AMINO_ACID = d3.select("#aa-per-pixel").node().value;
+  TICK_STEP = d3.select("#tick-step").node().value;
+  CANVAS_WIDTH = main.data.length * PIXELS_PER_AMINO_ACID;
+  main = new Protein(context);
+  main.draw();
 });

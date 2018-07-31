@@ -15,8 +15,8 @@ The first line of the CSV file should be a header which identifies the informati
 |Column name|Required|Description|
 |-:|:-:|:-|
 |`type`|Yes|Type of markup (for example: phosphorylation). Must be at least 1 character in length.|
-|`colour`|No|Colour of markup region. Useful if markup spans a region along the protein. This field accepts any valid hexadecimal colour representation.|
-|`lineColour`|No|Colour of markup line. Useful if the markup starts and ends at the same coordinate along the protein. This field accepts any valid hexadecimal colour representation.|
+|`colour`|No|Colour of markup region. Useful if markup spans a region along the protein. This field accepts any valid HTML colour as string or hexadecimal.|
+|`lineColour`|No|Colour of markup line. Useful if the markup starts and ends at the same coordinate along the protein. This field accepts any valid HTML colour as string or hexadecimal.|
 |`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
 |`end`|No|The end coordinate of the markup. If this field is not specified, then the markup will end at the start coordinate. Must be an integer with a minimum value of zero.|
 |`display`|No|A `true` or `false` value denoting whether the markup should be displayed on the graphic.|

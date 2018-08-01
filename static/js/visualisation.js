@@ -172,27 +172,31 @@ class Protein {
       .append("text")
       .text(markup => markup.start)
       .attr("x", markup => this.scale(markup.start))
-      .attr("y", MARKUP_Y);
+      .attr("y", MARKUP_Y)
+      .attr(
+        "transform",
+        d => `rotate(270, ${this.scale(d.start)}, ${MARKUP_Y})`
+      );
 
-    // Return true if bounding box 1 intersects bounding box 2, else return false.
-    function intersects(bbox1, bbox2) {
+    function intersects(r1, r2) {
       return !(
-        bbox2.x > bbox1.x + bbox1.width ||
-        bbox2.x + bbox2.width < bbox1.x ||
-        bbox2.y > bbox1.y + bbox1.height ||
-        bbox2.y + bbox2.height < bbox1.y
+        r2.left > r1.right ||
+        r2.right < r1.left ||
+        r2.top > r1.bottom ||
+        r2.bottom < r1.top
       );
     }
 
     // Update label locations to prevent overlap
     markupLabels.sort((a, b) => a.start - b.start).each(function() {
-      let that = this;
+      const that = this;
       markupLabels.each(function() {
-        let thisBBox = this.getBBox();
-        if (that != this && intersects(thisBBox, that.getBBox())) {
-          let currentHeight = d3.select(that).attr("y");
-          let delta = thisBBox.height * 1.1;
-          d3.select(this).attr("y", +currentHeight - delta);
+        const thisBBox = this.getBoundingClientRect();
+        const thatBBox = that.getBoundingClientRect();
+        if (this !== that && intersects(thisBBox, thatBBox)) {
+          let currentX = d3.select(this).attr("x");
+          let delta = that.getBBox().width * 1.4;
+          d3.select(this).attr("x", +currentX + delta);
         }
       });
     });

@@ -17,6 +17,15 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
+function intersects(r1, r2) {
+  return !(
+    r2.left > r1.right ||
+    r2.right < r1.left ||
+    r2.top > r1.bottom ||
+    r2.bottom < r1.top
+  );
+}
+
 class Protein {
   constructor(data, config) {
     this.data = data;
@@ -140,12 +149,24 @@ class Protein {
       .style("fill-opacity", REGION_OPACITY)
       .style("stroke", "black");
 
-    regions
+    let regionLabels = regions
       .append("text")
       .attr("x", region => this.scale(region.start))
       .attr("y", BACKBONE_Y - REGION_HEIGHT / 2)
       .attr("dy", REGION_HEIGHT * 2)
       .text(region => region.metadata.identifier);
+
+    // Remove any labels which intersect another label
+    regionLabels.sort((a, b) => a.start - b.start).each(function() {
+      const that = this;
+      regionLabels.each(function() {
+        const thisBBox = this.getBoundingClientRect();
+        const thatBBox = that.getBoundingClientRect();
+        if (this !== that && intersects(thisBBox, thatBBox)) {
+          d3.select(this).remove();
+        }
+      });
+    });
   }
 
   drawMarkup() {
@@ -195,15 +216,6 @@ class Protein {
         "transform",
         d => `rotate(270, ${this.scale(d.start)}, ${MARKUP_Y})`
       );
-
-    function intersects(r1, r2) {
-      return !(
-        r2.left > r1.right ||
-        r2.right < r1.left ||
-        r2.top > r1.bottom ||
-        r2.bottom < r1.top
-      );
-    }
 
     // Update label locations to prevent overlap
     markupLabels.sort((a, b) => a.start - b.start).each(function() {

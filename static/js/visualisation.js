@@ -198,7 +198,7 @@ class Protein {
           .attr("x", scale(markup.start))
           .attr("y", (d, index) => VALUES_Y + VALUES_HEIGHT * index)
           .attr("height", VALUES_HEIGHT)
-          .attr("width", 4)
+          .attr("width", PIXELS_PER_AMINO_ACID)
           .attr("fill", value => scale_chromatic(value));
       });
   }

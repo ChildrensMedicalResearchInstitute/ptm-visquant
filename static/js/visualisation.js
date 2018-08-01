@@ -8,6 +8,8 @@ var REGION_OPACITY = 0.9;
 var REGION_RECT_RADIUS = 16;
 var MARKUP_HEIGHT = REGION_HEIGHT;
 var MARKUP_Y = BACKBONE_Y - MARKUP_HEIGHT;
+var VALUES_Y = BACKBONE_Y + MARKUP_HEIGHT * 2;
+var VALUES_HEIGHT = MOTIF_HEIGHT;
 var MARKUP_STROKE_WIDTH = 2;
 
 var PIXELS_PER_AMINO_ACID = 3;
@@ -147,6 +149,8 @@ class Protein {
   }
 
   drawMarkup() {
+    let scale = this.scale;
+
     this.svg
       .selectAll("markup")
       .data(this.data.markups.filter(markup => markup.display !== false))
@@ -158,6 +162,25 @@ class Protein {
       .attr("y2", MARKUP_Y)
       .attr("stroke", markup => markup.lineColour)
       .attr("stroke-width", MARKUP_STROKE_WIDTH);
+
+    let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
+    console.log(this.data);
+    this.svg
+      .selectAll("heatmap")
+      .data(this.data.markups.filter(markup => markup.display !== false))
+      .enter()
+      .each(function(markup) {
+        d3.select(this)
+          .selectAll("heatmap_values")
+          .data(markup.heatmap_values)
+          .enter()
+          .append("rect")
+          .attr("x", scale(markup.start))
+          .attr("y", (d, index) => VALUES_Y + VALUES_HEIGHT * index)
+          .attr("height", VALUES_HEIGHT)
+          .attr("width", 4)
+          .attr("fill", value => scale_chromatic(value));
+      });
   }
 
   drawLabels() {
@@ -173,7 +196,6 @@ class Protein {
         "transform",
         d => `rotate(270, ${this.scale(d.start)}, ${MARKUP_Y})`
       );
-
 
     function intersects(r1, r2) {
       return !(

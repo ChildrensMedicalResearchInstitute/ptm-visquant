@@ -27,6 +27,19 @@ def get_protein_domains(id):
             return json.loads(result.group())
 
 
+def condense_heatmap_attr(dictionary):
+    keys_to_remove = []
+    heatmap_values = []
+    for key, value in dictionary.items():
+        if key.startswith('heatmap_'):
+            heatmap_values.append(value)
+            keys_to_remove.append(key)
+    for key in keys_to_remove:
+        dictionary.pop(key)
+    dictionary['heatmap_values'] = heatmap_values
+    return dictionary
+
+
 def to_markup_list(csv_file):
     """
     csv_file: an iterable whose elements describe a markup object.
@@ -41,7 +54,8 @@ def to_markup_list(csv_file):
     for row in reader:
         start = row.get('start')
         end = row.get('end')
-        data = schema.dump(row)
+        data = schema.dump(condense_heatmap_attr(row))
+        print(data)
         if (start, end) not in coordinates:
             coordinates.add((start, end))
             markup.append(data)

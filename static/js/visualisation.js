@@ -15,10 +15,6 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
-class Config {
-  constructor() {}
-}
-
 class Protein {
   constructor(data, config) {
     this.data = data;
@@ -177,6 +173,7 @@ class Protein {
         "transform",
         d => `rotate(270, ${this.scale(d.start)}, ${MARKUP_Y})`
       );
+
 
     function intersects(r1, r2) {
       return !(

@@ -8,6 +8,8 @@ var REGION_OPACITY = 0.9;
 var REGION_RECT_RADIUS = 16;
 var MARKUP_HEIGHT = REGION_HEIGHT;
 var MARKUP_Y = BACKBONE_Y - MARKUP_HEIGHT;
+var VALUES_Y = BACKBONE_Y + MARKUP_HEIGHT * 2;
+var VALUES_HEIGHT = MOTIF_HEIGHT;
 var MARKUP_STROKE_WIDTH = 2;
 
 var PIXELS_PER_AMINO_ACID = 3;
@@ -15,8 +17,13 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
-class Config {
-  constructor() {}
+function intersects(r1, r2) {
+  return !(
+    r2.left > r1.right ||
+    r2.right < r1.left ||
+    r2.top > r1.bottom ||
+    r2.bottom < r1.top
+  );
 }
 
 class Protein {
@@ -142,15 +149,29 @@ class Protein {
       .style("fill-opacity", REGION_OPACITY)
       .style("stroke", "black");
 
-    regions
+    let regionLabels = regions
       .append("text")
       .attr("x", region => this.scale(region.start))
       .attr("y", BACKBONE_Y - REGION_HEIGHT / 2)
       .attr("dy", REGION_HEIGHT * 2)
       .text(region => region.metadata.identifier);
+
+    // Remove any labels which intersect another label
+    regionLabels.sort((a, b) => a.start - b.start).each(function() {
+      const that = this;
+      regionLabels.each(function() {
+        const thisBBox = this.getBoundingClientRect();
+        const thatBBox = that.getBoundingClientRect();
+        if (this !== that && intersects(thisBBox, thatBBox)) {
+          d3.select(this).remove();
+        }
+      });
+    });
   }
 
   drawMarkup() {
+    let scale = this.scale;
+
     this.svg
       .selectAll("markup")
       .data(this.data.markups.filter(markup => markup.display !== false))
@@ -162,6 +183,24 @@ class Protein {
       .attr("y2", MARKUP_Y)
       .attr("stroke", markup => markup.lineColour)
       .attr("stroke-width", MARKUP_STROKE_WIDTH);
+
+    let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
+    this.svg
+      .selectAll("heatmap")
+      .data(this.data.markups.filter(markup => markup.display !== false))
+      .enter()
+      .each(function(markup) {
+        d3.select(this)
+          .selectAll("heatmap_values")
+          .data(markup.heatmap_values)
+          .enter()
+          .append("rect")
+          .attr("x", scale(markup.start))
+          .attr("y", (d, index) => VALUES_Y + VALUES_HEIGHT * index)
+          .attr("height", VALUES_HEIGHT)
+          .attr("width", PIXELS_PER_AMINO_ACID)
+          .attr("fill", value => scale_chromatic(value));
+      });
   }
 
   drawLabels() {
@@ -172,27 +211,22 @@ class Protein {
       .append("text")
       .text(markup => markup.start)
       .attr("x", markup => this.scale(markup.start))
-      .attr("y", MARKUP_Y);
-
-    // Return true if bounding box 1 intersects bounding box 2, else return false.
-    function intersects(bbox1, bbox2) {
-      return !(
-        bbox2.x > bbox1.x + bbox1.width ||
-        bbox2.x + bbox2.width < bbox1.x ||
-        bbox2.y > bbox1.y + bbox1.height ||
-        bbox2.y + bbox2.height < bbox1.y
+      .attr("y", MARKUP_Y)
+      .attr(
+        "transform",
+        d => `rotate(270, ${this.scale(d.start)}, ${MARKUP_Y})`
       );
-    }
 
     // Update label locations to prevent overlap
     markupLabels.sort((a, b) => a.start - b.start).each(function() {
-      let that = this;
+      const that = this;
       markupLabels.each(function() {
-        let thisBBox = this.getBBox();
-        if (that != this && intersects(thisBBox, that.getBBox())) {
-          let currentHeight = d3.select(that).attr("y");
-          let delta = thisBBox.height * 1.1;
-          d3.select(this).attr("y", +currentHeight - delta);
+        const thisBBox = this.getBoundingClientRect();
+        const thatBBox = that.getBoundingClientRect();
+        if (this !== that && intersects(thisBBox, thatBBox)) {
+          let currentX = d3.select(this).attr("x");
+          let delta = that.getBBox().width * 1.4;
+          d3.select(this).attr("x", +currentX + delta);
         }
       });
     });

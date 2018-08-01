@@ -1,6 +1,6 @@
 from app import app
 from forms import PtmForm
-from mapper.pfam import get_protein_domains, to_markup_list
+from mapper.utils import get_protein_domains, to_markup_list
 
 from flask import Flask, Markup
 from flask import render_template, request

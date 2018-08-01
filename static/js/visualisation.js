@@ -164,7 +164,6 @@ class Protein {
       .attr("stroke-width", MARKUP_STROKE_WIDTH);
 
     let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
-    console.log(this.data);
     this.svg
       .selectAll("heatmap")
       .data(this.data.markups.filter(markup => markup.display !== false))

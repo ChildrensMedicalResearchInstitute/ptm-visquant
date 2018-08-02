@@ -18,7 +18,9 @@ var TICK_STEP = 50;
 var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
 var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
-function intersects(r1, r2) {
+function intersects(elem1, elem2) {
+  let r1 = elem1.getBoundingClientRect();
+  let r2 = elem2.getBoundingClientRect();
   return !(
     r2.left >= r1.right ||
     r2.right <= r1.left ||
@@ -29,10 +31,26 @@ function intersects(r1, r2) {
 
 // https://stackoverflow.com/questions/38224875/replacing-d3-transform-in-d3-v4/38230545#38230545
 function getTranslation(transform) {
-  var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.setAttributeNS(null, "transform", transform);
-  var matrix = g.transform.baseVal.consolidate().matrix;
+  let matrix = g.transform.baseVal.consolidate().matrix;
   return [matrix.e, matrix.f];
+}
+
+function saveSvg(svgElement, filename) {
+  svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  let svgData = svgElement.outerHTML;
+  let preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  let svgBlob = new Blob([preface, svgData], {
+    type: "image/svg+xml;charset=utf-8"
+  });
+  let svgUrl = URL.createObjectURL(svgBlob);
+  let downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = filename;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
 }
 
 class Protein {
@@ -90,7 +108,7 @@ class Protein {
       .style("fill-opacity", MOTIF_OPACITY);
 
     // As defined by Pfam http://pfam.xfam.org/help#tabview=tab10
-    var motifTypes = [
+    let motifTypes = [
       {
         type: "disorder",
         colour: "#cccccc"
@@ -169,9 +187,7 @@ class Protein {
     regionLabels.sort((a, b) => a.start - b.start).each(function () {
       const that = this;
       regionLabels.each(function () {
-        const thisBBox = this.getBoundingClientRect();
-        const thatBBox = that.getBoundingClientRect();
-        if (this !== that && intersects(thisBBox, thatBBox)) {
+        if (this !== that && intersects(this, that)) {
           d3.select(this).remove();
         }
       });
@@ -218,9 +234,7 @@ class Protein {
     heatmap_bars.sort((a, b) => a.start - b.start).each(function () {
       const that = this;
       heatmap_bars.each(function () {
-        const thisBBox = this.getBoundingClientRect();
-        const thatBBox = that.getBoundingClientRect();
-        if (this !== that && intersects(thisBBox, thatBBox)) {
+        if (this !== that && intersects(this, that)) {
           const thatLeft = getTranslation(d3.select(that).attr("transform"))[0]
           d3.select(this).attr("transform", `translate(${thatLeft + VALUES_WIDTH}, ${VALUES_Y})`);
         }
@@ -246,9 +260,8 @@ class Protein {
     markupLabels.sort((a, b) => a.start - b.start).each(function () {
       const that = this;
       markupLabels.each(function () {
-        const thisBBox = this.getBoundingClientRect();
-        const thatBBox = that.getBoundingClientRect();
-        if (this !== that && intersects(thisBBox, thatBBox)) {
+        if (this !== that && intersects(this, that)) {
+          // Move this element upward
           let currentX = d3.select(this).attr("x");
           let delta = that.getBBox().width * 1.4;
           d3.select(this).attr("x", +currentX + delta);
@@ -256,22 +269,6 @@ class Protein {
       });
     });
   }
-}
-
-function saveSvg(svgElement, filename) {
-  svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  let svgData = svgElement.outerHTML;
-  let preface = '<?xml version="1.0" standalone="no"?>\r\n';
-  let svgBlob = new Blob([preface, svgData], {
-    type: "image/svg+xml;charset=utf-8"
-  });
-  let svgUrl = URL.createObjectURL(svgBlob);
-  let downloadLink = document.createElement("a");
-  downloadLink.href = svgUrl;
-  downloadLink.download = filename;
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
 }
 
 let main = new Protein(context);

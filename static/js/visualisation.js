@@ -9,6 +9,7 @@ var REGION_RECT_RADIUS = 16;
 var MARKUP_HEIGHT = REGION_HEIGHT;
 var MARKUP_Y = BACKBONE_Y - MARKUP_HEIGHT;
 var VALUES_Y = BACKBONE_Y + MARKUP_HEIGHT * 2;
+var VALUES_WIDTH = MOTIF_HEIGHT;
 var VALUES_HEIGHT = MOTIF_HEIGHT;
 var MARKUP_STROKE_WIDTH = 2;
 
@@ -19,10 +20,10 @@ var CANVAS_HEIGHT = BACKBONE_Y * 2;
 
 function intersects(r1, r2) {
   return !(
-    r2.left > r1.right ||
-    r2.right < r1.left ||
-    r2.top > r1.bottom ||
-    r2.bottom < r1.top
+    r2.left >= r1.right ||
+    r2.right <= r1.left ||
+    r2.top >= r1.bottom ||
+    r2.bottom <= r1.top
   );
 }
 
@@ -156,10 +157,10 @@ class Protein {
       .attr("dy", REGION_HEIGHT * 2)
       .text(region => region.metadata.identifier);
 
-    // Remove any labels which intersect another label
-    regionLabels.sort((a, b) => a.start - b.start).each(function() {
+    // Remove any labels which intersect a former label
+    regionLabels.sort((a, b) => a.start - b.start).each(function () {
       const that = this;
-      regionLabels.each(function() {
+      regionLabels.each(function () {
         const thisBBox = this.getBoundingClientRect();
         const thatBBox = that.getBoundingClientRect();
         if (this !== that && intersects(thisBBox, thatBBox)) {
@@ -171,10 +172,11 @@ class Protein {
 
   drawMarkup() {
     let scale = this.scale;
+    let markup_display = this.data.markups.filter(markup => markup.display !== false);
 
     this.svg
       .selectAll("markup")
-      .data(this.data.markups.filter(markup => markup.display !== false))
+      .data(markup_display)
       .enter()
       .append("line")
       .attr("x1", markup => this.scale(markup.start))
@@ -185,22 +187,55 @@ class Protein {
       .attr("stroke-width", MARKUP_STROKE_WIDTH);
 
     let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
-    this.svg
+    let heatmap_bars = this.svg
       .selectAll("heatmap")
-      .data(this.data.markups.filter(markup => markup.display !== false))
+      .data(markup_display)
       .enter()
-      .each(function(markup) {
-        d3.select(this)
-          .selectAll("heatmap_values")
-          .data(markup.heatmap_values)
-          .enter()
-          .append("rect")
-          .attr("x", scale(markup.start))
-          .attr("y", (d, index) => VALUES_Y + VALUES_HEIGHT * index)
-          .attr("height", VALUES_HEIGHT)
-          .attr("width", PIXELS_PER_AMINO_ACID)
-          .attr("fill", value => scale_chromatic(value));
+      .append("g")
+      .attr("transform", d => `translate(${scale(d.start)}, ${VALUES_Y})`)
+
+    heatmap_bars.each(function (markup) {
+      d3.select(this)
+        .selectAll("heatmap_values")
+        .data(markup.heatmap_values)
+        .enter()
+        .append("rect")
+        .attr("y", (d, index) => VALUES_HEIGHT * index)
+        .attr("height", VALUES_HEIGHT)
+        .attr("width", VALUES_WIDTH)
+        .attr("fill", value => scale_chromatic(value));
+    });
+
+    function getTranslation(transform) {
+      // Create a dummy g for calculation purposes only. This will never
+      // be appended to the DOM and will be discarded once this function 
+      // returns.
+      var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+      // Set the transform attribute to the provided string value.
+      g.setAttributeNS(null, "transform", transform);
+
+      // consolidate the SVGTransformList containing all transformations
+      // to a single SVGTransform of type SVG_TRANSFORM_MATRIX and get
+      // its SVGMatrix. 
+      var matrix = g.transform.baseVal.consolidate().matrix;
+
+      // As per definition values e and f are the ones for the translation.
+      return [matrix.e, matrix.f];
+    }
+
+    // Update heatmap locations to prevent overlap
+    heatmap_bars.sort((a, b) => a.start - b.start).each(function () {
+      const that = this;
+      heatmap_bars.each(function () {
+        const thisBBox = this.getBoundingClientRect();
+        const thatBBox = that.getBoundingClientRect();
+        if (this !== that && intersects(thisBBox, thatBBox)) {
+          const thatLeft = getTranslation(d3.select(that).attr("transform"))[0]
+          d3.select(this).attr("transform", `translate(${thatLeft + VALUES_WIDTH}, ${VALUES_Y})`);
+        }
       });
+    });
   }
 
   drawLabels() {
@@ -218,9 +253,9 @@ class Protein {
       );
 
     // Update label locations to prevent overlap
-    markupLabels.sort((a, b) => a.start - b.start).each(function() {
+    markupLabels.sort((a, b) => a.start - b.start).each(function () {
       const that = this;
-      markupLabels.each(function() {
+      markupLabels.each(function () {
         const thisBBox = this.getBoundingClientRect();
         const thatBBox = that.getBoundingClientRect();
         if (this !== that && intersects(thisBBox, thatBBox)) {
@@ -252,11 +287,11 @@ function saveSvg(svgElement, filename) {
 let main = new Protein(context);
 main.draw();
 
-d3.select("#download").on("click", function() {
+d3.select("#download").on("click", function () {
   saveSvg(main.svg.node(), main.data.metadata.identifier);
 });
 
-d3.select("#update").on("click", function() {
+d3.select("#update").on("click", function () {
   main.svg.remove();
   PIXELS_PER_AMINO_ACID = d3.select("#aa-per-pixel").node().value;
   TICK_STEP = d3.select("#tick-step").node().value;

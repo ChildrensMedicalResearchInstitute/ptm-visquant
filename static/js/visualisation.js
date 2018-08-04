@@ -1,23 +1,3 @@
-// MAGIC NUMBERS
-var BACKBONE_Y = 200;
-var BACKBONE_HEIGHT = 8;
-var MOTIF_HEIGHT = BACKBONE_HEIGHT * 2;
-var MOTIF_OPACITY = 0.65;
-var REGION_HEIGHT = BACKBONE_HEIGHT * 3.5;
-var REGION_OPACITY = 0.9;
-var REGION_RECT_RADIUS = 16;
-var MARKUP_HEIGHT = REGION_HEIGHT;
-var MARKUP_Y = BACKBONE_Y - MARKUP_HEIGHT;
-var VALUES_Y = BACKBONE_Y + MARKUP_HEIGHT * 2;
-var VALUES_WIDTH = MOTIF_HEIGHT;
-var VALUES_HEIGHT = MOTIF_HEIGHT;
-var MARKUP_STROKE_WIDTH = 2;
-
-var PIXELS_PER_AMINO_ACID = 3;
-var TICK_STEP = 50;
-var CANVAS_WIDTH = context.length * PIXELS_PER_AMINO_ACID;
-var CANVAS_HEIGHT = BACKBONE_Y * 2;
-
 function intersects(elem1, elem2) {
   let r1 = elem1.getBoundingClientRect();
   let r2 = elem2.getBoundingClientRect();
@@ -53,60 +33,26 @@ function saveSvg(svgElement, filename) {
   document.body.removeChild(downloadLink);
 }
 
-class Protein {
-  constructor(data, config) {
-    this.data = data;
-    this.config = config;
-    this.svg = d3
-      .select("div.vis-box")
-      .append("svg")
-      .attr("width", CANVAS_WIDTH)
-      .attr("height", CANVAS_HEIGHT);
+class Canvas {
+  constructor() {
+    this.scale = undefined;
+    this.svg = d3.select("div.vis-box").append("svg");
+    this.GROUP_PADDING = 40;
+    this.CANVAS_HEIGHT = this.GROUP_PADDING;
+  }
+
+  addScale(data) {
+    // TODO: Add scale logic from Rowena here
     this.scale = d3
       .scaleLinear()
-      .domain([0, this.data.length])
-      .range([0, CANVAS_WIDTH]);
-  }
+      .domain([0, data.length])
+      .range([0, 6000])
 
-  draw() {
-    this.drawAxis();
-    this.drawBackbone();
-    this.drawLabels();
-    this.drawMotifs();
-    this.drawRegions();
-    this.drawMarkup();
-  }
-
-  drawAxis() {
-    let xAxis = d3
-      .axisBottom(this.scale)
-      .tickValues(d3.range(0, this.data.length, TICK_STEP));
+    d3.axisBottom(this.scale).ticks(10);
     this.svg.append("g").call(xAxis);
   }
 
-  drawBackbone() {
-    this.svg
-      .append("rect")
-      .attr("x", 0)
-      .attr("y", BACKBONE_Y - BACKBONE_HEIGHT / 2)
-      .attr("width", CANVAS_WIDTH)
-      .attr("height", BACKBONE_HEIGHT)
-      .attr("fill", "grey");
-  }
-
-  drawMotifs() {
-    this.svg
-      .selectAll("motif")
-      .data(this.data.motifs.filter(d => d.display !== false))
-      .enter()
-      .append("rect")
-      .attr("x", motif => this.scale(motif.start))
-      .attr("y", motif => BACKBONE_Y - MOTIF_HEIGHT / 2)
-      .attr("width", motif => this.scale(motif.end - motif.start))
-      .attr("height", MOTIF_HEIGHT)
-      .style("fill", motif => motif.colour)
-      .style("fill-opacity", MOTIF_OPACITY);
-
+  addMotifLegend(data) {
     // As defined by Pfam http://pfam.xfam.org/help#tabview=tab10
     let motifTypes = [
       {
@@ -147,14 +93,103 @@ class Protein {
       )
       .shapePadding(10)
       // filter out motifs which do not appear in this context
-      .cellFilter(d => this.data.motifs.map(m => m.type).indexOf(d.label) > -1)
+      .cellFilter(d => data.motifs.map(m => m.type).indexOf(d.label) > -1)
       .scale(legendScale);
 
-    this.svg
+    let legend = this.svg
       .append("g")
       .attr("class", "legendOrdinal")
-      .attr("transform", "translate(20,50)")
+      .attr("transform", "translate(20,0)")
       .call(legendStyle);
+
+    this.fit(legend);
+  }
+
+  addProtein(data) {
+    let slate = this.svg.append("g");
+    let builder = new ProteinBuilder(data, slate, this.scale);
+    builder.build();
+    this.fit(slate);
+  }
+
+  // Fit element to the bottom of the canvas and update canvas height
+  fit(element) {
+    let currentX = undefined;
+    try {
+      // Maintain current transformed x-coordinate
+      currentX = getTranslation(element.attr("transform"))[0];
+    } catch (err) {
+      currentX = 0;
+    }
+    element.attr("transform", `translate(${currentX}, ${this.CANVAS_HEIGHT - element.node().getBBox().y})`)
+    this.CANVAS_HEIGHT += element.node().getBBox().height + this.GROUP_PADDING;
+  }
+
+  // Expand the canvas to fit all elements in this.svg
+  expand() {
+    this.svg
+      .attr("width", this.svg.node().getBBox().width)
+      .attr("height", this.svg.node().getBBox().height);
+  }
+}
+
+class ProteinBuilder {
+  constructor(data, svg, scale) {
+    this.protein = new Protein(data, svg, scale);
+  }
+
+  build() {
+    this.protein.drawBackbone();
+    this.protein.drawMotifs();
+    this.protein.drawRegions();
+    this.protein.drawMarkup();
+    this.protein.drawMarkupLabels();
+  }
+}
+
+class Protein {
+  constructor(data, svg, scale) {
+    this.BACKBONE_Y = 0;
+    this.BACKBONE_HEIGHT = 8;
+    this.MOTIF_HEIGHT = this.BACKBONE_HEIGHT * 2;
+    this.MOTIF_OPACITY = 0.65;
+    this.REGION_HEIGHT = this.BACKBONE_HEIGHT * 3.5;
+    this.REGION_OPACITY = 0.9;
+    this.REGION_RECT_RADIUS = 16;
+    this.MARKUP_HEIGHT = this.REGION_HEIGHT;
+    this.MARKUP_Y = this.BACKBONE_Y - this.MARKUP_HEIGHT;
+    this.VALUES_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
+    this.VALUES_WIDTH = this.MOTIF_HEIGHT;
+    this.VALUES_HEIGHT = this.MOTIF_HEIGHT;
+    this.MARKUP_STROKE_WIDTH = 2;
+
+    this.data = data;
+    this.svg = svg;
+    this.scale = scale;
+  }
+
+  drawBackbone() {
+    this.svg
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", this.BACKBONE_Y - this.BACKBONE_HEIGHT / 2)
+      .attr("width", this.scale.range()[1])
+      .attr("height", this.BACKBONE_HEIGHT)
+      .attr("fill", "grey");
+  }
+
+  drawMotifs() {
+    this.svg
+      .selectAll("motif")
+      .data(this.data.motifs.filter(d => d.display !== false))
+      .enter()
+      .append("rect")
+      .attr("x", motif => this.scale(motif.start))
+      .attr("y", motif => this.BACKBONE_Y - this.MOTIF_HEIGHT / 2)
+      .attr("width", motif => this.scale(motif.end - motif.start))
+      .attr("height", this.MOTIF_HEIGHT)
+      .style("fill", motif => motif.colour)
+      .style("fill-opacity", this.MOTIF_OPACITY);
   }
 
   drawRegions() {
@@ -166,21 +201,21 @@ class Protein {
 
     regions
       .append("rect")
-      .attr("rx", REGION_RECT_RADIUS)
-      .attr("ry", REGION_RECT_RADIUS)
+      .attr("rx", this.REGION_RECT_RADIUS)
+      .attr("ry", this.REGION_RECT_RADIUS)
       .attr("x", region => this.scale(region.start))
-      .attr("y", BACKBONE_Y - REGION_HEIGHT / 2)
+      .attr("y", this.BACKBONE_Y - this.REGION_HEIGHT / 2)
       .attr("width", region => this.scale(region.end - region.start))
-      .attr("height", REGION_HEIGHT)
+      .attr("height", this.REGION_HEIGHT)
       .style("fill", region => region.colour)
-      .style("fill-opacity", REGION_OPACITY)
+      .style("fill-opacity", this.REGION_OPACITY)
       .style("stroke", "black");
 
     let regionLabels = regions
       .append("text")
       .attr("x", region => this.scale(region.start))
-      .attr("y", BACKBONE_Y - REGION_HEIGHT / 2)
-      .attr("dy", REGION_HEIGHT * 2)
+      .attr("y", this.BACKBONE_Y - this.REGION_HEIGHT / 2)
+      .attr("dy", this.REGION_HEIGHT * 2)
       .text(region => region.metadata.identifier);
 
     // Remove any labels which intersect a former label
@@ -204,11 +239,11 @@ class Protein {
       .enter()
       .append("line")
       .attr("x1", markup => this.scale(markup.start))
-      .attr("y1", BACKBONE_Y)
+      .attr("y1", this.BACKBONE_Y)
       .attr("x2", markup => this.scale(markup.start))
-      .attr("y2", MARKUP_Y)
+      .attr("y2", this.MARKUP_Y)
       .attr("stroke", markup => markup.lineColour)
-      .attr("stroke-width", MARKUP_STROKE_WIDTH);
+      .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
 
     let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
     let heatmap_bars = this.svg
@@ -216,18 +251,21 @@ class Protein {
       .data(markup_display)
       .enter()
       .append("g")
-      .attr("transform", d => `translate(${scale(d.start)}, ${VALUES_Y})`)
+      .attr("transform", d => `translate(${scale(d.start)}, ${this.VALUES_Y})`)
 
+    let _this = this;
     heatmap_bars.each(function (markup) {
-      d3.select(this)
-        .selectAll("heatmap_values")
-        .data(markup.heatmap_values)
-        .enter()
-        .append("rect")
-        .attr("y", (d, index) => VALUES_HEIGHT * index)
-        .attr("height", VALUES_HEIGHT)
-        .attr("width", VALUES_WIDTH)
-        .attr("fill", value => scale_chromatic(value));
+      if (markup.heatmap_values) {
+        d3.select(this)
+          .selectAll("heatmap_values")
+          .data(markup.heatmap_values)
+          .enter()
+          .append("rect")
+          .attr("y", (d, index) => _this.VALUES_HEIGHT * index)
+          .attr("height", _this.VALUES_HEIGHT)
+          .attr("width", _this.VALUES_WIDTH)
+          .attr("fill", value => scale_chromatic(value));
+      }
     });
 
     // Update heatmap locations to prevent overlap
@@ -236,13 +274,13 @@ class Protein {
       heatmap_bars.each(function () {
         if (this !== that && intersects(this, that)) {
           const thatLeft = getTranslation(d3.select(that).attr("transform"))[0]
-          d3.select(this).attr("transform", `translate(${thatLeft + VALUES_WIDTH}, ${VALUES_Y})`);
+          d3.select(this).attr("transform", `translate(${thatLeft + _this.VALUES_WIDTH}, ${_this.VALUES_Y})`);
         }
       });
     });
   }
 
-  drawLabels() {
+  drawMarkupLabels() {
     let markupLabels = this.svg
       .selectAll("markup-label")
       .data(this.data.markups.filter(markup => markup.display !== false))
@@ -250,10 +288,10 @@ class Protein {
       .append("text")
       .text(markup => markup.start)
       .attr("x", markup => this.scale(markup.start))
-      .attr("y", MARKUP_Y)
+      .attr("y", this.MARKUP_Y)
       .attr(
         "transform",
-        d => `rotate(270, ${this.scale(d.start)}, ${MARKUP_Y})`
+        d => `rotate(270, ${this.scale(d.start)}, ${this.MARKUP_Y})`
       );
 
     // Update label locations to prevent overlap
@@ -271,18 +309,12 @@ class Protein {
   }
 }
 
-let main = new Protein(context);
-main.draw();
+let canvas = new Canvas();
+canvas.addScale(context);
+canvas.addProtein(context);
+canvas.addMotifLegend(context);
+canvas.expand();
 
 d3.select("#download").on("click", function () {
-  saveSvg(main.svg.node(), main.data.metadata.identifier);
-});
-
-d3.select("#update").on("click", function () {
-  main.svg.remove();
-  PIXELS_PER_AMINO_ACID = d3.select("#aa-per-pixel").node().value;
-  TICK_STEP = d3.select("#tick-step").node().value;
-  CANVAS_WIDTH = main.data.length * PIXELS_PER_AMINO_ACID;
-  main = new Protein(context);
-  main.draw();
+  saveSvg(canvas.svg.node(), context.metadata.identifier);
 });

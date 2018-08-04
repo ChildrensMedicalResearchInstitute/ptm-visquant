@@ -49,7 +49,13 @@ class Canvas {
       .range([0, 6000])
 
     let xAxis = d3.axisBottom(this.scale).ticks(10);
-    this.svg.append("g").call(xAxis);
+    this.svg.append("g").call(xAxis)
+      .selectAll("text")
+      .attr("y", 0)
+      .attr("x", -10)
+      .attr("dy", ".35em")
+      .attr("transform", "rotate(270)")
+      .style("text-anchor", "end");
   }
 
   addMotifLegend(data) {

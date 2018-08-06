@@ -20,3 +20,4 @@ The first line of the CSV file should be a header which identifies the informati
 |`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
 |`end`|No|The end coordinate of the markup. If this field is not specified, then the markup will end at the start coordinate. Must be an integer with a minimum value of zero.|
 |`display`|No|A `true` or `false` value denoting whether the markup should be displayed on the graphic.|
+|`heatmap_*`|No|Numerical value between 0 and 1 (inclusive) to quantify amount modified. Columns will be collapsed into the heatmap in the order in which they are specified.|

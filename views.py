@@ -35,9 +35,9 @@ def default():
     """
     form = PtmForm(request.form)
     import json
-    with open('static/O88778.json') as f:
+    with open('static/files/BSN_RAT.json') as f:
         context = json.load(f)
-    with open('static/markup-sites.csv') as f:
+    with open('static/files/BSN_RAT_EXAMPLE.csv') as f:
         context['markups'] += to_markup_list(f)
     return render_template(
         'ptm_mapper.html',

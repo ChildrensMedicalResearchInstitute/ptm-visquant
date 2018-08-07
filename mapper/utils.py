@@ -68,7 +68,4 @@ def to_markup_list(csv_file):
         if (start, end) not in coordinates:
             coordinates.add((start, end))
             markup.append(data)
-
-    from pprint import pprint
-    pprint(markup)
     return markup

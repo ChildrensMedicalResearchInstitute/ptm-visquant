@@ -171,10 +171,8 @@ class Protein {
     this.MARKUP_HEIGHT = this.REGION_HEIGHT;
     this.MARKUP_Y = this.BACKBONE_Y - this.MARKUP_HEIGHT;
     this.HEATMAP_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
-    // this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT;
-    // this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT;
-    this.HEATMAP_CELL_WIDTH = this.REGION_HEIGHT;
-    this.HEATMAP_CELL_HEIGHT = this.REGION_HEIGHT;
+    this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT * 1.5;
+    this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT * 1.5;
     this.MARKUP_STROKE_WIDTH = 2;
 
     this.data = data;

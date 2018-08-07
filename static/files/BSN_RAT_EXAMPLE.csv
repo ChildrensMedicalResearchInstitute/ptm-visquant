@@ -1,4 +1,4 @@
-type,start,lineColour,heatmap_1,heatmap_2,heatmap_3,heatmap_4,heatmap_5
+type,start,lineColour,heatmap_trial_1,heatmap_trial_2,heatmap_trial_3,heatmap_trial_4,heatmap_trial_5
 phosphorylation,3498,#FE4EDA,0.612106,0.001638612,0.186696264,0.84407607,0.944926068
 phosphorylation,142,orange,0.996835935,0.371509273,0.755262574,0.88735566,0.849080017
 phosphorylation,1087,#FE4EDA,0.986716593,0.143218826,0.075526555,0.196147395,0.093841598

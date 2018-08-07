@@ -49,7 +49,9 @@ class Canvas {
       .range([0, data.length]);
 
     let xAxis = d3.axisBottom(this.scale).ticks(10);
-    this.svg.append("g").call(xAxis)
+    this.svg
+      .append("g")
+      .call(xAxis)
       .selectAll("text")
       .attr("y", 0)
       .attr("x", -10)
@@ -127,7 +129,11 @@ class Canvas {
     } catch (err) {
       currentX = 0;
     }
-    element.attr("transform", `translate(${currentX}, ${this.CANVAS_HEIGHT - element.node().getBBox().y})`)
+    element.attr(
+      "transform",
+      `translate(${currentX}, ${this.CANVAS_HEIGHT -
+        element.node().getBBox().y})`
+    );
     this.CANVAS_HEIGHT += element.node().getBBox().height + this.GROUP_PADDING;
   }
 
@@ -165,8 +171,10 @@ class Protein {
     this.MARKUP_HEIGHT = this.REGION_HEIGHT;
     this.MARKUP_Y = this.BACKBONE_Y - this.MARKUP_HEIGHT;
     this.HEATMAP_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
-    this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT;
-    this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT;
+    // this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT;
+    // this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT;
+    this.HEATMAP_CELL_WIDTH = this.REGION_HEIGHT;
+    this.HEATMAP_CELL_HEIGHT = this.REGION_HEIGHT;
     this.MARKUP_STROKE_WIDTH = 2;
 
     this.data = data;
@@ -225,9 +233,9 @@ class Protein {
       .text(region => region.metadata.identifier);
 
     // Remove any labels which intersect a former label
-    regionLabels.sort((a, b) => a.start - b.start).each(function () {
+    regionLabels.sort((a, b) => a.start - b.start).each(function() {
       const that = this;
-      regionLabels.each(function () {
+      regionLabels.each(function() {
         if (this !== that && intersects(this, that)) {
           d3.select(this).remove();
         }
@@ -237,7 +245,9 @@ class Protein {
 
   drawMarkup() {
     let scale = this.scale;
-    let markup_display = this.data.markups.filter(markup => markup.display !== false);
+    let markup_display = this.data.markups.filter(
+      markup => markup.display !== false
+    );
 
     this.svg
       .selectAll("markup")
@@ -252,15 +262,18 @@ class Protein {
       .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
 
     let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
-    let heatmap_bars = this.svg
-      .selectAll("heatmap")
+    let heatmap_column = this.svg
+      .selectAll("heatmap_column")
       .data(markup_display)
       .enter()
       .append("g")
-      .attr("transform", d => `translate(${scale(d.start)}, ${this.HEATMAP_Y})`)
+      .attr(
+        "transform",
+        d => `translate(${scale(d.start)}, ${this.HEATMAP_Y})`
+      );
 
     let _this = this;
-    heatmap_bars.each(function (markup) {
+    heatmap_column.each(function(markup) {
       if (markup.heatmap_values) {
         d3.select(this)
           .selectAll("heatmap_values")
@@ -275,12 +288,17 @@ class Protein {
     });
 
     // Update heatmap locations to prevent overlap
-    heatmap_bars.sort((a, b) => a.start - b.start).each(function () {
+    heatmap_column.sort((a, b) => a.start - b.start).each(function() {
       const that = this;
-      heatmap_bars.each(function () {
+      heatmap_column.each(function() {
         if (this !== that && intersects(this, that)) {
-          const thatLeft = getTranslation(d3.select(that).attr("transform"))[0]
-          d3.select(this).attr("transform", `translate(${thatLeft + _this.HEATMAP_CELL_WIDTH}, ${_this.HEATMAP_Y})`);
+          const thatLeft = getTranslation(d3.select(that).attr("transform"))[0];
+          d3.select(this).attr(
+            "transform",
+            `translate(${thatLeft + _this.HEATMAP_CELL_WIDTH}, ${
+              _this.HEATMAP_Y
+            })`
+          );
         }
       });
     });
@@ -315,9 +333,9 @@ class Protein {
       );
 
     // Update label locations to prevent overlap
-    markupLabels.sort((a, b) => a.start - b.start).each(function () {
+    markupLabels.sort((a, b) => a.start - b.start).each(function() {
       const that = this;
-      markupLabels.each(function () {
+      markupLabels.each(function() {
         if (this !== that && intersects(this, that)) {
           // Move this element upward
           let currentX = d3.select(this).attr("x");
@@ -335,6 +353,6 @@ canvas.addProtein(context);
 canvas.addMotifLegend(context);
 canvas.expand();
 
-d3.select("#download").on("click", function () {
+d3.select("#download").on("click", function() {
   saveSvg(canvas.svg.node(), context.metadata.identifier);
 });

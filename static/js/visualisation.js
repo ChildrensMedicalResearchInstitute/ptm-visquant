@@ -164,9 +164,9 @@ class Protein {
     this.REGION_RECT_RADIUS = 16;
     this.MARKUP_HEIGHT = this.REGION_HEIGHT;
     this.MARKUP_Y = this.BACKBONE_Y - this.MARKUP_HEIGHT;
-    this.VALUES_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
-    this.VALUES_WIDTH = this.MOTIF_HEIGHT;
-    this.VALUES_HEIGHT = this.MOTIF_HEIGHT;
+    this.HEATMAP_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
+    this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT;
+    this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT;
     this.MARKUP_STROKE_WIDTH = 2;
 
     this.data = data;
@@ -257,7 +257,7 @@ class Protein {
       .data(markup_display)
       .enter()
       .append("g")
-      .attr("transform", d => `translate(${scale(d.start)}, ${this.VALUES_Y})`)
+      .attr("transform", d => `translate(${scale(d.start)}, ${this.HEATMAP_Y})`)
 
     let _this = this;
     heatmap_bars.each(function (markup) {
@@ -267,9 +267,9 @@ class Protein {
           .data(markup.heatmap_values)
           .enter()
           .append("rect")
-          .attr("y", (d, index) => _this.VALUES_HEIGHT * index)
-          .attr("height", _this.VALUES_HEIGHT)
-          .attr("width", _this.VALUES_WIDTH)
+          .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * index)
+          .attr("height", _this.HEATMAP_CELL_HEIGHT)
+          .attr("width", _this.HEATMAP_CELL_WIDTH)
           .attr("fill", value => scale_chromatic(value));
       }
     });
@@ -280,7 +280,7 @@ class Protein {
       heatmap_bars.each(function () {
         if (this !== that && intersects(this, that)) {
           const thatLeft = getTranslation(d3.select(that).attr("transform"))[0]
-          d3.select(this).attr("transform", `translate(${thatLeft + _this.VALUES_WIDTH}, ${_this.VALUES_Y})`);
+          d3.select(this).attr("transform", `translate(${thatLeft + _this.HEATMAP_CELL_WIDTH}, ${_this.HEATMAP_Y})`);
         }
       });
     });

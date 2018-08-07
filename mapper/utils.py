@@ -40,6 +40,14 @@ def condense_heatmap_attr(dictionary):
     return dictionary
 
 
+def extract_heatmap_labels(fields):
+    heatmap_labels = []
+    for field in fields:
+        if field.startswith('heatmap_'):
+            heatmap_labels.append(field[8:])
+    return heatmap_labels
+
+
 def to_markup_list(csv_file):
     """
     csv_file: an iterable whose elements describe a markup object.
@@ -51,12 +59,16 @@ def to_markup_list(csv_file):
     schema = MarkupSchema()
     reader = DictReader(csv_file)
     coordinates = set()
+    heatmap_fields = extract_heatmap_labels(reader.fieldnames)
     for row in reader:
         start = row.get('start')
         end = row.get('end')
         data = schema.dump(condense_heatmap_attr(row))
-        print(data)
+        data['heatmap_labels'] = heatmap_fields
         if (start, end) not in coordinates:
             coordinates.add((start, end))
             markup.append(data)
+
+    from pprint import pprint
+    pprint(markup)
     return markup

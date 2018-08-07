@@ -284,6 +284,20 @@ class Protein {
         }
       });
     });
+
+    // Add heatmap label to last heatmap column
+    d3.select(heatmap_column.node()).each(function(markup) {
+      if (markup.heatmap_labels) {
+        d3.select(this)
+          .selectAll("heatmap_labels")
+          .data(markup.heatmap_labels)
+          .enter()
+          .append("text")
+          .attr("x", _this.HEATMAP_CELL_WIDTH * 2)
+          .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * (index + 1))
+          .text(d => d);
+      }
+    });
   }
 
   drawMarkupLabels() {

@@ -154,8 +154,9 @@ class ProteinBuilder {
     this.protein.drawBackbone();
     this.protein.drawMotifs();
     this.protein.drawRegions();
-    this.protein.drawMarkup();
+    this.protein.drawMarkupLines();
     this.protein.drawMarkupLabels();
+    this.protein.drawHeatmap();
   }
 }
 
@@ -241,8 +242,7 @@ class Protein {
     });
   }
 
-  drawMarkup() {
-    let scale = this.scale;
+  drawMarkupLines() {
     let markup_display = this.data.markups.filter(
       markup => markup.display !== false
     );
@@ -258,8 +258,44 @@ class Protein {
       .attr("y2", this.MARKUP_Y)
       .attr("stroke", markup => markup.lineColour)
       .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
+  }
 
+  drawMarkupLabels() {
+    let markupLabels = this.svg
+      .selectAll("markup-label")
+      .data(this.data.markups.filter(markup => markup.display !== false))
+      .enter()
+      .append("text")
+      .text(markup => markup.start)
+      .attr("x", markup => this.scale(markup.start))
+      .attr("y", this.MARKUP_Y)
+      .attr(
+        "transform",
+        d => `rotate(270, ${this.scale(d.start)}, ${this.MARKUP_Y})`
+      );
+
+    // Update label locations to prevent overlap
+    markupLabels.sort((a, b) => a.start - b.start).each(function() {
+      const that = this;
+      markupLabels.each(function() {
+        if (this !== that && intersects(this, that)) {
+          // Move this element upward
+          let currentX = d3.select(this).attr("x");
+          let delta = that.getBBox().width * 1.4;
+          d3.select(this).attr("x", +currentX + delta);
+        }
+      });
+    });
+  }
+
+  drawHeatmap() {
+    let _this = this;
+    let scale = this.scale;
     let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
+
+    let markup_display = this.data.markups.filter(
+      markup => markup.display !== false
+    );
     let heatmap_column = this.svg
       .selectAll("heatmap_column")
       .data(markup_display)
@@ -270,7 +306,6 @@ class Protein {
         d => `translate(${scale(d.start)}, ${this.HEATMAP_Y})`
       );
 
-    let _this = this;
     heatmap_column.each(function(markup) {
       if (markup.heatmap_values) {
         d3.select(this)
@@ -313,34 +348,6 @@ class Protein {
           .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * (index + 1))
           .text(d => d);
       }
-    });
-  }
-
-  drawMarkupLabels() {
-    let markupLabels = this.svg
-      .selectAll("markup-label")
-      .data(this.data.markups.filter(markup => markup.display !== false))
-      .enter()
-      .append("text")
-      .text(markup => markup.start)
-      .attr("x", markup => this.scale(markup.start))
-      .attr("y", this.MARKUP_Y)
-      .attr(
-        "transform",
-        d => `rotate(270, ${this.scale(d.start)}, ${this.MARKUP_Y})`
-      );
-
-    // Update label locations to prevent overlap
-    markupLabels.sort((a, b) => a.start - b.start).each(function() {
-      const that = this;
-      markupLabels.each(function() {
-        if (this !== that && intersects(this, that)) {
-          // Move this element upward
-          let currentX = d3.select(this).attr("x");
-          let delta = that.getBBox().width * 1.4;
-          d3.select(this).attr("x", +currentX + delta);
-        }
-      });
     });
   }
 }

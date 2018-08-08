@@ -59,7 +59,7 @@ class Canvas {
     this.scale = d3
       .scaleLinear()
       .domain([0, data.length])
-      .range([0, data.length]);
+      .range([0, data.length/2]);
 
     let xAxis = d3.axisBottom(this.scale).ticks(10);
     this.svg
@@ -200,7 +200,7 @@ class ProteinBuilder {
 class Protein {
   constructor(data, svg, scale) {
     this.BACKBONE_Y = 0;
-    this.BACKBONE_HEIGHT = 8;
+    this.BACKBONE_HEIGHT = 10;
     this.MOTIF_HEIGHT = this.BACKBONE_HEIGHT * 2;
     this.MOTIF_OPACITY = 0.65;
     this.REGION_HEIGHT = this.BACKBONE_HEIGHT * 3.5;
@@ -209,8 +209,8 @@ class Protein {
     this.MARKUP_HEIGHT = this.REGION_HEIGHT;
     this.MARKUP_Y = this.BACKBONE_Y - this.MARKUP_HEIGHT;
     this.HEATMAP_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
-    this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT * 1.5;
-    this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT * 1.5;
+    this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT * 1.2;
+    this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT * 1.2;
     this.MARKUP_STROKE_WIDTH = 2;
 
     this.data = data;

@@ -21,3 +21,11 @@ h1 {
 .vis-box {
     overflow-x: auto;
 }
+
+label.bold-label {
+    font-weight: bold;
+}
+
+label.left-label {
+    text-align: right;
+}

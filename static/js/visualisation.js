@@ -36,16 +36,26 @@ function saveSvg(svgElement, filename) {
   document.body.removeChild(downloadLink);
 }
 
+var canvasInstance = null;
+
 class Canvas {
   constructor() {
+    if (canvasInstance) {
+      return canvasInstance;
+    }
+    canvasInstance = this;
     this.scale = undefined;
     this.svg = d3.select("div.vis-box").append("svg");
     this.GROUP_PADDING = 40;
     this.CANVAS_HEIGHT = this.GROUP_PADDING;
   }
 
+  clear() {
+    this.svg.selectAll("*").remove();
+    this.CANVAS_HEIGHT = this.GROUP_PADDING;
+  }
+
   addScale(data) {
-    // TODO: Add scale logic from Rowena here
     this.scale = d3
       .scaleLinear()
       .domain([0, data.length])
@@ -294,7 +304,12 @@ class Protein {
   drawHeatmap() {
     let _this = this;
     let scale = this.scale;
-    let scale_chromatic = d3.scaleSequential(d3.interpolatePurples);
+    let scale_chromatic = d3
+      .scaleSequential(d3.interpolatePiYG)
+      .domain([
+        d3.select("#heatmap-range-min").node().value,
+        d3.select("#heatmap-range-max").node().value
+      ]);
 
     let markup_display = this.data.markups.filter(
       markup => markup.display !== false
@@ -355,12 +370,21 @@ class Protein {
   }
 }
 
-let canvas = new Canvas();
-canvas.addScale(context);
-canvas.addProtein(context);
-canvas.addMotifLegend(context);
-canvas.expand();
-
 d3.select("#download").on("click", function() {
   saveSvg(canvas.svg.node(), context.metadata.identifier);
 });
+
+d3.select("#update").on("click", function() {
+  let canvas = new Canvas();
+  canvas.clear();
+  setupCanvas(canvas);
+});
+
+function setupCanvas(canvas) {
+  canvas.addScale(context);
+  canvas.addProtein(context);
+  canvas.addMotifLegend(context);
+  canvas.expand();
+}
+
+setupCanvas(new Canvas());

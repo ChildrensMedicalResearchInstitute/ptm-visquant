@@ -395,6 +395,7 @@ class Protein {
 }
 
 d3.select("#download").on("click", function() {
+  let canvas = new Canvas();
   saveSvg(canvas.svg.node(), context.metadata.identifier);
 });
 

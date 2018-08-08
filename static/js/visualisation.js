@@ -59,7 +59,7 @@ class Canvas {
     this.scale = d3
       .scaleLinear()
       .domain([0, data.length])
-      .range([0, data.length/2]);
+      .range([0, data.length / 2]);
 
     let xAxis = d3.axisBottom(this.scale).ticks(10);
     this.svg
@@ -128,7 +128,7 @@ class Canvas {
 
   addHeatmapLegend() {
     let legendScale = d3
-      .scaleSequential(d3.interpolatePiYG)
+      .scaleSequential(FormOptions.selectedInterpolator())
       .domain([
         d3.select("#heatmap-range-min").node().value,
         d3.select("#heatmap-range-max").node().value
@@ -179,6 +179,79 @@ class Canvas {
     this.svg
       .attr("width", this.svg.node().getBBox().width)
       .attr("height", this.svg.node().getBBox().height);
+  }
+}
+
+class FormOptions {
+  static get INTERPOLATORS() {
+    return [
+      {
+        Diverging: [
+          "BrBG",
+          "PRGn",
+          "PiYG",
+          "PuOr",
+          "RdBu",
+          "RdBu",
+          "RdYlBu",
+          "RdYlGn",
+          "Spectral"
+        ]
+      },
+      {
+        "Sequential (single hue)": [
+          "Blues",
+          "Greens",
+          "Greys",
+          "Oranges",
+          "Purples",
+          "Reds"
+        ]
+      },
+      {
+        "Sequential (multi hue)": [
+          "Viridis",
+          "Inferno",
+          "Magma",
+          "Plasma",
+          "Warm",
+          "Cool",
+          "CubehelixDefault",
+          "BuGn",
+          "BuPu",
+          "GnBu",
+          "OrRd",
+          "PuBuGn",
+          "PuBu",
+          "PuRd",
+          "RdPu",
+          "YlGnBu",
+          "YlGn",
+          "YlOrBr",
+          "YlOrRd"
+        ]
+      }
+    ];
+  }
+
+  static selectedInterpolator() {
+    return d3[
+      "interpolate" + d3.select("select#heatmap-interpolator").node().value
+    ];
+  }
+
+  static populateInterpolatorField() {
+    let heatmapInterpSelect = $("select#heatmap-interpolator");
+    $.each(FormOptions.INTERPOLATORS, function(i, optgroup) {
+      $.each(optgroup, function(groupName, options) {
+        let currentGroup = $("<optgroup>", { label: groupName });
+        currentGroup.appendTo(heatmapInterpSelect);
+        $.each(options, function(j, option) {
+          let $option = $("<option>", { text: option, value: option });
+          $option.appendTo(currentGroup);
+        });
+      });
+    });
   }
 }
 
@@ -329,7 +402,7 @@ class Protein {
     let _this = this;
     let scale = this.scale;
     let scale_chromatic = d3
-      .scaleSequential(d3.interpolatePiYG)
+      .scaleSequential(FormOptions.selectedInterpolator())
       .domain([
         d3.select("#heatmap-range-min").node().value,
         d3.select("#heatmap-range-max").node().value
@@ -413,4 +486,9 @@ function setupCanvas(canvas) {
   canvas.expand();
 }
 
+function setupForm() {
+  FormOptions.populateInterpolatorField()
+}
+
+setupForm();
 setupCanvas(new Canvas());

@@ -11,6 +11,9 @@ function intersects(elem1, elem2) {
 
 // https://stackoverflow.com/questions/38224875/replacing-d3-transform-in-d3-v4/38230545#38230545
 function getTranslation(transform) {
+  if (transform === null) {
+    return [0, 0];
+  }
   let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.setAttributeNS(null, "transform", transform);
   let matrix = g.transform.baseVal.consolidate().matrix;

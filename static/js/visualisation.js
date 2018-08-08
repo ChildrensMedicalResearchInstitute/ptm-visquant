@@ -126,6 +126,30 @@ class Canvas {
     this.fit(legend);
   }
 
+  addHeatmapLegend() {
+    let legendScale = d3
+      .scaleSequential(d3.interpolatePiYG)
+      .domain([
+        d3.select("#heatmap-range-min").node().value,
+        d3.select("#heatmap-range-max").node().value
+      ]);
+
+    let legendStyle = d3
+      .legendColor()
+      .shapeWidth(40)
+      .cells(10)
+      .orient("horizontal")
+      .scale(legendScale);
+
+    let legend = this.svg
+      .append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(10,0)")
+      .call(legendStyle);
+
+    this.fit(legend);
+  }
+
   addProtein(data) {
     let slate = this.svg.append("g");
     let builder = new ProteinBuilder(data, slate, this.scale);
@@ -384,6 +408,7 @@ function setupCanvas(canvas) {
   canvas.addScale(context);
   canvas.addProtein(context);
   canvas.addMotifLegend(context);
+  canvas.addHeatmapLegend(context);
   canvas.expand();
 }
 

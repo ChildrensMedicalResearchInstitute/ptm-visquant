@@ -11,7 +11,13 @@
     </div>
 </div>
 {% from '_macros.html' import render_form %}
-{{ render_form(form, action_url='/', action_text='Visualise', btn_class='btn btn-outline-primary', enctype='multipart/form-data') }}
+{{ render_form(
+    form,
+    action_url='/',
+    action_text='Visualise',
+    btn_class='btn btn-outline-primary',
+    btn_id='visualise',
+    enctype='multipart/form-data') }}
 {% if context %}
 <div class="card">
         <div class="card-body">
@@ -44,6 +50,19 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    $('.btn#visualise').on('click', function() {
+        var $this = $(this);
+        var loadingText = 'Loading...';
+        if ($(this).html() !== loadingText) {
+            $this.data('original-text', $(this).html());
+            $this.html(loadingText);
+        }
+        setTimeout(function() {
+            $this.button('reset');
+        }, 6000);
+    });
+</script>
 {% if context %}
     <script>
         var context = JSON.parse('{{ context | tojson | safe }}');

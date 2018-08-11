@@ -17,6 +17,7 @@
         action_text='Submit',
         class_='',
         btn_class='btn btn-primary',
+        btn_id='',
         enctype='application/x-www-form-urlencoded'
     ) -%}
     <form method="POST" action="{{ action_url }}" role="form" class="{{ class_ }}" enctype="{{ enctype }}">
@@ -29,6 +30,6 @@
                 {{ render_field(f) }}
             {% endfor %}
         {% endif %}
-        <button type="submit" class="{{ btn_class }}">{{ action_text }} </button>
+        <button type="submit" class="{{ btn_class }}" id="{{ btn_id }}">{{ action_text }} </button>
     </form>
 {%- endmacro %}

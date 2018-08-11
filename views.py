@@ -19,7 +19,7 @@ def index():
         if f:
             f.seek(0)  # Previously read by validators
             lines = [line.decode() for line in f.readlines()]
-            context['markups'] += to_markup_list(lines)
+            context[0]['markups'] += to_markup_list(lines)
     return render_template(
         'ptm_mapper.html',
         form=form,
@@ -38,7 +38,7 @@ def default():
     with open('static/files/BSN_RAT.json') as f:
         context = json.load(f)
     with open('static/files/BSN_RAT_EXAMPLE.csv') as f:
-        context['markups'] += to_markup_list(f)
+        context[0]['markups'] += to_markup_list(f)
     return render_template(
         'ptm_mapper.html',
         form=form,

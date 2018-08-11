@@ -47,7 +47,7 @@ class Canvas {
     this.scale = undefined;
     this.svg = d3.select("div.vis-box").append("svg");
     this.GROUP_PADDING = 40;
-    this.CANVAS_HEIGHT = this.GROUP_PADDING;
+    this.CANVAS_HEIGHT = this.GROUP_PADDING * 2;
   }
 
   clear() {
@@ -126,7 +126,7 @@ class Canvas {
     this.fit(legend);
   }
 
-  addHeatmapLegend() {
+  addHeatmapLegend(data) {
     let legendScale = d3
       .scaleSequential(FormOptions.selectedInterpolator())
       .domain([
@@ -153,8 +153,9 @@ class Canvas {
   addProtein(data) {
     let slate = this.svg.append("g");
     let builder = new ProteinBuilder(data, slate, this.scale);
-    builder.build();
+    let protein = builder.build();
     this.fit(slate);
+    return protein;
   }
 
   // Fit element to the bottom of the canvas and update canvas height
@@ -267,6 +268,7 @@ class ProteinBuilder {
     this.protein.drawMarkupLines();
     this.protein.drawMarkupLabels();
     this.protein.drawHeatmap();
+    return this.protein;
   }
 }
 
@@ -289,6 +291,7 @@ class Protein {
     this.data = data;
     this.svg = svg;
     this.scale = scale;
+    this.hasHeatmap = false;
   }
 
   drawBackbone() {
@@ -423,6 +426,7 @@ class Protein {
 
     heatmap_column.each(function(markup) {
       if (markup.heatmap_values) {
+        _this.hasHeatmap = true;
         d3.select(this)
           .selectAll("heatmap_values")
           .data(markup.heatmap_values)
@@ -479,10 +483,14 @@ d3.select("#update").on("click", function() {
 });
 
 function setupCanvas(canvas) {
-  canvas.addScale(context);
-  canvas.addProtein(context);
-  canvas.addMotifLegend(context);
-  canvas.addHeatmapLegend(context);
+  canvas.addScale(context[0]);
+  for (let i = 0; i < context.length; i++) {
+    let protein = canvas.addProtein(context[i]);
+    canvas.addMotifLegend(context[i]);
+    if (protein.hasHeatmap) {
+      canvas.addHeatmapLegend(context[i]);
+    }
+  }
   canvas.expand();
 }
 

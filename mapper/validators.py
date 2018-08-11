@@ -1,3 +1,4 @@
+import grequests
 import requests
 
 from .markup_schema import MarkupSchema
@@ -5,22 +6,19 @@ from csv import DictReader
 from wtforms import StringField, ValidationError
 
 
-class ValidUniProtProtein():
+class ValidUniProtProteins():
     def __init__(self, message=None):
         self.ENDPOINT = 'http://www.uniprot.org/uniprot/{}.xml'
-        self.message = 'Protein "{}" not found in UniProt database.'
-        self.timeout_message = "UniProt server might be offline."
+        self.MESSAGE = 'Unable to fetch "{}" from UniProt database.'
 
     def __call__(self, form, field):
-        try:
-            response = requests.get(
-                self.ENDPOINT.format(field.data),
-                timeout=5,
-            )
-        except requests.exceptions.Timeout:
-            raise ValidationError(self.timeout_message)
-        if response.status_code != 200:
-            raise ValidationError(self.message.format(field.data))
+        accessions = [s.strip() for s in field.data.split(',')]
+        urls = [self.ENDPOINT.format(a) for a in accessions]
+        request_list = (grequests.head(u, timeout=5) for u in urls)
+        response_list = grequests.map(request_list)
+        for i, r in enumerate(response_list):
+            if r is None or r.status_code != 200:
+                raise ValidationError(self.MESSAGE.format(accessions[i]))
 
 
 class ValidMarkupFile():

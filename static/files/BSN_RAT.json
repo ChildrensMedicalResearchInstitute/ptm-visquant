@@ -1,1855 +1,1857 @@
-{
+[
+  {
     "length": 3938,
     "regions": [
-        {
-            "modelStart": 2,
-            "modelEnd": 59,
-            "colour": "#2dcf00",
-            "endStyle": "curved",
-            "end": 223,
-            "display": null,
-            "startStyle": "curved",
-            "aliEnd": 223,
-            "modelLength": 59,
-            "text": "zf-piccolo",
-            "href": "/family/PF05715",
-            "type": "pfama",
-            "metadata": {
-                "scoreName": "e-value",
-                "score": "2.7e-23",
-                "description": "Piccolo Zn-finger",
-                "end": 223,
-                "accession": "PF05715",
-                "database": "pfam",
-                "identifier": "zf-piccolo",
-                "aliEnd": 223,
-                "type": "Domain",
-                "aliStart": 166,
-                "start": 165
-            },
-            "aliStart": 166,
-            "start": 165
+      {
+        "modelStart": 2,
+        "modelEnd": 59,
+        "colour": "#2dcf00",
+        "endStyle": "curved",
+        "end": 223,
+        "display": null,
+        "startStyle": "curved",
+        "aliEnd": 223,
+        "modelLength": 59,
+        "text": "zf-piccolo",
+        "href": "/family/PF05715",
+        "type": "pfama",
+        "metadata": {
+          "scoreName": "e-value",
+          "score": "2.7e-23",
+          "description": "Piccolo Zn-finger",
+          "end": 223,
+          "accession": "PF05715",
+          "database": "pfam",
+          "identifier": "zf-piccolo",
+          "aliEnd": 223,
+          "type": "Domain",
+          "aliStart": 166,
+          "start": 165
         },
-        {
-            "modelStart": 2,
-            "modelEnd": 59,
-            "colour": "#2dcf00",
-            "endStyle": "curved",
-            "end": 518,
-            "display": null,
-            "startStyle": "curved",
-            "aliEnd": 518,
-            "modelLength": 59,
-            "text": "zf-piccolo",
-            "href": "/family/PF05715",
-            "type": "pfama",
-            "metadata": {
-                "scoreName": "e-value",
-                "score": "1.9e-23",
-                "description": "Piccolo Zn-finger",
-                "end": 518,
-                "accession": "PF05715",
-                "database": "pfam",
-                "identifier": "zf-piccolo",
-                "aliEnd": 518,
-                "type": "Domain",
-                "aliStart": 461,
-                "start": 460
-            },
-            "aliStart": 461,
-            "start": 460
-        }
+        "aliStart": 166,
+        "start": 165
+      },
+      {
+        "modelStart": 2,
+        "modelEnd": 59,
+        "colour": "#2dcf00",
+        "endStyle": "curved",
+        "end": 518,
+        "display": null,
+        "startStyle": "curved",
+        "aliEnd": 518,
+        "modelLength": 59,
+        "text": "zf-piccolo",
+        "href": "/family/PF05715",
+        "type": "pfama",
+        "metadata": {
+          "scoreName": "e-value",
+          "score": "1.9e-23",
+          "description": "Piccolo Zn-finger",
+          "end": 518,
+          "accession": "PF05715",
+          "database": "pfam",
+          "identifier": "zf-piccolo",
+          "aliEnd": 518,
+          "type": "Domain",
+          "aliStart": 461,
+          "start": 460
+        },
+        "aliStart": 461,
+        "start": 460
+      }
     ],
     "markups": [],
     "metadata": {
-        "database": "uniprot",
-        "identifier": "BSN_RAT",
-        "organism": "Rattus norvegicus (Rat)",
-        "description": "Protein bassoon",
-        "taxid": "10116",
-        "accession": "O88778"
+      "database": "uniprot",
+      "identifier": "BSN_RAT",
+      "organism": "Rattus norvegicus (Rat)",
+      "description": "Protein bassoon",
+      "taxid": "10116",
+      "accession": "O88778"
     },
     "motifs": [
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1,
-                "end": 158
-            },
-            "start": 71,
-            "end": 158,
-            "display": null
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 169,
-                "end": 172
-            },
-            "start": 169,
-            "end": 172,
-            "display": false
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 181,
-                "end": 183
-            },
-            "start": 181,
-            "end": 183,
-            "display": false
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 223,
-                "end": 467
-            },
-            "start": 453,
-            "end": 459,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "start": 857,
-            "end": 925,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "start": 1487,
-            "end": 1613,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1637,
-                "end": 1659
-            },
-            "start": 1637,
-            "end": 1659,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1702,
-                "end": 1706
-            },
-            "start": 1702,
-            "end": 1706,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1747,
-                "end": 1750
-            },
-            "start": 1747,
-            "end": 1750,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1774,
-                "end": 1797
-            },
-            "start": 1788,
-            "end": 1797,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1815,
-                "end": 1886
-            },
-            "start": 1815,
-            "end": 1886,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1907,
-                "end": 1977
-            },
-            "start": 1907,
-            "end": 1977,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1993,
-                "end": 1994
-            },
-            "start": 1993,
-            "end": 1994,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2041,
-                "end": 2049
-            },
-            "start": 2041,
-            "end": 2049,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2057,
-                "end": 2058
-            },
-            "start": 2057,
-            "end": 2058,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2060,
-                "end": 2062
-            },
-            "start": 2060,
-            "end": 2062,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2102,
-                "end": 2135
-            },
-            "start": 2114,
-            "end": 2135,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2138,
-                "end": 2162
-            },
-            "start": 2138,
-            "end": 2162,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2168,
-                "end": 2169
-            },
-            "start": 2168,
-            "end": 2169,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2171,
-                "end": 2175
-            },
-            "start": 2171,
-            "end": 2175,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2212,
-                "end": 2214
-            },
-            "start": 2212,
-            "end": 2214,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2267,
-                "end": 2268
-            },
-            "start": 2267,
-            "end": 2268,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2273,
-                "end": 2370
-            },
-            "start": 2341,
-            "end": 2351,
-            "display": null
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2380,
-                "end": 2381
-            },
-            "start": 2380,
-            "end": 2381,
-            "display": false
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2387,
-                "end": 2401
-            },
-            "start": 2387,
-            "end": 2401,
-            "display": false
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2406,
-                "end": 2408
-            },
-            "start": 2406,
-            "end": 2408,
-            "display": false
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2416,
-                "end": 2422
-            },
-            "start": 2416,
-            "end": 2419,
-            "display": null
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2424,
-                "end": 2428
-            },
-            "start": 2424,
-            "end": 2428,
-            "display": false
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2431,
-                "end": 2434
-            },
-            "start": 2431,
-            "end": 2434,
-            "display": false
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2457,
-                "end": 2495
-            },
-            "start": 2470,
-            "end": 2495,
-            "display": null
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2500,
-                "end": 2656
-            },
-            "start": 2637,
-            "end": 2656,
-            "display": false
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2659,
-                "end": 2685
-            },
-            "start": 2659,
-            "end": 2685,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2693,
-                "end": 2700
-            },
-            "start": 2693,
-            "end": 2700,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2703,
-                "end": 2729
-            },
-            "start": 2703,
-            "end": 2729,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2748,
-                "end": 2750
-            },
-            "start": 2748,
-            "end": 2750,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2754,
-                "end": 2756
-            },
-            "start": 2754,
-            "end": 2756,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2758,
-                "end": 2793
-            },
-            "start": 2758,
-            "end": 2793,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2799,
-                "end": 2812
-            },
-            "start": 2799,
-            "end": 2812,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2814,
-                "end": 2866
-            },
-            "start": 2814,
-            "end": 2866,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2869,
-                "end": 2871
-            },
-            "start": 2869,
-            "end": 2871,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2873,
-                "end": 2905
-            },
-            "start": 2873,
-            "end": 2905,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2914,
-                "end": 2915
-            },
-            "start": 2914,
-            "end": 2915,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2922,
-                "end": 2923
-            },
-            "start": 2922,
-            "end": 2923,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2925,
-                "end": 2933
-            },
-            "start": 2925,
-            "end": 2932,
-            "display": null
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2938,
-                "end": 2940
-            },
-            "start": 2938,
-            "end": 2940,
-            "display": false
-        },
-        {
-            "colour": "#00ffff",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2945,
-                "end": 2961
-            },
-            "start": 2945,
-            "end": 2961,
-            "display": false
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2983,
-                "end": 3023
-            },
-            "start": 2983,
-            "end": 3023,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3025,
-                "end": 3400
-            },
-            "start": 3170,
-            "end": 3400,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3402,
-                "end": 3406
-            },
-            "start": 3402,
-            "end": 3406,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3414,
-                "end": 3557
-            },
-            "start": 3520,
-            "end": 3557,
-            "display": null
-        },
-        {
-            "colour": "#cccccc",
-            "type": "disorder",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "start": 3904,
-            "end": 3929,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 836,
-                "end": 856
-            },
-            "start": 836,
-            "end": 856,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 1034,
-                "end": 1086
-            },
-            "start": 1034,
-            "end": 1086,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 1176,
-                "end": 1196
-            },
-            "start": 1176,
-            "end": 1196,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 2352,
-                "end": 2408
-            },
-            "start": 2352,
-            "end": 2408,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 2439,
-                "end": 2469
-            },
-            "start": 2439,
-            "end": 2469,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 2935,
-                "end": 2972
-            },
-            "start": 2935,
-            "end": 2972,
-            "display": null
-        },
-        {
-            "colour": "#32cd32",
-            "type": "coiled_coil",
-            "metadata": {
-                "database": "ncoils",
-                "type": "coiled_coil",
-                "start": 3773,
-                "end": 3797
-            },
-            "start": 3773,
-            "end": 3797,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3,
-                "end": 39
-            },
-            "start": 3,
-            "end": 39,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 41,
-                "end": 70
-            },
-            "start": 41,
-            "end": 70,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 392,
-                "end": 414
-            },
-            "start": 392,
-            "end": 414,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 412,
-                "end": 423
-            },
-            "start": 415,
-            "end": 423,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 443,
-                "end": 452
-            },
-            "start": 443,
-            "end": 452,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 523,
-                "end": 537
-            },
-            "start": 523,
-            "end": 537,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 547,
-                "end": 567
-            },
-            "start": 547,
-            "end": 567,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 565,
-                "end": 588
-            },
-            "start": 568,
-            "end": 588,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 609,
-                "end": 630
-            },
-            "start": 609,
-            "end": 630,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 677,
-                "end": 691
-            },
-            "start": 677,
-            "end": 691,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 769,
-                "end": 784
-            },
-            "start": 769,
-            "end": 784,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 978,
-                "end": 1005
-            },
-            "start": 978,
-            "end": 1005,
-            "display": null
-        },
-        {
-            "colour": "#00ffff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1036,
-                "end": 1055
-            },
-            "start": 1036,
-            "end": 1055,
-            "display": false
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1115,
-                "end": 1129
-            },
-            "start": 1115,
-            "end": 1129,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1157,
-                "end": 1174
-            },
-            "start": 1157,
-            "end": 1174,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1193,
-                "end": 1204
-            },
-            "start": 1197,
-            "end": 1204,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1317,
-                "end": 1327
-            },
-            "start": 1317,
-            "end": 1327,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1348,
-                "end": 1363
-            },
-            "start": 1348,
-            "end": 1363,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1373,
-                "end": 1386
-            },
-            "start": 1373,
-            "end": 1386,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1468,
-                "end": 1486
-            },
-            "start": 1468,
-            "end": 1486,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 1777,
-                "end": 1787
-            },
-            "start": 1777,
-            "end": 1787,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2104,
-                "end": 2113
-            },
-            "start": 2104,
-            "end": 2113,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2275,
-                "end": 2291
-            },
-            "start": 2275,
-            "end": 2291,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2315,
-                "end": 2336
-            },
-            "start": 2315,
-            "end": 2336,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2330,
-                "end": 2340
-            },
-            "start": 2337,
-            "end": 2340,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2354,
-                "end": 2413
-            },
-            "start": 2409,
-            "end": 2413,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2420,
-                "end": 2466
-            },
-            "start": 2420,
-            "end": 2438,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2588,
-                "end": 2599
-            },
-            "start": 2588,
-            "end": 2599,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2620,
-                "end": 2636
-            },
-            "start": 2620,
-            "end": 2636,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2632,
-                "end": 2656
-            },
-            "start": 2637,
-            "end": 2656,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 2933,
-                "end": 2943
-            },
-            "start": 2933,
-            "end": 2934,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3158,
-                "end": 3169
-            },
-            "start": 3158,
-            "end": 3169,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3505,
-                "end": 3519
-            },
-            "start": 3505,
-            "end": 3519,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3638,
-                "end": 3651
-            },
-            "start": 3638,
-            "end": 3651,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3750,
-                "end": 3763
-            },
-            "start": 3750,
-            "end": 3763,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3768,
-                "end": 3819
-            },
-            "start": 3798,
-            "end": 3819,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3830,
-                "end": 3850
-            },
-            "start": 3830,
-            "end": 3850,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3859,
-                "end": 3883
-            },
-            "start": 3859,
-            "end": 3883,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "type": "low_complexity",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3876,
-                "end": 3903
-            },
-            "start": 3884,
-            "end": 3903,
-            "display": null
-        },
-        {
-            "colour": "#86bcff",
-            "metadata": {
-                "database": "segmasker",
-                "type": "low_complexity",
-                "start": 3768,
-                "end": 3819
-            },
-            "type": "low_complexity",
-            "display": null,
-            "end": 3772,
-            "start": 3768
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 835,
-            "start": 785
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1033,
-            "start": 1006
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 1175,
-            "start": 1175
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 3772,
-            "start": 3773
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1,
-                "end": 158
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 2,
-            "start": 1
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1,
-                "end": 158
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 40,
-            "start": 40
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 223,
-                "end": 467
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 391,
-            "start": 224
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 223,
-                "end": 467
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 414,
-            "start": 415
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 223,
-                "end": 467
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 442,
-            "start": 424
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 522,
-            "start": 520
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 546,
-            "start": 538
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 567,
-            "start": 568
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 608,
-            "start": 589
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 676,
-            "start": 631
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 520,
-                "end": 925
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 768,
-            "start": 692
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 977,
-            "start": 934
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1114,
-            "start": 1087
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1156,
-            "start": 1130
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 1196,
-            "start": 1197
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1316,
-            "start": 1205
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1347,
-            "start": 1328
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1372,
-            "start": 1364
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 934,
-                "end": 1613
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1467,
-            "start": 1387
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 1774,
-                "end": 1797
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 1776,
-            "start": 1774
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2102,
-                "end": 2135
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 2103,
-            "start": 2102
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2273,
-                "end": 2370
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 2274,
-            "start": 2273
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2273,
-                "end": 2370
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 2314,
-            "start": 2292
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2273,
-                "end": 2370
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 2336,
-            "start": 2337
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2500,
-                "end": 2656
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 2587,
-            "start": 2500
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 2500,
-                "end": 2656
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 2619,
-            "start": 2600
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3025,
-                "end": 3400
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3157,
-            "start": 3025
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3414,
-                "end": 3557
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3504,
-            "start": 3414
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3637,
-            "start": 3559
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3749,
-            "start": 3652
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3767,
-            "start": 3764
-        },
-        {
-            "colour": "#00ffff",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": false,
-            "end": 3797,
-            "start": 3798
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3829,
-            "start": 3820
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3858,
-            "start": 3851
-        },
-        {
-            "colour": "#cccccc",
-            "metadata": {
-                "database": "IUPred",
-                "type": "disorder",
-                "start": 3559,
-                "end": 3929
-            },
-            "type": "disorder",
-            "display": null,
-            "end": 3883,
-            "start": 3884
-        }
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 158
+        },
+        "start": 71,
+        "end": 158,
+        "display": null
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 169,
+          "end": 172
+        },
+        "start": 169,
+        "end": 172,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 181,
+          "end": 183
+        },
+        "start": 181,
+        "end": 183,
+        "display": false
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 223,
+          "end": 467
+        },
+        "start": 453,
+        "end": 459,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "start": 857,
+        "end": 925,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "start": 1487,
+        "end": 1613,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1637,
+          "end": 1659
+        },
+        "start": 1637,
+        "end": 1659,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1702,
+          "end": 1706
+        },
+        "start": 1702,
+        "end": 1706,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1747,
+          "end": 1750
+        },
+        "start": 1747,
+        "end": 1750,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1774,
+          "end": 1797
+        },
+        "start": 1788,
+        "end": 1797,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1815,
+          "end": 1886
+        },
+        "start": 1815,
+        "end": 1886,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1907,
+          "end": 1977
+        },
+        "start": 1907,
+        "end": 1977,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1993,
+          "end": 1994
+        },
+        "start": 1993,
+        "end": 1994,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2041,
+          "end": 2049
+        },
+        "start": 2041,
+        "end": 2049,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2057,
+          "end": 2058
+        },
+        "start": 2057,
+        "end": 2058,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2060,
+          "end": 2062
+        },
+        "start": 2060,
+        "end": 2062,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2102,
+          "end": 2135
+        },
+        "start": 2114,
+        "end": 2135,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2138,
+          "end": 2162
+        },
+        "start": 2138,
+        "end": 2162,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2168,
+          "end": 2169
+        },
+        "start": 2168,
+        "end": 2169,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2171,
+          "end": 2175
+        },
+        "start": 2171,
+        "end": 2175,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2212,
+          "end": 2214
+        },
+        "start": 2212,
+        "end": 2214,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2267,
+          "end": 2268
+        },
+        "start": 2267,
+        "end": 2268,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2273,
+          "end": 2370
+        },
+        "start": 2341,
+        "end": 2351,
+        "display": null
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2380,
+          "end": 2381
+        },
+        "start": 2380,
+        "end": 2381,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2387,
+          "end": 2401
+        },
+        "start": 2387,
+        "end": 2401,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2406,
+          "end": 2408
+        },
+        "start": 2406,
+        "end": 2408,
+        "display": false
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2416,
+          "end": 2422
+        },
+        "start": 2416,
+        "end": 2419,
+        "display": null
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2424,
+          "end": 2428
+        },
+        "start": 2424,
+        "end": 2428,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2431,
+          "end": 2434
+        },
+        "start": 2431,
+        "end": 2434,
+        "display": false
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2457,
+          "end": 2495
+        },
+        "start": 2470,
+        "end": 2495,
+        "display": null
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2500,
+          "end": 2656
+        },
+        "start": 2637,
+        "end": 2656,
+        "display": false
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2659,
+          "end": 2685
+        },
+        "start": 2659,
+        "end": 2685,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2693,
+          "end": 2700
+        },
+        "start": 2693,
+        "end": 2700,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2703,
+          "end": 2729
+        },
+        "start": 2703,
+        "end": 2729,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2748,
+          "end": 2750
+        },
+        "start": 2748,
+        "end": 2750,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2754,
+          "end": 2756
+        },
+        "start": 2754,
+        "end": 2756,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2758,
+          "end": 2793
+        },
+        "start": 2758,
+        "end": 2793,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2799,
+          "end": 2812
+        },
+        "start": 2799,
+        "end": 2812,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2814,
+          "end": 2866
+        },
+        "start": 2814,
+        "end": 2866,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2869,
+          "end": 2871
+        },
+        "start": 2869,
+        "end": 2871,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2873,
+          "end": 2905
+        },
+        "start": 2873,
+        "end": 2905,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2914,
+          "end": 2915
+        },
+        "start": 2914,
+        "end": 2915,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2922,
+          "end": 2923
+        },
+        "start": 2922,
+        "end": 2923,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2925,
+          "end": 2933
+        },
+        "start": 2925,
+        "end": 2932,
+        "display": null
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2938,
+          "end": 2940
+        },
+        "start": 2938,
+        "end": 2940,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2945,
+          "end": 2961
+        },
+        "start": 2945,
+        "end": 2961,
+        "display": false
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2983,
+          "end": 3023
+        },
+        "start": 2983,
+        "end": 3023,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3025,
+          "end": 3400
+        },
+        "start": 3170,
+        "end": 3400,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3402,
+          "end": 3406
+        },
+        "start": 3402,
+        "end": 3406,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3414,
+          "end": 3557
+        },
+        "start": 3520,
+        "end": 3557,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "start": 3904,
+        "end": 3929,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 836,
+          "end": 856
+        },
+        "start": 836,
+        "end": 856,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 1034,
+          "end": 1086
+        },
+        "start": 1034,
+        "end": 1086,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 1176,
+          "end": 1196
+        },
+        "start": 1176,
+        "end": 1196,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 2352,
+          "end": 2408
+        },
+        "start": 2352,
+        "end": 2408,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 2439,
+          "end": 2469
+        },
+        "start": 2439,
+        "end": 2469,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 2935,
+          "end": 2972
+        },
+        "start": 2935,
+        "end": 2972,
+        "display": null
+      },
+      {
+        "colour": "#32cd32",
+        "type": "coiled_coil",
+        "metadata": {
+          "database": "ncoils",
+          "type": "coiled_coil",
+          "start": 3773,
+          "end": 3797
+        },
+        "start": 3773,
+        "end": 3797,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3,
+          "end": 39
+        },
+        "start": 3,
+        "end": 39,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 41,
+          "end": 70
+        },
+        "start": 41,
+        "end": 70,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 392,
+          "end": 414
+        },
+        "start": 392,
+        "end": 414,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 412,
+          "end": 423
+        },
+        "start": 415,
+        "end": 423,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 443,
+          "end": 452
+        },
+        "start": 443,
+        "end": 452,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 523,
+          "end": 537
+        },
+        "start": 523,
+        "end": 537,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 547,
+          "end": 567
+        },
+        "start": 547,
+        "end": 567,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 565,
+          "end": 588
+        },
+        "start": 568,
+        "end": 588,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 609,
+          "end": 630
+        },
+        "start": 609,
+        "end": 630,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 677,
+          "end": 691
+        },
+        "start": 677,
+        "end": 691,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 769,
+          "end": 784
+        },
+        "start": 769,
+        "end": 784,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 978,
+          "end": 1005
+        },
+        "start": 978,
+        "end": 1005,
+        "display": null
+      },
+      {
+        "colour": "#00ffff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1036,
+          "end": 1055
+        },
+        "start": 1036,
+        "end": 1055,
+        "display": false
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1115,
+          "end": 1129
+        },
+        "start": 1115,
+        "end": 1129,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1157,
+          "end": 1174
+        },
+        "start": 1157,
+        "end": 1174,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1193,
+          "end": 1204
+        },
+        "start": 1197,
+        "end": 1204,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1317,
+          "end": 1327
+        },
+        "start": 1317,
+        "end": 1327,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1348,
+          "end": 1363
+        },
+        "start": 1348,
+        "end": 1363,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1373,
+          "end": 1386
+        },
+        "start": 1373,
+        "end": 1386,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1468,
+          "end": 1486
+        },
+        "start": 1468,
+        "end": 1486,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 1777,
+          "end": 1787
+        },
+        "start": 1777,
+        "end": 1787,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2104,
+          "end": 2113
+        },
+        "start": 2104,
+        "end": 2113,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2275,
+          "end": 2291
+        },
+        "start": 2275,
+        "end": 2291,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2315,
+          "end": 2336
+        },
+        "start": 2315,
+        "end": 2336,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2330,
+          "end": 2340
+        },
+        "start": 2337,
+        "end": 2340,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2354,
+          "end": 2413
+        },
+        "start": 2409,
+        "end": 2413,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2420,
+          "end": 2466
+        },
+        "start": 2420,
+        "end": 2438,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2588,
+          "end": 2599
+        },
+        "start": 2588,
+        "end": 2599,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2620,
+          "end": 2636
+        },
+        "start": 2620,
+        "end": 2636,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2632,
+          "end": 2656
+        },
+        "start": 2637,
+        "end": 2656,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 2933,
+          "end": 2943
+        },
+        "start": 2933,
+        "end": 2934,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3158,
+          "end": 3169
+        },
+        "start": 3158,
+        "end": 3169,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3505,
+          "end": 3519
+        },
+        "start": 3505,
+        "end": 3519,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3638,
+          "end": 3651
+        },
+        "start": 3638,
+        "end": 3651,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3750,
+          "end": 3763
+        },
+        "start": 3750,
+        "end": 3763,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3768,
+          "end": 3819
+        },
+        "start": 3798,
+        "end": 3819,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3830,
+          "end": 3850
+        },
+        "start": 3830,
+        "end": 3850,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3859,
+          "end": 3883
+        },
+        "start": 3859,
+        "end": 3883,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3876,
+          "end": 3903
+        },
+        "start": 3884,
+        "end": 3903,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 3768,
+          "end": 3819
+        },
+        "type": "low_complexity",
+        "display": null,
+        "end": 3772,
+        "start": 3768
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 835,
+        "start": 785
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1033,
+        "start": 1006
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 1175,
+        "start": 1175
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 3772,
+        "start": 3773
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 158
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 2,
+        "start": 1
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 158
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 40,
+        "start": 40
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 223,
+          "end": 467
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 391,
+        "start": 224
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 223,
+          "end": 467
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 414,
+        "start": 415
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 223,
+          "end": 467
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 442,
+        "start": 424
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 522,
+        "start": 520
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 546,
+        "start": 538
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 567,
+        "start": 568
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 608,
+        "start": 589
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 676,
+        "start": 631
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 520,
+          "end": 925
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 768,
+        "start": 692
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 977,
+        "start": 934
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1114,
+        "start": 1087
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1156,
+        "start": 1130
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 1196,
+        "start": 1197
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1316,
+        "start": 1205
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1347,
+        "start": 1328
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1372,
+        "start": 1364
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 934,
+          "end": 1613
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1467,
+        "start": 1387
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1774,
+          "end": 1797
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 1776,
+        "start": 1774
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2102,
+          "end": 2135
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 2103,
+        "start": 2102
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2273,
+          "end": 2370
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 2274,
+        "start": 2273
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2273,
+          "end": 2370
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 2314,
+        "start": 2292
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2273,
+          "end": 2370
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 2336,
+        "start": 2337
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2500,
+          "end": 2656
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 2587,
+        "start": 2500
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 2500,
+          "end": 2656
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 2619,
+        "start": 2600
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3025,
+          "end": 3400
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3157,
+        "start": 3025
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3414,
+          "end": 3557
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3504,
+        "start": 3414
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3637,
+        "start": 3559
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3749,
+        "start": 3652
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3767,
+        "start": 3764
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 3797,
+        "start": 3798
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3829,
+        "start": 3820
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3858,
+        "start": 3851
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 3559,
+          "end": 3929
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 3883,
+        "start": 3884
+      }
     ]
-}
+  }
+]

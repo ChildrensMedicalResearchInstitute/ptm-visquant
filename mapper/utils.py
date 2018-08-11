@@ -1,3 +1,4 @@
+import grequests
 import json
 import re
 import requests
@@ -6,25 +7,32 @@ from .markup_schema import MarkupSchema
 from bs4 import BeautifulSoup
 from csv import DictReader
 
-
-def request_soup(url, parser='lxml'):
-    response = requests.get(url)
-    if response.status_code == 200:
-        return BeautifulSoup(response.text, parser)
-    response.raise_for_status()
+PFAM_DATA_PATTERN = "(?<=({pre})).*(?=({post}))".format(
+    pre=re.escape("var layout = ["),
+    post=re.escape("];"),
+)
 
 
-def get_protein_domains(id):
+def get_protein_domains(ids):
+    """
+    ids: a comma separated string of protein entry names or accessions.
+    Returns a list of JSON data.
+    """
     URL = 'http://pfam.xfam.org/protein/{}'
-    soup = request_soup(URL.format(id))
-    pattern = "(?<=({pre})).*(?=({post}))".format(
-        pre=re.escape("var layout = ["),
-        post=re.escape("];"),
-    )
-    for script in soup.find_all('script'):
-        result = re.search(pattern, script.text)
-        if result:
-            return json.loads(result.group())
+    accessions = [s.strip() for s in ids.split(',')]
+    urls = [URL.format(a) for a in accessions]
+    request_list = (grequests.get(u, timeout=5) for u in urls)
+    response_list = grequests.map(request_list)
+    protein_data = []
+    for i, r in enumerate(response_list):
+        if r is None or r.status_code != 200:
+            r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'lxml')
+        for script in soup.find_all('script'):
+            result = re.search(PFAM_DATA_PATTERN, script.text)
+            if result:
+                protein_data.append(json.loads(result.group()))
+    return protein_data
 
 
 def condense_heatmap_attr(dictionary):

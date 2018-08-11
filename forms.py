@@ -9,7 +9,7 @@ from wtforms.validators import InputRequired
 class PtmForm(FlaskForm):
     accession = StringField('Protein Entry Name or Accession', [
         InputRequired(),
-        validators.ValidUniProtProtein(),
+        validators.ValidUniProtProteins(),
     ])
     csv_file = FileField('Post-translational modifications file', [
         FileAllowed(['csv'], 'File must be in CSV format.'),

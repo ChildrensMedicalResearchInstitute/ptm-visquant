@@ -296,7 +296,7 @@ class Protein {
       .append("rect")
       .attr("x", 0)
       .attr("y", this.BACKBONE_Y - this.BACKBONE_HEIGHT / 2)
-      .attr("width", this.scale.range()[1])
+      .attr("width", this.scale(this.data.length))
       .attr("height", this.BACKBONE_HEIGHT)
       .attr("fill", "grey");
   }

@@ -6,8 +6,8 @@ dependencies:
   - beautifulsoup4
   - flask
   - flask-wtf
+  - grequests
   - lxml
   - markdown
   - marshmallow=3
-  - requests
   - wtforms

@@ -1,7 +1,6 @@
 import grequests
 import json
 import re
-import requests
 
 from .markup_schema import MarkupSchema
 from bs4 import BeautifulSoup

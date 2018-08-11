@@ -1,5 +1,4 @@
 import grequests
-import requests
 
 from .markup_schema import MarkupSchema
 from csv import DictReader

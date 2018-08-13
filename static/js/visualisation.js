@@ -61,7 +61,7 @@ class Canvas {
       .domain([0, data.length])
       .range([0, data.length / 2]);
 
-    let xAxis = d3.axisBottom(this.scale).ticks(10);
+    let xAxis = d3.axisBottom(this.scale);
     this.svg
       .append("g")
       .call(xAxis)

@@ -1,6 +1,5 @@
-import grequests
-
 from .markup_schema import MarkupSchema
+from .utils import make_requests
 from csv import DictReader
 from wtforms import StringField, ValidationError
 
@@ -13,10 +12,9 @@ class ValidUniProtProteins():
     def __call__(self, form, field):
         accessions = [s.strip() for s in field.data.split(',')]
         urls = [self.ENDPOINT.format(a) for a in accessions]
-        request_list = (grequests.head(u, timeout=5) for u in urls)
-        response_list = grequests.map(request_list)
-        for i, r in enumerate(response_list):
-            if r is None or r.status_code != 200:
+        status = make_requests(urls, status_only=True)
+        for i, stat in enumerate(status):
+            if stat is None or stat != 200:
                 raise ValidationError(self.MESSAGE.format(accessions[i]))
 
 

@@ -1,15 +1,44 @@
-import grequests
 import json
 import re
+import requests
 
 from .markup_schema import MarkupSchema
 from bs4 import BeautifulSoup
 from csv import DictReader
+from multiprocessing.dummy import Pool as ThreadPool
+from queue import Queue
 
 PFAM_DATA_PATTERN = "(?<=({pre})).*(?=({post}))".format(
     pre=re.escape("var layout = ["),
     post=re.escape("];"),
 )
+
+
+def request_status(url):
+    try:
+        return requests.head(
+            url,
+            allow_redirects=True,
+            timeout=5,
+        ).status_code
+    except requests.exceptions.Timeout:
+        return None
+
+
+def request_response(url):
+    try:
+        return requests.get(url, timeout=5)
+    except requests.exceptions.Timeout:
+        return None
+
+
+def make_requests(urls, status_only=False):
+    num_threads = len(urls)
+    pool = ThreadPool(num_threads)
+    request_method = request_response
+    if status_only:
+        request_method = request_status
+    return pool.map(request_method, urls)
 
 
 def get_protein_domains(ids):
@@ -20,10 +49,9 @@ def get_protein_domains(ids):
     URL = 'http://pfam.xfam.org/protein/{}'
     accessions = [s.strip() for s in ids.split(',')]
     urls = [URL.format(a) for a in accessions]
-    request_list = (grequests.get(u, timeout=5) for u in urls)
-    response_list = grequests.map(request_list)
+    responses = make_requests(urls)
     protein_data = []
-    for i, r in enumerate(response_list):
+    for i, r in enumerate(responses):
         if r is None or r.status_code != 200:
             r.raise_for_status()
         soup = BeautifulSoup(r.text, 'lxml')

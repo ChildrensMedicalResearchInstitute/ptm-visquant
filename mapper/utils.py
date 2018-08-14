@@ -14,7 +14,7 @@ PFAM_DATA_PATTERN = "(?<=({pre})).*(?=({post}))".format(
 )
 
 
-def request_status(url):
+def __request_status(url):
     try:
         return requests.head(
             url,
@@ -25,19 +25,40 @@ def request_status(url):
         return None
 
 
-def request_response(url):
+def __request_response(url):
     try:
         return requests.get(url, timeout=5)
     except requests.exceptions.Timeout:
         return None
 
 
+def __condense_heatmap_attr(dictionary):
+    keys_to_remove = []
+    heatmap_values = []
+    for key, value in dictionary.items():
+        if key.startswith('heatmap_'):
+            heatmap_values.append(value)
+            keys_to_remove.append(key)
+    for key in keys_to_remove:
+        dictionary.pop(key)
+    dictionary['heatmap_values'] = heatmap_values
+    return dictionary
+
+
+def __extract_heatmap_labels(fields):
+    heatmap_labels = []
+    for field in fields:
+        if field.startswith('heatmap_'):
+            heatmap_labels.append(field[8:])
+    return heatmap_labels
+
+
 def make_requests(urls, status_only=False):
     num_threads = len(urls)
     pool = ThreadPool(num_threads)
-    request_method = request_response
+    request_method = __request_response
     if status_only:
-        request_method = request_status
+        request_method = __request_status
     return pool.map(request_method, urls)
 
 
@@ -62,27 +83,6 @@ def get_protein_domains(ids):
     return protein_data
 
 
-def condense_heatmap_attr(dictionary):
-    keys_to_remove = []
-    heatmap_values = []
-    for key, value in dictionary.items():
-        if key.startswith('heatmap_'):
-            heatmap_values.append(value)
-            keys_to_remove.append(key)
-    for key in keys_to_remove:
-        dictionary.pop(key)
-    dictionary['heatmap_values'] = heatmap_values
-    return dictionary
-
-
-def extract_heatmap_labels(fields):
-    heatmap_labels = []
-    for field in fields:
-        if field.startswith('heatmap_'):
-            heatmap_labels.append(field[8:])
-    return heatmap_labels
-
-
 def to_markup_list(csv_file):
     """
     csv_file: an iterable whose elements describe a markup object.
@@ -94,11 +94,11 @@ def to_markup_list(csv_file):
     schema = MarkupSchema()
     reader = DictReader(csv_file)
     coordinates = set()
-    heatmap_fields = extract_heatmap_labels(reader.fieldnames)
+    heatmap_fields = __extract_heatmap_labels(reader.fieldnames)
     for row in reader:
         start = row.get('start')
         end = row.get('end')
-        data = schema.dump(condense_heatmap_attr(row))
+        data = schema.dump(__condense_heatmap_attr(row))
         data['heatmap_labels'] = heatmap_fields
         if (start, end) not in coordinates:
             coordinates.add((start, end))

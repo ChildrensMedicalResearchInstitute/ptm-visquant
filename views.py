@@ -17,7 +17,6 @@ def index():
         context = get_protein_domains(form.accession.data)
         f = form.csv_file.data
         if f:
-            f.seek(0)  # Previously read by validators
             lines = [line.decode() for line in f.readlines()]
             context[0]['markups'] += to_markup_list(lines)
     return render_template(

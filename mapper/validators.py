@@ -30,6 +30,7 @@ class ValidMarkupFile():
             return
         schema = MarkupSchema()
         lines = [line.decode() for line in f.readlines()]
+        f.seek(0)  # Return cursor to top of file for later parsing
         reader = DictReader(lines)
         for line_num, row in enumerate(reader):
             errors = schema.validate(row)

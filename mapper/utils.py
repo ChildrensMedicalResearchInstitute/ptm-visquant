@@ -6,7 +6,6 @@ from .markup_schema import MarkupSchema
 from bs4 import BeautifulSoup
 from csv import DictReader
 from multiprocessing.dummy import Pool as ThreadPool
-from queue import Queue
 
 PFAM_DATA_PATTERN = "(?<=({pre})).*(?=({post}))".format(
     pre=re.escape("var layout = ["),

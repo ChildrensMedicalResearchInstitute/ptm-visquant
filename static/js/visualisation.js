@@ -55,11 +55,11 @@ class Canvas {
     this.CANVAS_HEIGHT = this.GROUP_PADDING;
   }
 
-  addScale(data) {
+  addScale(length) {
     this.scale = d3
       .scaleLinear()
-      .domain([0, data.length])
-      .range([0, data.length / 2]);
+      .domain([0, length])
+      .range([0, length / 2]);
 
     let xAxis = d3.axisBottom(this.scale);
     this.svg
@@ -483,7 +483,8 @@ d3.select("#update").on("click", function() {
 });
 
 function setupCanvas(canvas) {
-  canvas.addScale(context[0]);
+  let maxLength = d3.max(context, d => d.length);
+  canvas.addScale(maxLength);
   for (let i = 0; i < context.length; i++) {
     let protein = canvas.addProtein(context[i]);
     canvas.addMotifLegend(context[i]);

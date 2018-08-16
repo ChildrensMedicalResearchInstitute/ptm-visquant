@@ -456,7 +456,8 @@ class Protein {
     });
 
     // Add heatmap label to last heatmap column
-    d3.select(heatmap_column.node()).each(function(markup) {
+    const lastHeatMapColumn = heatmap_column.nodes()[heatmap_column.size() - 1];
+    d3.select(lastHeatMapColumn).each(function(markup) {
       if (markup.heatmap_labels) {
         d3.select(this)
           .selectAll("heatmap_labels")

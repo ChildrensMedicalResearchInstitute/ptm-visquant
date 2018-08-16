@@ -498,7 +498,7 @@ function setupCanvas(canvas) {
 }
 
 function setupForm() {
-  FormOptions.populateInterpolatorField()
+  FormOptions.populateInterpolatorField();
 }
 
 setupForm();

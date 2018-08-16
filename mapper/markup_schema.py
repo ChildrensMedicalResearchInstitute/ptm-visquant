@@ -2,6 +2,9 @@ from marshmallow import fields, pre_dump, Schema, validate
 
 
 class MarkupSchema(Schema):
+    accession = fields.String(
+        required=True,
+    )
     type = fields.String(
         required=True,
         validate=[validate.Length(min=1, error="Type cannot be empty")],

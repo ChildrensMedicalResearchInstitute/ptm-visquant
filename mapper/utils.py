@@ -52,6 +52,10 @@ def __extract_heatmap_labels(fields):
     return heatmap_labels
 
 
+def split_accessions(ids):
+    return [s.strip() for s in ids.split(',')]
+
+
 def make_requests(urls, status_only=False):
     num_threads = len(urls)
     pool = ThreadPool(num_threads)
@@ -61,13 +65,12 @@ def make_requests(urls, status_only=False):
     return pool.map(request_method, urls)
 
 
-def get_protein_domains(ids):
+def get_protein_domains(accessions):
     """
-    ids: a comma separated string of protein entry names or accessions.
+    accessions: a list of protein assessions
     Returns a list of JSON data.
     """
     URL = 'http://pfam.xfam.org/protein/{}'
-    accessions = [s.strip() for s in ids.split(',')]
     urls = [URL.format(a) for a in accessions]
     responses = make_requests(urls)
     protein_data = []

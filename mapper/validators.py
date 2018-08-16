@@ -1,5 +1,5 @@
 from .markup_schema import MarkupSchema
-from .utils import make_requests
+from .utils import make_requests, split_accessions
 from csv import DictReader
 from wtforms import StringField, ValidationError
 
@@ -10,7 +10,7 @@ class ValidUniProtProteins():
         self.MESSAGE = 'Unable to fetch "{}" from UniProt database.'
 
     def __call__(self, form, field):
-        accessions = [s.strip() for s in field.data.split(',')]
+        accessions = split_accessions(field.data)
         urls = [self.ENDPOINT.format(a) for a in accessions]
         status = make_requests(urls, status_only=True)
         for i, stat in enumerate(status):

@@ -106,3 +106,15 @@ def to_markup_list(csv_file):
             coordinates.add((start, end))
             markup.append(data)
     return markup
+
+
+def add_markup_to_context(markup, context):
+    for protein in context:
+        protein_accession = protein['metadata']['accession'].upper()
+        protein_identifier = protein['metadata']['identifier'].upper()
+        protein['markups'] += [
+            m for m in markup
+            if m['accession'].upper() == protein_accession
+            or m['accession'].upper() == protein_identifier
+        ]
+    return context

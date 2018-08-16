@@ -1,6 +1,11 @@
 from app import app
 from forms import PtmForm
-from mapper.utils import get_protein_domains, split_accessions, to_markup_list
+from mapper.utils import (
+    add_markup_to_context,
+    get_protein_domains,
+    split_accessions,
+    to_markup_list,
+)
 
 from flask import Flask, Markup
 from flask import render_template, request
@@ -18,7 +23,7 @@ def index():
         f = form.csv_file.data
         if f:
             lines = [line.decode() for line in f.readlines()]
-            context[0]['markups'] += to_markup_list(lines)
+            add_markup_to_context(to_markup_list(lines), context)
     return render_template(
         'ptm_mapper.html',
         form=form,
@@ -37,14 +42,7 @@ def default():
     with open('static/files/BSN_RAT.json') as f:
         context = json.load(f)
     with open('static/files/BSN_RAT_EXAMPLE.csv') as f:
-        for protein in context:
-            protein_accession = protein['metadata']['accession'].upper()
-            protein_identifier = protein['metadata']['identifier'].upper()
-            protein['markups'] += [
-                m for m in to_markup_list(f)
-                if m['accession'].upper() == protein_accession
-                or m['accession'].upper() == protein_identifier
-            ]
+        add_markup_to_context(to_markup_list(f), context)
     return render_template(
         'ptm_mapper.html',
         form=form,

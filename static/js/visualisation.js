@@ -70,7 +70,8 @@ class Canvas {
       .attr("x", -10)
       .attr("dy", ".35em")
       .attr("transform", "rotate(270)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
+      .style("font-size","1rem");
   }
 
   addMotifLegend(data) {

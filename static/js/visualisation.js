@@ -473,7 +473,15 @@ class Protein {
   }
 }
 
-d3.select("#download").on("click", function() {
+d3.select("#downloadAsPDF").on("click", function() {
+  alert("Sorry! This hasn't been implemented yet.")
+});
+
+d3.select("#downloadAsPNG").on("click", function() {
+  alert("Sorry! This hasn't been implemented yet.")
+});
+
+d3.select("#downloadAsSVG").on("click", function() {
   let canvas = new Canvas();
   let filename = context.map(d => d.metadata.identifier).join("-");
   saveSvg(canvas.svg.node(), filename);

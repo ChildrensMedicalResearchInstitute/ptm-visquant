@@ -40,7 +40,18 @@
                         <select class="form-control custom-select" id="heatmap-interpolator"></select>
                     </div>
                 </div>
-                <button class="btn btn-primary mb-1 float-right" id="download">Download</button>
+                <div class="dropdown">
+                    <button
+                    class="btn btn-primary dropdown-toggle float-right" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Download
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="downloadMenuButton">
+                        <a class="dropdown-item" id="downloadAsPDF">PDF</a>
+                        <a class="dropdown-item" id="downloadAsPNG">PNG</a>
+                        <a class="dropdown-item" id="downloadAsSVG">SVG</a>
+                    </div>
+                </div>
                 <button class="btn btn-primary mx-1 float-right" id="update">Update</button>
             </div>
         </div>

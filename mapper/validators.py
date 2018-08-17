@@ -7,15 +7,18 @@ from wtforms import StringField, ValidationError
 class ValidUniProtProteins():
     def __init__(self, message=None):
         self.ENDPOINT = 'http://www.uniprot.org/uniprot/{}.xml'
-        self.MESSAGE = 'Unable to fetch "{}" from UniProt database.'
 
     def __call__(self, form, field):
         accessions = split_accessions(field.data)
         urls = [self.ENDPOINT.format(a) for a in accessions]
         status = make_requests(urls, status_only=True)
         for i, stat in enumerate(status):
-            if stat is None or stat != 200:
-                raise ValidationError(self.MESSAGE.format(accessions[i]))
+            if stat is None:
+                raise ValidationError("Unable to connect to UniProt database.")
+            if stat != 200:
+                raise ValidationError(
+                    f"Unable to fetch '{accessions[i]}' from UniProt database."
+                )
 
 
 class ValidMarkupFile():

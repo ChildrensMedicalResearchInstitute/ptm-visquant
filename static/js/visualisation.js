@@ -46,13 +46,14 @@ class Canvas {
     canvasInstance = this;
     this.scale = undefined;
     this.svg = d3.select("div.vis-box").append("svg");
-    this.GROUP_PADDING = 40;
-    this.CANVAS_HEIGHT = this.GROUP_PADDING * 2;
+    this.ROW_PADDING = 40;
+    this.AXIS_HEIGHT = this.ROW_PADDING * 2;
+    this.CURRENT_HEIGHT = this.AXIS_HEIGHT;
   }
 
   clear() {
     this.svg.selectAll("*").remove();
-    this.CANVAS_HEIGHT = this.GROUP_PADDING;
+    this.CURRENT_HEIGHT = this.AXIS_HEIGHT;
   }
 
   addScale(length) {
@@ -71,7 +72,7 @@ class Canvas {
       .attr("dy", ".35em")
       .attr("transform", "rotate(270)")
       .style("text-anchor", "end")
-      .style("font-size","1rem");
+      .style("font-size", "1rem");
   }
 
   addMotifLegend(data) {
@@ -170,10 +171,10 @@ class Canvas {
     }
     element.attr(
       "transform",
-      `translate(${currentX}, ${this.CANVAS_HEIGHT -
+      `translate(${currentX}, ${this.CURRENT_HEIGHT -
         element.node().getBBox().y})`
     );
-    this.CANVAS_HEIGHT += element.node().getBBox().height + this.GROUP_PADDING;
+    this.CURRENT_HEIGHT += element.node().getBBox().height + this.ROW_PADDING;
   }
 
   // Expand the canvas to fit all elements in this.svg
@@ -474,11 +475,11 @@ class Protein {
 }
 
 d3.select("#downloadAsPDF").on("click", function() {
-  alert("Sorry! This hasn't been implemented yet.")
+  alert("Sorry! This hasn't been implemented yet.");
 });
 
 d3.select("#downloadAsPNG").on("click", function() {
-  alert("Sorry! This hasn't been implemented yet.")
+  alert("Sorry! This hasn't been implemented yet.");
 });
 
 d3.select("#downloadAsSVG").on("click", function() {

@@ -18,7 +18,7 @@ def __request_status(url):
         return requests.head(
             url,
             allow_redirects=True,
-            timeout=5,
+            timeout=10,
         ).status_code
     except requests.exceptions.Timeout:
         return None
@@ -26,7 +26,7 @@ def __request_status(url):
 
 def __request_response(url):
     try:
-        return requests.get(url, timeout=5)
+        return requests.get(url, timeout=10)
     except requests.exceptions.Timeout:
         return None
 
@@ -75,7 +75,9 @@ def get_protein_domains(accessions):
     responses = make_requests(urls)
     protein_data = []
     for i, r in enumerate(responses):
-        if r is None or r.status_code != 200:
+        if r is None:
+            continue
+        elif r.status_code != 200:
             r.raise_for_status()
         soup = BeautifulSoup(r.text, 'lxml')
         for script in soup.find_all('script'):

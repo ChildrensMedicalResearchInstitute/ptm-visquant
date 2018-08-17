@@ -46,6 +46,7 @@ class Canvas {
     canvasInstance = this;
     this.scale = undefined;
     this.svg = d3.select("div.vis-box").append("svg");
+    this.MARGIN = { top: 0, right: 10, bottom: 10, left: 10 };
     this.ROW_PADDING = 40;
     this.AXIS_HEIGHT = this.ROW_PADDING * 2;
     this.CURRENT_HEIGHT = this.AXIS_HEIGHT;
@@ -65,6 +66,7 @@ class Canvas {
     let xAxis = d3.axisBottom(this.scale);
     this.svg
       .append("g")
+      .attr("transform", `translate(${this.MARGIN.left}, 0)`)
       .call(xAxis)
       .selectAll("text")
       .attr("y", 0)
@@ -128,7 +130,7 @@ class Canvas {
     this.fit(legend);
   }
 
-  addHeatmapLegend(data) {
+  addHeatmapLegend() {
     let legendScale = d3
       .scaleSequential(FormOptions.selectedInterpolator())
       .domain([
@@ -171,8 +173,10 @@ class Canvas {
     }
     element.attr(
       "transform",
-      `translate(${currentX}, ${this.CURRENT_HEIGHT -
-        element.node().getBBox().y})`
+      `translate(
+        ${this.MARGIN.left + currentX}, 
+        ${this.CURRENT_HEIGHT - element.node().getBBox().y}
+      )`
     );
     this.CURRENT_HEIGHT += element.node().getBBox().height + this.ROW_PADDING;
   }
@@ -180,8 +184,8 @@ class Canvas {
   // Expand the canvas to fit all elements in this.svg
   expand() {
     this.svg
-      .attr("width", this.svg.node().getBBox().width)
-      .attr("height", this.svg.node().getBBox().height);
+      .attr("width", this.svg.node().getBBox().width + this.MARGIN.right)
+      .attr("height", this.svg.node().getBBox().height + this.MARGIN.bottom);
   }
 }
 

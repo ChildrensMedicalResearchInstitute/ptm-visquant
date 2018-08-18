@@ -254,7 +254,10 @@ class FormOptions {
         let currentGroup = $("<optgroup>", { label: groupName });
         currentGroup.appendTo(heatmapInterpSelect);
         $.each(options, function(j, option) {
-          let $option = $("<option>", { text: option, value: option });
+          let $option = $("<option>", {
+            text: option,
+            value: option
+          });
           $option.appendTo(currentGroup);
         });
       });

@@ -19,11 +19,11 @@ The first line of the CSV file should be a header which identifies the informati
 |Column name|Required|Description|
 |:-|:-|:-|
 |`accession`|Yes|The protein entry name or accession code where this markup belongs. If the accession value specified in the CSV file does not match any accession in the diagram, the markup will not be drawn.|
-|`type`|Yes|Type of markup (for example: phosphorylation). Must be at least 1 character in length.|
+|`type`|Yes|Type of markup (for example: phosphorylation).|
 |`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
 |`display`||A `true` or `false` value denoting whether the markup should be displayed on the graphic.|
-|`lineColour`||Colour of markup line. Useful if the markup starts and ends at the same coordinate along the protein. This field accepts any valid HTML colour name or hexadecimal.|
-|`heatmap_*`||Numerical value between 0 and 1 (inclusive) to quantify amount modified. Columns will be collapsed into the heatmap in the order in which they are specified.|
+|`lineColour`||Colour of markup line. This field accepts any valid HTML colour name or hexadecimal. If unspecified, a random colour will be assigned to each unique value specified in the `type` column.|
+|`heatmap_*`||A numerical value to quantify an amount of some modification. Columns will be collapsed into the heatmap in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
 
 An example CSV file which includes only the required fields.
 

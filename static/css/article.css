@@ -1,6 +1,7 @@
 table {
     border-collapse: separate;
-    border-spacing: 20px 10px;
+    border-spacing: 1.6em 1em;
+    margin-bottom: 1em;
 }
 
 th {

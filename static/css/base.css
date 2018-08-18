@@ -1,5 +1,13 @@
 h1 {
-    margin: 20px 0px;
+    margin: 1rem 0;
+}
+
+h2 {
+    margin: 1rem 0;
+}
+
+h5 {
+    margin: 1rem 0;
 }
 
 .navbar {

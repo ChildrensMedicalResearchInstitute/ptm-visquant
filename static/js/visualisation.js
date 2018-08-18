@@ -486,7 +486,9 @@ d3.select("#downloadAsPDF").on("click", function() {
 });
 
 d3.select("#downloadAsPNG").on("click", function() {
-  alert("Sorry! This hasn't been implemented yet.");
+  const canvas = new Canvas();
+  const simg = new Simg(canvas.svg.node());
+  simg.download();
 });
 
 d3.select("#downloadAsSVG").on("click", function() {

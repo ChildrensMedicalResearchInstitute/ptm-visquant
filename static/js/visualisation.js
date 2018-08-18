@@ -481,11 +481,7 @@ class Protein {
   }
 }
 
-d3.select("#downloadAsPDF").on("click", function() {
-  alert("Sorry! This hasn't been implemented yet.");
-});
-
-d3.select("#downloadAsPNG").on("click", function() {
+d3.select("#download-png-white").on("click", function() {
   const canvas = new Canvas();
   const filename = context.map(d => d.metadata.identifier).join("-");
   saveSvgAsPng(canvas.svg.node(), filename, {
@@ -494,7 +490,13 @@ d3.select("#downloadAsPNG").on("click", function() {
   });
 });
 
-d3.select("#downloadAsSVG").on("click", function() {
+d3.select("#download-png-transparent").on("click", function() {
+  const canvas = new Canvas();
+  const filename = context.map(d => d.metadata.identifier).join("-");
+  saveSvgAsPng(canvas.svg.node(), filename, { scale: 2 });
+});
+
+d3.select("#download-svg").on("click", function() {
   let canvas = new Canvas();
   let filename = context.map(d => d.metadata.identifier).join("-");
   saveSvg(canvas.svg.node(), filename);

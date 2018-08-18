@@ -9,23 +9,3 @@ h1 {
 .nav-item {
     list-style-type: none;
 }
-
-.card {
-    margin: 20px 0px;
-}
-
-.field-error {
-    color: red;
-}
-
-.vis-box {
-    overflow-x: auto;
-}
-
-label.bold-label {
-    font-weight: bold;
-}
-
-label.left-label {
-    text-align: right;
-}

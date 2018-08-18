@@ -17,11 +17,10 @@ One may optionally upload a post-translational modifications file in CSV format.
 The first line of the CSV file should be a header which identifies the information which can be found in each column. Each line following the header will define a new protein markup.
 
 |Column name|Required|Description|
-|-:|:-:|:-|
+|:-|:-|:-|
+|`accession`|Yes|The protein entry name or accession code where this markup belongs.|
 |`type`|Yes|Type of markup (for example: phosphorylation). Must be at least 1 character in length.|
-|`colour`|No|Colour of markup region. Useful if markup spans a region along the protein. This field accepts any valid HTML colour name or hexadecimal.|
-|`lineColour`|No|Colour of markup line. Useful if the markup starts and ends at the same coordinate along the protein. This field accepts any valid HTML colour name or hexadecimal.|
 |`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
-|`end`|No|The end coordinate of the markup. If this field is not specified, then the markup will end at the start coordinate. Must be an integer with a minimum value of zero.|
-|`display`|No|A `true` or `false` value denoting whether the markup should be displayed on the graphic.|
-|`heatmap_*`|No|Numerical value between 0 and 1 (inclusive) to quantify amount modified. Columns will be collapsed into the heatmap in the order in which they are specified.|
+|`display`||A `true` or `false` value denoting whether the markup should be displayed on the graphic.|
+|`lineColour`||Colour of markup line. Useful if the markup starts and ends at the same coordinate along the protein. This field accepts any valid HTML colour name or hexadecimal.|
+|`heatmap_*`||Numerical value between 0 and 1 (inclusive) to quantify amount modified. Columns will be collapsed into the heatmap in the order in which they are specified.|

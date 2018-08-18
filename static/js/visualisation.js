@@ -487,8 +487,11 @@ d3.select("#downloadAsPDF").on("click", function() {
 
 d3.select("#downloadAsPNG").on("click", function() {
   const canvas = new Canvas();
-  const simg = new Simg(canvas.svg.node());
-  simg.download();
+  const filename = context.map(d => d.metadata.identifier).join("-");
+  saveSvgAsPng(canvas.svg.node(), filename, {
+    scale: 2,
+    backgroundColor: "#FFFFFF"
+  });
 });
 
 d3.select("#downloadAsSVG").on("click", function() {

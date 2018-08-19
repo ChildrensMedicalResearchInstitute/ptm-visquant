@@ -8,7 +8,7 @@ from mapper.utils import (
 )
 
 from flask import Flask, Markup
-from flask import render_template, request
+from flask import render_template, request, send_from_directory
 from markdown import markdown
 from markdown.extensions.extra import ExtraExtension
 
@@ -58,6 +58,15 @@ def how_to():
     return render_template(
         'article.html',
         content=content,
+    )
+
+
+@app.route('/example-csv')
+def example_csv():
+    return send_from_directory(
+        'static/files',
+        filename='BSN_RAT_EXAMPLE.csv',
+        as_attachment=True,
     )
 
 

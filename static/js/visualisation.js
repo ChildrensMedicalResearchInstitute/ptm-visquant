@@ -174,7 +174,7 @@ class Canvas {
     element.attr(
       "transform",
       `translate(
-        ${this.MARGIN.left + currentX}, 
+        ${this.MARGIN.left + currentX},
         ${this.CURRENT_HEIGHT - element.node().getBBox().y}
       )`
     );

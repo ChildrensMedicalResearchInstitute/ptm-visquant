@@ -119,6 +119,39 @@ class Canvas {
       .shapePadding(10)
       // filter out motifs which do not appear in this context
       .cellFilter(d => data.motifs.map(m => m.type).indexOf(d.label) > -1)
+      .title("Motifs")
+      .scale(legendScale);
+
+    let legend = this.svg
+      .append("g")
+      .attr("class", "legendOrdinal")
+      .attr("transform", "translate(20,0)")
+      .call(legendStyle);
+
+    this.fit(legend);
+  }
+
+  addMarkupLegend(data) {
+    let markup_display = data.markups.filter(
+      markup => markup.display !== false
+    );
+
+    let legendScale = d3
+      .scaleOrdinal()
+      .domain(markup_display.map(d => d.type))
+      .range(markup_display.map(d => d.lineColour));
+
+    let legendStyle = d3
+      .legendColor()
+      .shape(
+        "path",
+        d3
+          .symbol()
+          .type(d3.symbolCircle)
+          .size(150)()
+      )
+      .shapePadding(10)
+      .title("Markup")
       .scale(legendScale);
 
     let legend = this.svg
@@ -301,6 +334,7 @@ class Protein {
     this.svg = svg;
     this.scale = scale;
     this.hasHeatmap = false;
+    this.hasMarkup = false;
   }
 
   drawBackbone() {
@@ -368,6 +402,10 @@ class Protein {
     let markup_display = this.data.markups.filter(
       markup => markup.display !== false
     );
+
+    if (markup_display.length > 0) {
+      this.hasMarkup = true;
+    }
 
     this.svg
       .selectAll("markup")
@@ -514,6 +552,9 @@ function setupCanvas(canvas) {
   for (let i = 0; i < context.length; i++) {
     let protein = canvas.addProtein(context[i]);
     canvas.addMotifLegend(context[i]);
+    if (protein.hasMarkup) {
+      canvas.addMarkupLegend(context[i]);
+    }
     if (protein.hasHeatmap) {
       canvas.addHeatmapLegend(context[i]);
     }

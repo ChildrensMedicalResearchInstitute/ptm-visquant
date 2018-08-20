@@ -176,12 +176,13 @@ class Canvas {
       .shapeWidth(40)
       .cells(10)
       .orient("horizontal")
+      .title("Heatmap scale")
       .scale(legendScale);
 
     let legend = this.svg
       .append("g")
       .attr("class", "legendLinear")
-      .attr("transform", "translate(10,0)")
+      .attr("transform", "translate(20,0)")
       .call(legendStyle);
 
     this.fit(legend);

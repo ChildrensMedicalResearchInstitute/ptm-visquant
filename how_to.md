@@ -2,15 +2,15 @@
 
 ##### Protein Entry Name or Accession
 
-Specify a protein of interest by the protein's UniProt entry name or accession code. You can find a comprehensive and searchable list proteins with their corresponding entry name and accession code available on the UniProt website: [https://www.uniprot.org/uniprot/](https://www.uniprot.org/uniprot/).
+Specify a protein of interest using the UniProt entry name or accession (for example, BSN_RAT or O88778). Proteins entries are restricted to the UniProt release currently being used by Pfam, which provides the evolutionarily conserved domain information.
 
-The UniProt database is used to validate any input into this field. Protein motif and domain information is sourced from PFAM: [http://pfam.xfam.org](http://pfam.xfam.org).
+A valid UniProt entry must be supplied in this field.
 
 ##### Post-translational modifications file
 
-One may optionally upload a post-translational modifications file in CSV (comma-separated value) format. The application will attempt to convert this information to markup for visualisation on the protein diagram.
+Your post-translational modification site information must be provided via a file in CSV (comma-separated value) format. The application will use this information for display on the evolutionarily conserved protein domain structure diagram.
 
-The first line of the CSV file should be a header which identifies the information which can be found in each column. Each line following the header will define a new protein markup.
+The first line of the CSV file should be a header which identifies the information which can be found in each column. Each line following the header will define a new post-translational modification site and optional information on how the information is displayed and quantitative data.
 
 |Column name|Required|Description|
 |:-|:-|:-|

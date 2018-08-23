@@ -61,7 +61,7 @@ class Canvas {
     this.scale = d3
       .scaleLinear()
       .domain([0, length])
-      .range([0, length / 2]);
+      .range([0, 900]);
 
     let xAxis = d3.axisBottom(this.scale);
     this.svg
@@ -290,7 +290,11 @@ class FormOptions {
         $.each(options, function(j, option) {
           let $option = $("<option>", {
             text: option,
-            value: option
+            value: option,
+            "data-content":
+              `<img ` +
+              `src="./static/images/${option}.png" ` +
+              `style="width:200px;height:1rem;">`
           });
           $option.appendTo(currentGroup);
         });

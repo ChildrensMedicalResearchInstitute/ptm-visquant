@@ -20,6 +20,7 @@ def index():
     if request.method == 'POST' and form.validate():
         context = get_protein_domains(split_accessions(form.accession.data))
         f = form.csv_file.data
+        print(context)
         if f:
             lines = [line.decode() for line in f.readlines()]
             add_markup_to_context(to_markup_list(lines), context)

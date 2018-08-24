@@ -7,9 +7,9 @@ from bs4 import BeautifulSoup
 from csv import DictReader
 from multiprocessing.dummy import Pool as ThreadPool
 
-PFAM_DATA_PATTERN = "(?<=({pre})).*(?=({post}))".format(
+PFAM_DATA_PATTERN = "(?<=({pre}))[\s\S]*?(?=({post}))".format(
     pre=re.escape("var layout = ["),
-    post=re.escape("];"),
+    post="\][\s]*;",
 )
 
 

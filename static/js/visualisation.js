@@ -58,12 +58,17 @@ class Canvas {
   }
 
   addScale(length) {
+    const userZoom = d3.select("#zoom-percent").node().value / 100;
     this.scale = d3
       .scaleLinear()
       .domain([0, length])
-      .range([0, 900]);
+      .range([0, length * userZoom]);
 
-    let xAxis = d3.axisBottom(this.scale);
+    const tickStep = d3.select("#tick-step").node().value;
+    let xAxis = d3
+      .axisBottom(this.scale)
+      .tickValues(d3.range(0, length, tickStep));;
+
     this.svg
       .append("g")
       .attr("transform", `translate(${this.MARGIN.left}, 0)`)

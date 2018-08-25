@@ -16,16 +16,19 @@ from markdown.extensions.extra import ExtraExtension
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = PtmForm()
+    hasFileUpload = False
     context = None
     if request.method == 'POST' and form.validate():
         context = get_protein_domains(split_accessions(form.accession.data))
         f = form.csv_file.data
         if f:
+            hasFileUpload = True
             lines = [line.decode() for line in f.readlines()]
             add_markup_to_context(to_markup_list(lines), context)
     return render_template(
         'ptm_mapper.html',
         form=form,
+        hasFileUpload=hasFileUpload,
         context=context,
     )
 
@@ -45,6 +48,7 @@ def default():
     return render_template(
         'ptm_mapper.html',
         form=form,
+        hasFileUpload=True,
         context=context,
     )
 

@@ -40,6 +40,7 @@
                         <input type="number" class="form-control" id="tick-step" value="500">
                     </div>
                 </div>
+                {% if hasFileUpload %}
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label bold-label">Heatmap range</label>
                     <label class="col-sm-2 col-form-label left-label">Minimum</label>
@@ -58,6 +59,7 @@
                         <select class="form-control selectpicker" id="heatmap-interpolator"></select>
                     </div>
                 </div>
+                {% endif %}
                 <div class="dropdown">
                     <button
                     class="btn btn-primary dropdown-toggle float-right" type="button"
@@ -94,7 +96,8 @@
 </script>
 {% if context %}
     <script>
-        var context = JSON.parse('{{ context | tojson | safe }}');
+        const hasFileUpload = {% if hasFileUpload %} true {% else %} false {% endif %};
+        const context = JSON.parse('{{ context | tojson | safe }}');
     </script>
     <script src="{{ url_for('static', filename='js/bootstrap-select.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/d3.min.js') }}"></script>

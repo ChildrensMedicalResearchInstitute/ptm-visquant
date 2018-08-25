@@ -331,7 +331,9 @@ class ProteinBuilder {
     this.protein.drawRegions();
     this.protein.drawMarkupLines();
     this.protein.drawMarkupLabels();
-    this.protein.drawHeatmap();
+    if (hasFileUpload) {
+      this.protein.drawHeatmap();
+    }
     return this.protein;
   }
 }
@@ -582,7 +584,9 @@ function setupCanvas(canvas) {
 }
 
 function setupForm() {
-  FormOptions.populateInterpolatorField();
+  if (hasFileUpload) {
+    FormOptions.populateInterpolatorField();
+  }
 }
 
 setupForm();

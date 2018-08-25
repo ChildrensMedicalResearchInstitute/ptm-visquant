@@ -5,17 +5,6 @@ from csv import DictReader
 from multiprocessing.dummy import Pool as ThreadPool
 
 
-def __request_status(url):
-    try:
-        return requests.head(
-            url,
-            allow_redirects=True,
-            timeout=10,
-        ).status_code
-    except requests.exceptions.Timeout:
-        return None
-
-
 def __request_response(url):
     try:
         return requests.get(url, timeout=10)
@@ -52,8 +41,6 @@ def make_requests(urls, status_only=False):
     num_threads = len(urls)
     pool = ThreadPool(num_threads)
     request_method = __request_response
-    if status_only:
-        request_method = __request_status
     return pool.map(request_method, urls)
 
 

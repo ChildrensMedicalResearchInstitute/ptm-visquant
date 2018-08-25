@@ -58,16 +58,15 @@ class Canvas {
   }
 
   addScale(length) {
-    const userZoom = d3.select("#zoom-percent").node().value / 100;
+    const userZoom = FormOptions.scaleZoomPercent() / 100;
     this.scale = d3
       .scaleLinear()
       .domain([0, length])
       .range([0, length * userZoom]);
 
-    const tickStep = d3.select("#tick-step").node().value;
     let xAxis = d3
       .axisBottom(this.scale)
-      .tickValues(d3.range(0, length, tickStep));;
+      .tickValues(d3.range(0, length, FormOptions.scaleTickStep()));
 
     this.svg
       .append("g")
@@ -171,10 +170,7 @@ class Canvas {
   addHeatmapLegend() {
     let legendScale = d3
       .scaleSequential(FormOptions.selectedInterpolator())
-      .domain([
-        d3.select("#heatmap-range-min").node().value,
-        d3.select("#heatmap-range-max").node().value
-      ]);
+      .domain([FormOptions.heatmapMin(), FormOptions.heatmapMax()]);
 
     let legendStyle = d3
       .legendColor()
@@ -278,6 +274,22 @@ class FormOptions {
         ]
       }
     ];
+  }
+
+  static scaleZoomPercent() {
+    return d3.select("#zoom-percent").node().value;
+  }
+
+  static scaleTickStep() {
+    return d3.select("#tick-step").node().value;
+  }
+
+  static heatmapMin() {
+    return d3.select("#heatmap-range-min").node().value;
+  }
+
+  static heatmapMax() {
+    return d3.select("#heatmap-range-max").node().value;
   }
 
   static selectedInterpolator() {
@@ -463,10 +475,7 @@ class Protein {
     let scale = this.scale;
     let scale_chromatic = d3
       .scaleSequential(FormOptions.selectedInterpolator())
-      .domain([
-        d3.select("#heatmap-range-min").node().value,
-        d3.select("#heatmap-range-max").node().value
-      ]);
+      .domain([FormOptions.heatmapMin(), FormOptions.heatmapMax()]);
 
     let markup_display = this.data.markups.filter(
       markup => markup.display !== false

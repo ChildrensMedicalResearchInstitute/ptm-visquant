@@ -1,16 +1,8 @@
-import json
-import re
 import requests
 
 from .markup_schema import MarkupSchema
-from bs4 import BeautifulSoup
 from csv import DictReader
 from multiprocessing.dummy import Pool as ThreadPool
-
-PFAM_DATA_PATTERN = "(?<=({pre}))[\s\S]*?(?=({post}))".format(
-    pre=re.escape("var layout = ["),
-    post="\][\s]*;",
-)
 
 
 def __request_status(url):
@@ -70,20 +62,16 @@ def get_protein_domains(accessions):
     accessions: a list of protein assessions
     Returns a list of JSON data.
     """
-    URL = 'http://pfam.xfam.org/protein/{}'
+    URL = 'http://pfam.xfam.org/protein/{}/graphic'
     urls = [URL.format(a) for a in accessions]
     responses = make_requests(urls)
     protein_data = []
-    for i, r in enumerate(responses):
-        if r is None:
-            continue
-        elif r.status_code != 200:
-            r.raise_for_status()
-        soup = BeautifulSoup(r.text, 'lxml')
-        for script in soup.find_all('script'):
-            result = re.search(PFAM_DATA_PATTERN, script.text)
-            if result:
-                protein_data.append(json.loads(result.group()))
+    for r in responses:
+        try:
+            graphic_info = r.json()[0]
+            protein_data.append(graphic_info)
+        except:
+            pass
     return protein_data
 
 

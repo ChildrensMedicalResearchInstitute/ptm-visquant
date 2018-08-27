@@ -3,8 +3,11 @@ channels:
   - default
   - conda-forge
 dependencies:
+  - beautifulsoup4
   - flask
   - flask-wtf
+  - grequests
+  - lxml
   - markdown
   - marshmallow=3
   - wtforms

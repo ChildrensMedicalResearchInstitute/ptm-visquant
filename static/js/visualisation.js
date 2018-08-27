@@ -136,14 +136,18 @@ class Canvas {
   }
 
   addMarkupLegend(data) {
-    let markup_display = data.markups.filter(
-      markup => markup.display !== false
-    );
+    let markupTypeColour = {};
+    data.markups.forEach(markup => {
+      if (markup.display == false) {
+        return;
+      }
+      markupTypeColour[markup.type] = markup.lineColour;
+    });
 
     let legendScale = d3
       .scaleOrdinal()
-      .domain(markup_display.map(d => d.type))
-      .range(markup_display.map(d => d.lineColour));
+      .domain(Object.keys(markupTypeColour))
+      .range(Object.values(markupTypeColour));
 
     let legendStyle = d3
       .legendColor()

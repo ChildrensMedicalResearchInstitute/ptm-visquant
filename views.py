@@ -27,6 +27,7 @@ def index():
             add_markup_to_context(to_markup_list(lines), context)
     return render_template(
         'ptm_mapper.html',
+        card_content=read_markdown('ptm_mapper.md'),
         form=form,
         hasFileUpload=hasFileUpload,
         context=context,
@@ -47,6 +48,7 @@ def default():
         add_markup_to_context(to_markup_list(f), context)
     return render_template(
         'ptm_mapper.html',
+        card_content=read_markdown('ptm_mapper.md'),
         form=form,
         hasFileUpload=True,
         context=context,
@@ -55,13 +57,9 @@ def default():
 
 @app.route('/how-to')
 def how_to():
-    try:
-        content = read_markdown('how_to.md')
-    except FileNotFoundError:
-        content = "File unavailable."
     return render_template(
         'article.html',
-        content=content,
+        content=read_markdown('how_to.md'),
     )
 
 

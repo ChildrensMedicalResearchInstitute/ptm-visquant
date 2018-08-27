@@ -361,6 +361,7 @@ class Protein {
     this.data = data;
     this.svg = svg;
     this.scale = scale;
+    this.hasMotifs = false;
     this.hasHeatmap = false;
     this.hasMarkup = false;
   }
@@ -376,6 +377,10 @@ class Protein {
   }
 
   drawMotifs() {
+    if (this.data.motifs.length > 0) {
+      this.hasMotifs = true;
+    }
+
     this.svg
       .selectAll("motif")
       .data(this.data.motifs.filter(d => d.display !== false))
@@ -576,7 +581,9 @@ function setupCanvas(canvas) {
   canvas.addScale(maxLength);
   for (let i = 0; i < context.length; i++) {
     let protein = canvas.addProtein(context[i]);
-    canvas.addMotifLegend(context[i]);
+    if (protein.hasMotifs) {
+      canvas.addMotifLegend(context[i]);
+    }
     if (protein.hasMarkup) {
       canvas.addMarkupLegend(context[i]);
     }

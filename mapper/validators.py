@@ -4,22 +4,20 @@ from csv import DictReader
 from wtforms import StringField, ValidationError
 
 
-class ValidProteins():
+class ValidUniProtProteins():
     def __init__(self, message=None):
-        self.ENDPOINT = 'http://pfam.xfam.org/protein/{}/graphic'
+        self.ENDPOINT = 'http://www.uniprot.org/uniprot/{}.xml'
 
     def __call__(self, form, field):
         accessions = split_accessions(field.data)
         urls = [self.ENDPOINT.format(a) for a in accessions]
-        responses = make_requests(urls)
-        for i, r in enumerate(responses):
-            if r is None:
-                raise ValidationError("Unable to connect to PFAM.")
-            try:
-                r.json()
-            except:
+        status = make_requests(urls, status_only=True)
+        for i, stat in enumerate(status):
+            if stat is None:
+                raise ValidationError("Unable to connect to UniProt database.")
+            if stat != 200:
                 raise ValidationError(
-                    f"Unable to fetch '{accessions[i]}' from PFAM."
+                    f"Unable to fetch '{accessions[i]}' from UniProt database."
                 )
 
 

@@ -110,6 +110,12 @@ def to_markup_list(csv_file):
     return markup
 
 
+def remove_all_markup(context):
+    for protein in context:
+        protein['markups'] = []
+    return context
+
+
 def add_markup_to_context(markup, context):
     for protein in context:
         protein_accession = protein['metadata']['accession'].upper()

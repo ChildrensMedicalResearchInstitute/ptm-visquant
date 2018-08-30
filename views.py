@@ -3,6 +3,7 @@ from forms import PtmForm
 from mapper.utils import (
     add_markup_to_context,
     get_protein_domains,
+    remove_all_markup,
     split_accessions,
     to_markup_list,
 )
@@ -20,6 +21,7 @@ def index():
     context = None
     if request.method == 'POST' and form.validate():
         context = get_protein_domains(split_accessions(form.accession.data))
+        context = remove_all_markup(context)
         f = form.csv_file.data
         if f:
             hasFileUpload = True
@@ -44,6 +46,7 @@ def default():
     import json
     with open('static/files/BSN_RAT.json') as f:
         context = json.load(f)
+        context = remove_all_markup(context)
     with open('static/files/BSN_RAT_EXAMPLE.csv') as f:
         add_markup_to_context(to_markup_list(f), context)
     return render_template(

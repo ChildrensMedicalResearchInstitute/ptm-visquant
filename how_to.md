@@ -40,3 +40,7 @@ not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099
 ```
 
 [Download example CSV file](/example-csv). This CSV will generate this [example view](/example).
+
+## Contact us
+
+For any enquiries, please send us an email to [questions@cmri.org.au](mailto:questions@cmri.org.au).

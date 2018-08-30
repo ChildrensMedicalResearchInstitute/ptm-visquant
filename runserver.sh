@@ -6,4 +6,4 @@ source activate ptm-mapper
 export FLASK_DEBUG=TRUE
 # Move to this directory and run app
 cd "`dirname "$0"`"
-python3 -m flask run
+python3 -m flask run --host=0.0.0.0

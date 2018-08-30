@@ -39,4 +39,4 @@ bsn_rat,phosphorylation,189,#FE4EDA,0.748295273,0.356942776,0.691517186,0.332498
 not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099,0.513450914
 ```
 
-[Download example CSV file](/example-csv)
+[Download example CSV file](/example-csv). This CSV will generate this [example view](/example).

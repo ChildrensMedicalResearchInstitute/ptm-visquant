@@ -36,10 +36,9 @@ def index():
     )
 
 
-@app.route('/default')
-def default():
+@app.route('/example')
+def example():
     """
-    For debugging only.
     Skip external HTTP requests and load JSON from file.
     """
     form = PtmForm(request.form)

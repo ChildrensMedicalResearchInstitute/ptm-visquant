@@ -55,6 +55,8 @@ not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099
 
 ##### Drawing options
 
+Options for changing the appearance of the drawing will appear after you click the 'Visualise' button. To reflect any changes in the drawing options form, you must click on the 'Update' button.
+
 You can scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%).
 
 ![](./static/images/image-scale.gif)
@@ -62,8 +64,6 @@ You can scale the image and the distance between tick marks under the 'image sca
 'Heatmap range' and 'heatmap colour' allow you to adjust the heatmap range and colour scheme.
 
 ![](./static/images/heatmap-colour.gif)
-
-Click on the 'Update' button to have any of the above changes reflected in the drawing.
 
 ## Contact us
 

@@ -28,3 +28,9 @@ pre {
     display: block;
     word-wrap: break-word;
 }
+
+img {
+    max-width:100%;
+    max-height:100%;
+    border: 1px solid lightgrey;
+}

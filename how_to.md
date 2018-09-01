@@ -4,6 +4,18 @@
 
 Specify a protein of interest using the UniProt entry name or accession (for example, BSN_RAT or O88778). Proteins entries are restricted to the UniProt release currently being used by Pfam, which provides the evolutionarily conserved domain information.
 
+A single value may be specified. For example:
+
+```
+BSN_RAT
+```
+
+More than one protein can be displayed by separating the values with a comma.
+
+```
+BSN_RAT,TAU_RAT
+```
+
 A valid UniProt entry must be supplied in this field.
 
 ##### Post-translational modifications file
@@ -21,7 +33,7 @@ The first line of the CSV file should be a header which identifies the informati
 |`lineColour`||Colour of markup line. This field accepts any valid HTML colour name or hexadecimal. If unspecified, a random colour will be assigned to each unique value specified in the `type` column.|
 |`heatmap_*`||A numerical value to quantify an amount of some modification. Columns will be collapsed into the heatmap in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
 
-An example CSV file which includes only the required fields.
+Here is an example CSV file which includes only the required fields.
 
 ```
 accession,type,start
@@ -40,6 +52,18 @@ not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099
 ```
 
 [Download example CSV file](/example-csv). This CSV will generate this [example view](/example).
+
+##### Drawing options
+
+You can scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%).
+
+![](./static/images/image-scale.gif)
+
+'Heatmap range' and 'heatmap colour' allow you to adjust the heatmap range and colour scheme.
+
+![](./static/images/heatmap-colour.gif)
+
+Click on the 'Update' button to have any of the above changes reflected in the drawing.
 
 ## Contact us
 

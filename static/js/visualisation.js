@@ -45,16 +45,7 @@ function setupCanvas(canvas) {
   const maxLength = d3.max(context, d => d.length);
   canvas.addScale(maxLength);
   for (let i = 0; i < context.length; i++) {
-    let protein = canvas.addProtein(context[i]);
-    if (protein.hasMotifs) {
-      canvas.addMotifLegend(context[i]);
-    }
-    if (protein.hasMarkup) {
-      canvas.addMarkupLegend(context[i]);
-    }
-    if (protein.hasHeatmap) {
-      canvas.addHeatmapLegend(context[i]);
-    }
+    canvas.addProtein(context[i]);
   }
   canvas.expand();
 }

@@ -156,11 +156,33 @@ class Canvas {
   }
 
   addProtein(data) {
-    let slate = this.svg.append("g");
-    let builder = new ProteinBuilder(data, slate, this.scale);
-    let protein = builder.build();
-    this.fit(slate);
-    return protein;
+    const visType = FormOptions.selectedVisType();
+    let nTrials;
+    if (visType === "lollipop") {
+      nTrials = data.markups[0].heatmap_values.length;
+    } else {
+      nTrials = 1;
+    }
+
+    for (let i = 0; i < nTrials; i++) {
+      let slate = this.svg.append("g");
+      let builder = new ProteinBuilder(data, slate, this.scale);
+      let protein = builder.build(i);
+      this.fit(slate);
+
+      // Add legends beneath last protein object
+      if (i === nTrials - 1) {
+        if (protein.hasMotifs) {
+          this.addMotifLegend(data);
+        }
+        if (protein.hasMarkup) {
+          this.addMarkupLegend(data);
+        }
+        if (visType === "heatmap" && protein.hasHeatmap) {
+          this.addHeatmapLegend(data);
+        }
+      }
+    }
   }
 
   // Fit element to the bottom of the canvas and update canvas height

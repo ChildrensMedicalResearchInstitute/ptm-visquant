@@ -159,6 +159,39 @@ class Protein {
     });
   }
 
+  drawMarkupLollipops(trialIndex) {
+    let markup_display = this.data.markups.filter(
+      markup => markup.display !== false
+    );
+
+    if (markup_display.length > 0) {
+      this.hasMarkup = true;
+    }
+
+    this.svg
+      .selectAll("markup")
+      .data(markup_display)
+      .enter()
+      .append("line")
+      .attr("x1", markup => this.scale(markup.start))
+      .attr("y1", this.BACKBONE_Y)
+      .attr("x2", markup => this.scale(markup.start))
+      .attr("y2", markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT)
+      .attr("stroke", markup => markup.lineColour)
+      .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
+
+    this.svg
+      .selectAll("markup")
+      .data(markup_display)
+      .enter()
+      .append("circle")
+      .attr("cx", markup => this.scale(markup.start))
+      .attr("cy", markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT)
+      .attr("r", 4)
+      .attr("fill", markup => markup.lineColour)
+      .attr("stroke", "white");
+  }
+
   drawHeatmap() {
     let _this = this;
     let scale = this.scale;

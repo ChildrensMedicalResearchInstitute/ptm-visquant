@@ -50,6 +50,10 @@ class FormOptions {
     ];
   }
 
+  static selectedVisType() {
+    return $("#vis-type input:radio:checked").val();
+  }
+
   static scaleZoomPercent() {
     return d3.select("#zoom-percent").node().value;
   }

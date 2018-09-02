@@ -24,6 +24,24 @@
 <div class="card">
         <div class="card-body">
             <div class="">
+                {% if hasFileUpload %}
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label bold-label">Visualisation</label>
+                    <label class="col-sm-2 col-form-label left-label">Type</label>
+                    <div class="col-sm-6">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="vis-type">
+                            <label class="btn btn-outline-secondary active">
+                                <input type="radio" name="option" autocomplete="off"
+                                id="vis-type-heatmap" value="heatmap" checked> Heatmap
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="option" autocomplete="off"
+                                id="vis-type-lollipop" value="lollipop"> Lollipop
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label bold-label">Image scale</label>
                     <label class="col-sm-2 col-form-label left-label">Zoom percentage</label>

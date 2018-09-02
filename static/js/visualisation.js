@@ -42,7 +42,7 @@ d3.select("#update").on("click", function() {
 });
 
 function setupCanvas(canvas) {
-  let maxLength = d3.max(context, d => d.length);
+  const maxLength = d3.max(context, d => d.length);
   canvas.addScale(maxLength);
   for (let i = 0; i < context.length; i++) {
     let protein = canvas.addProtein(context[i]);

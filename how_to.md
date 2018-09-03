@@ -57,13 +57,19 @@ not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099
 
 Options for changing the appearance of the drawing will appear after you click the 'Visualise' button. To reflect any changes in the drawing options form, you must click on the 'Update' button.
 
+**Visualisation**
+
 Quantitative markup data can be viewed as either heatmaps or as lollipops. For the heatmap view, each protein will be drawn once and experimental trials will appear as rows on the heatmap below each protein. For the lollipop view, each protein will be repeated for each experimental trial.
 
 ![](./static/images/draw-opts-vistype.gif)
 
+**Image scale**
+
 You can scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%).
 
 ![](./static/images/draw-opts-scale.gif)
+
+**Heatmap range and colour**
 
 'Heatmap range' and 'heatmap colour' allow you to adjust the heatmap range and colour scheme.
 

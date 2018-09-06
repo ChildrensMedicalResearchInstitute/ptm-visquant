@@ -53,7 +53,7 @@ def __extract_heatmap_labels(fields):
 
 
 def split_accessions(ids):
-    return [s.strip() for s in ids.split(',')]
+    return [s.strip() for s in ids.split(',') if s.strip()]
 
 
 def make_requests(urls, status_only=False):

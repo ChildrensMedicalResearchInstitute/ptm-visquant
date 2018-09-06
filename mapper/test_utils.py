@@ -21,9 +21,9 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(["a", "b", "c", "d"],
                          utils.split_accessions("a, b, c, d"))
 
-    # def test_split_accessions_empty_terms(self):
-    #     self.assertEqual(["a", "b"], utils.split_accessions("a,,b"))
-    #     self.assertEqual(["a", "b"], utils.split_accessions("a,b,"))
+    def test_split_accessions_empty_terms(self):
+        self.assertEqual(["a", "b"], utils.split_accessions("a,,b"))
+        self.assertEqual(["a", "b"], utils.split_accessions("a,b,"))
 
     def test_get_protein_domains_by_accession(self):
         accessions = ["O88778"]

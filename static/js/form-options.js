@@ -76,6 +76,10 @@ class FormOptions {
     ];
   }
 
+  static lollipopColourByValue() {
+    return $("#lollipop-colour-by-value").is(":checked");
+  }
+
   static populateInterpolatorField() {
     let heatmapInterpSelect = $("select#heatmap-interpolator");
     $.each(FormOptions.INTERPOLATORS, function(i, optgroup) {

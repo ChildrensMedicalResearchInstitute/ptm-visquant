@@ -55,7 +55,7 @@
                 </div>
                 {% if hasFileUpload %}
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label bold-label">Heatmap range and colour</label>
+                    <label class="col-sm-4 col-form-label bold-label">Heatmap</label>
                     <label class="col-sm-2 col-form-label left-label">Minimum</label>
                     <div class="col-sm-2">
                         <input type="number" class="form-control" id="heatmap-range-min" value="-3">
@@ -70,6 +70,16 @@
                     <label class="col-sm-2 col-form-label left-label">Colour scheme</label>
                     <div class="col-sm-6">
                         <select class="form-control selectpicker" id="heatmap-interpolator"></select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label bold-label">Lollipop</label>
+                    <label class="col-sm-2 col-form-label left-label">Colour</label>
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="lollipop-colour-by-value">
+                            <label class="custom-control-label" for="lollipop-colour-by-value">Colour markup by up or down regulation</label>
+                        </div>
                     </div>
                 </div>
                 {% endif %}

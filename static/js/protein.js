@@ -176,8 +176,16 @@ class Protein {
       .attr("x1", markup => this.scale(markup.start))
       .attr("y1", this.BACKBONE_Y)
       .attr("x2", markup => this.scale(markup.start))
-      .attr("y2", markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT)
-      .attr("stroke", markup => markup.lineColour)
+      .attr(
+        "y2",
+        markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT
+      )
+      .attr("stroke", function(markup) {
+        if (FormOptions.lollipopColourByValue()) {
+          return markup.heatmap_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
+        }
+        return markup.lineColour;
+      })
       .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
 
     this.svg
@@ -186,9 +194,17 @@ class Protein {
       .enter()
       .append("circle")
       .attr("cx", markup => this.scale(markup.start))
-      .attr("cy", markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT)
+      .attr(
+        "cy",
+        markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT
+      )
       .attr("r", 4)
-      .attr("fill", markup => markup.lineColour)
+      .attr("fill", function(markup) {
+        if (FormOptions.lollipopColourByValue()) {
+          return markup.heatmap_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
+        }
+        return markup.lineColour;
+      })
       .attr("stroke", "white");
   }
 

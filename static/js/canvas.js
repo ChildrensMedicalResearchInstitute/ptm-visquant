@@ -77,10 +77,7 @@ class Canvas {
       .legendColor()
       .shape(
         "path",
-        d3
-          .symbol()
-          .type(d3.symbolCircle)
-          .size(150)()
+        "M-3,-3h18v12h-18Z"
       )
       .shapePadding(10)
       // filter out motifs which do not appear in this context
@@ -115,10 +112,7 @@ class Canvas {
       .legendColor()
       .shape(
         "path",
-        d3
-          .symbol()
-          .type(d3.symbolCircle)
-          .size(150)()
+        "M-3,-3h6v18h-6Z"
       )
       .shapePadding(10)
       .title("Modifications")

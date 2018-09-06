@@ -31,7 +31,7 @@ The first line of the CSV file should be a header which identifies the informati
 |`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
 |`display`||A `true` or `false` value denoting whether the markup should be displayed on the graphic. If unspecified, the markup will default to `true`.|
 |`lineColour`||Colour of markup line. This field accepts any valid HTML colour name or hexadecimal. If unspecified, a random colour will be assigned to each unique value specified in the `type` column.|
-|`heatmap_*`||A numerical value to quantify an amount of some modification. Columns will be collapsed into the heatmap in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
+|`intensity_*`||A numerical value to quantify an amount of some modification. Columns will be collapsed into the heatmap in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
 
 Here is an example CSV file which includes only the required fields.
 
@@ -45,7 +45,7 @@ not_rat,phosphorylation,141
 Another CSV file which includes most fields.
 
 ```
-accession,type,start,lineColour,heatmap_trial_1,heatmap_trial_2,heatmap_trial_3,heatmap_trial_4,heatmap_trial_5
+accession,type,start,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
 bsn_rat,phosphorylation,105,#FE4EDA,0.561635184,0.972558412,0.88684033,0.595734213,0.805348794
 bsn_rat,phosphorylation,189,#FE4EDA,0.748295273,0.356942776,0.691517186,0.332498155,0.5100571
 not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099,0.513450914

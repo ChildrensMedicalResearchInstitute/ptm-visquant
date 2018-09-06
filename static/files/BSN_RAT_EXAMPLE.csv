@@ -1,4 +1,4 @@
-accession,type,start,lineColour,heatmap_trial_1,heatmap_trial_2,heatmap_trial_3,heatmap_trial_4,heatmap_trial_5
+accession,type,start,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
 bsn_rat,phosphorylation,105,#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
 bsn_rat,phosphorylation,105,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
 bsn_rat,glycosylation,142,purple,1.55204,-0.727857,-0.9395206,-0.1641333,-0.7408412

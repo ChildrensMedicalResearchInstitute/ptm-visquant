@@ -24,7 +24,7 @@ class MarkupSchema(Schema):
         validate=[validate.OneOf(['top', 'bottom'])],
         default='top',
     )
-    heatmap_values = fields.List(fields.Float())
+    intensity_values = fields.List(fields.Float())
 
     @pre_dump
     def generate_line_colour(self, item):

@@ -153,7 +153,7 @@ class Canvas {
     const visType = FormOptions.selectedVisType();
     let nTrials;
     if (visType === "lollipop") {
-      nTrials = data.markups[0].heatmap_values.length;
+      nTrials = data.markups[0].intensity_values.length;
     } else {
       nTrials = 1;
     }

@@ -178,11 +178,11 @@ class Protein {
       .attr("x2", markup => this.scale(markup.start))
       .attr(
         "y2",
-        markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT
+        markup => markup.intensity_values[trialIndex] * -this.MARKUP_HEIGHT
       )
       .attr("stroke", function(markup) {
         if (FormOptions.lollipopColourByValue()) {
-          return markup.heatmap_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
+          return markup.intensity_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
         }
         return markup.lineColour;
       })
@@ -196,12 +196,12 @@ class Protein {
       .attr("cx", markup => this.scale(markup.start))
       .attr(
         "cy",
-        markup => markup.heatmap_values[trialIndex] * -this.MARKUP_HEIGHT
+        markup => markup.intensity_values[trialIndex] * -this.MARKUP_HEIGHT
       )
       .attr("r", 4)
       .attr("fill", function(markup) {
         if (FormOptions.lollipopColourByValue()) {
-          return markup.heatmap_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
+          return markup.intensity_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
         }
         return markup.lineColour;
       })
@@ -229,11 +229,11 @@ class Protein {
       );
 
     heatmap_column.each(function(markup) {
-      if (markup.heatmap_values) {
+      if (markup.intensity_values) {
         _this.hasHeatmap = true;
         d3.select(this)
           .selectAll("heatmap_values")
-          .data(markup.heatmap_values)
+          .data(markup.intensity_values)
           .enter()
           .append("rect")
           .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * index)
@@ -262,10 +262,10 @@ class Protein {
     // Add heatmap label to last heatmap column
     const lastHeatMapColumn = heatmap_column.nodes()[heatmap_column.size() - 1];
     d3.select(lastHeatMapColumn).each(function(markup) {
-      if (markup.heatmap_labels) {
+      if (markup.intensity_labels) {
         d3.select(this)
           .selectAll("heatmap_labels")
-          .data(markup.heatmap_labels)
+          .data(markup.intensity_labels)
           .enter()
           .append("text")
           .attr("x", _this.HEATMAP_CELL_WIDTH * 2)

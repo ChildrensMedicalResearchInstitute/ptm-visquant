@@ -31,25 +31,25 @@ def __request_response(url):
         return None
 
 
-def __condense_heatmap_attr(dictionary):
+def __condense_intensity_attr(dictionary):
     keys_to_remove = []
-    heatmap_values = []
+    intensity_values = []
     for key, value in dictionary.items():
-        if key.startswith('heatmap_'):
-            heatmap_values.append(value)
+        if key.startswith('intensity_'):
+            intensity_values.append(value)
             keys_to_remove.append(key)
     for key in keys_to_remove:
         dictionary.pop(key)
-    dictionary['heatmap_values'] = heatmap_values
+    dictionary['intensity_values'] = intensity_values
     return dictionary
 
 
-def __extract_heatmap_labels(fields):
-    heatmap_labels = []
+def __extract_intensity_labels(fields):
+    intensity_labels = []
     for field in fields:
-        if field.startswith('heatmap_'):
-            heatmap_labels.append(field[8:])
-    return heatmap_labels
+        if field.startswith('intensity_'):
+            intensity_labels.append(field[10:])
+    return intensity_labels
 
 
 def split_accessions(ids):
@@ -98,13 +98,13 @@ def to_markup_list(csv_file):
     schema = MarkupSchema()
     reader = DictReader(csv_file)
     coordinates = set()
-    heatmap_fields = __extract_heatmap_labels(reader.fieldnames)
+    intensity_fields = __extract_intensity_labels(reader.fieldnames)
     for row in reader:
         accession = row.get('accession')
         start = row.get('start')
         end = row.get('end')
-        data = schema.dump(__condense_heatmap_attr(row))
-        data['heatmap_labels'] = heatmap_fields
+        data = schema.dump(__condense_intensity_attr(row))
+        data['intensity_labels'] = intensity_fields
         if (accession, start, end) not in coordinates:
             coordinates.add((accession, start, end))
             markup.append(data)

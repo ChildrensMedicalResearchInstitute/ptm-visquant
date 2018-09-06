@@ -121,7 +121,7 @@ class Canvas {
           .size(150)()
       )
       .shapePadding(10)
-      .title("Markup")
+      .title("Modifications")
       .scale(legendScale);
 
     let legend = this.svg

@@ -17,3 +17,7 @@ label.bold-label {
 label.left-label {
     text-align: right;
 }
+
+.container-fluid {
+    width: 90%;
+}

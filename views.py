@@ -42,6 +42,7 @@ def example():
     Skip external HTTP requests and load JSON from file.
     """
     form = PtmForm(request.form)
+    form.accession.data = "BSN_RAT"
     import json
     with open('static/files/BSN_RAT.json') as f:
         context = json.load(f)

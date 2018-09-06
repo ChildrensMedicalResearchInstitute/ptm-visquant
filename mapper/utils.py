@@ -100,12 +100,13 @@ def to_markup_list(csv_file):
     coordinates = set()
     heatmap_fields = __extract_heatmap_labels(reader.fieldnames)
     for row in reader:
+        accession = row.get('accession')
         start = row.get('start')
         end = row.get('end')
         data = schema.dump(__condense_heatmap_attr(row))
         data['heatmap_labels'] = heatmap_fields
-        if (start, end) not in coordinates:
-            coordinates.add((start, end))
+        if (accession, start, end) not in coordinates:
+            coordinates.add((accession, start, end))
             markup.append(data)
     return markup
 

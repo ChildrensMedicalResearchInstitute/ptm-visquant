@@ -49,6 +49,55 @@ class TestUtils(unittest.TestCase):
         for protein in domain_info:
             self.assertFalse(protein)
 
+    def compare_markup_lists(self, expected, actual):
+        self.assertEqual(len(expected), len(actual))
+        for index, markup in enumerate(expected):
+            # Output list must contain lineColour attribute for drawing
+            self.assertTrue("lineColour" in actual[index])
+            for key in markup.keys():
+                self.assertEqual(expected[index][key], actual[index][key])
+
+    def test_to_markup_list_simple(self):
+        csv_file = """
+        accession,type,start
+        bsn_rat,phosphorylation,105
+        bsn_rat,phosphorylation,130
+        bsn_rat,glycosylation,142
+        """.split()
+        expected = [
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 130},
+            {"accession": "bsn_rat", "type": "glycosylation", "start": 142},
+        ]
+        self.compare_markup_lists(expected, utils.to_markup_list(csv_file))
+
+    def test_to_markup_list_overlapping_markup(self):
+        csv_file = """
+        accession,type,start
+        bsn_rat,phosphorylation,105
+        bsn_rat,phosphorylation,105
+        bsn_rat,glycosylation,142
+        """.split()
+        expected = [
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "bsn_rat", "type": "glycosylation", "start": 142},
+        ]
+        self.compare_markup_lists(expected, utils.to_markup_list(csv_file))
+
+    def test_to_markup_list_overlapping_markup_different_accession(self):
+        csv_file = """
+        accession,type,start
+        bsn_rat,phosphorylation,105
+        tau_rat,phosphorylation,105
+        bsn_rat,glycosylation,142
+        """.split()
+        expected = [
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "tau_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "bsn_rat", "type": "glycosylation", "start": 142},
+        ]
+        self.compare_markup_lists(expected, utils.to_markup_list(csv_file))
+
 
 if __name__ == "__main__":
     unittest.main()

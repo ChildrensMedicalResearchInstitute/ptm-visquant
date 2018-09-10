@@ -26,13 +26,15 @@ class Canvas {
     this.ROW_PADDING = 40;
 
     this.currentHeight = this.ROW_PADDING;
-    this.currentWidth = 0;
     this.currentRowHeight = 0;
+    this.currentWidth = 0;
   }
 
   clear() {
     this.svg.selectAll("*").remove();
-    this.currentHeight = this.AXIS_HEIGHT;
+    this.currentHeight = this.ROW_PADDING;
+    this.currentRowHeight = 0;
+    this.currentWidth = 0;
   }
 
   addScale(length) {

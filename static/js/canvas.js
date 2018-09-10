@@ -24,14 +24,15 @@ class Canvas {
     this.svg = d3.select("div.vis-box").append("svg");
     this.MARGIN = { top: 0, right: 10, bottom: 10, left: 10 };
     this.ROW_PADDING = 40;
-    this.CURRENT_HEIGHT = this.ROW_PADDING;
-    this.CURRENT_WIDTH = 0;
-    this.CURRENT_ROW_HEIGHT = 0;
+
+    this.currentHeight = this.ROW_PADDING;
+    this.currentWidth = 0;
+    this.currentRowHeight = 0;
   }
 
   clear() {
     this.svg.selectAll("*").remove();
-    this.CURRENT_HEIGHT = this.AXIS_HEIGHT;
+    this.currentHeight = this.AXIS_HEIGHT;
   }
 
   addScale(length) {
@@ -60,7 +61,7 @@ class Canvas {
 
   addMotifLegend(data) {
     // As defined by Pfam http://pfam.xfam.org/help#tabview=tab10
-    let motifTypes = [
+    const motifTypes = [
       {
         type: "disorder",
         colour: "#cccccc"
@@ -205,9 +206,9 @@ class Canvas {
     const elementWidth = element.node().getBBox().width;
 
     if (beginNewRow) {
-      this.CURRENT_HEIGHT += this.CURRENT_ROW_HEIGHT + this.ROW_PADDING;
-      this.CURRENT_WIDTH = 0;
-      this.CURRENT_ROW_HEIGHT = 0;
+      this.currentHeight += this.currentRowHeight + this.ROW_PADDING;
+      this.currentWidth = 0;
+      this.currentRowHeight = 0;
     }
 
     let currentX = undefined;
@@ -220,14 +221,14 @@ class Canvas {
     element.attr(
       "transform",
       `translate(
-        ${this.CURRENT_WIDTH + this.MARGIN.left + currentX},
-        ${this.CURRENT_HEIGHT - element.node().getBBox().y}
+        ${this.currentWidth + this.MARGIN.left + currentX},
+        ${this.currentHeight - element.node().getBBox().y}
       )`
     );
 
-    this.CURRENT_WIDTH += elementWidth + this.ROW_PADDING;
-    if (elementHeight > this.CURRENT_ROW_HEIGHT) {
-      this.CURRENT_ROW_HEIGHT = elementHeight;
+    this.currentWidth += elementWidth + this.ROW_PADDING;
+    if (elementHeight > this.currentRowHeight) {
+      this.currentRowHeight = elementHeight;
     }
   }
 

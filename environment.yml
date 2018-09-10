@@ -6,7 +6,7 @@ dependencies:
   - beautifulsoup4
   - flask
   - flask-wtf
-  - grequests
+  - requests
   - lxml
   - markdown
   - marshmallow=3

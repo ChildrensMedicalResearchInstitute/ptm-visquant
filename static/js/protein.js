@@ -90,6 +90,14 @@ class Protein {
       .style("fill", region => region.colour)
       .style("fill-opacity", this.REGION_OPACITY)
       .style("stroke", "black");
+  }
+
+  drawRegionLabels() {
+    let regions = this.svg
+      .selectAll("region")
+      .data(this.data.regions.filter(d => d.display !== false))
+      .enter()
+      .append("g");
 
     let regionLabels = regions
       .append("text")
@@ -132,6 +140,7 @@ class Protein {
   }
 
   drawMarkupLabels() {
+    const LABEL_HEIGHT = this.svg.node().getBBox().y - 10;
     let markupLabels = this.svg
       .selectAll("markup-label")
       .data(this.data.markups.filter(markup => markup.display !== false))
@@ -139,10 +148,10 @@ class Protein {
       .append("text")
       .text(markup => markup.start)
       .attr("x", markup => this.scale(markup.start))
-      .attr("y", this.MARKUP_Y)
+      .attr("y", LABEL_HEIGHT)
       .attr(
         "transform",
-        d => `rotate(270, ${this.scale(d.start)}, ${this.MARKUP_Y})`
+        d => `rotate(270, ${this.scale(d.start)}, ${LABEL_HEIGHT})`
       );
 
     // Update label locations to prevent overlap

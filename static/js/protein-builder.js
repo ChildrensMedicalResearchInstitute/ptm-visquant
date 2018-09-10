@@ -7,6 +7,9 @@ class ProteinBuilder {
     this.protein.drawBackbone();
     this.protein.drawMotifs();
     this.protein.drawRegions();
+    if (trialIndex === 0) {
+      this.protein.drawRegionLabels();
+    }
 
     const visType = FormOptions.selectedVisType();
     if (visType === "heatmap") {
@@ -15,6 +18,9 @@ class ProteinBuilder {
       this.protein.drawHeatmap();
     } else if (visType === "lollipop") {
       this.protein.drawMarkupLollipops(trialIndex);
+      if (trialIndex === 0) {
+        this.protein.drawMarkupLabels();
+      }
     }
     return this.protein;
   }

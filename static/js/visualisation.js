@@ -35,7 +35,7 @@ d3.select("#download-svg").on("click", function() {
   saveSvg(canvas.svg.node(), filename);
 });
 
-d3.select("#update").on("click", function() {
+$(".vis-option").on('change', function(event) {
   let canvas = new Canvas();
   canvas.clear();
   setupCanvas(canvas);

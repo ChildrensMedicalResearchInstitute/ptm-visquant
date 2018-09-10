@@ -172,10 +172,10 @@ class Protein {
     let markup_display = this.data.markups.filter(
       markup => markup.display !== false
     );
-
     if (markup_display.length > 0) {
       this.hasMarkup = true;
     }
+    const heightScale = FormOptions.lollipopScale() / 100;
 
     this.svg
       .selectAll("markup")
@@ -187,7 +187,10 @@ class Protein {
       .attr("x2", markup => this.scale(markup.start))
       .attr(
         "y2",
-        markup => markup.intensity_values[trialIndex] * -this.MARKUP_HEIGHT
+        markup =>
+          markup.intensity_values[trialIndex] *
+          -this.MARKUP_HEIGHT *
+          heightScale
       )
       .attr("stroke", function(markup) {
         if (FormOptions.lollipopColourByValue()) {
@@ -211,7 +214,10 @@ class Protein {
       .attr("cx", markup => this.scale(markup.start))
       .attr(
         "cy",
-        markup => markup.intensity_values[trialIndex] * -this.MARKUP_HEIGHT
+        markup =>
+          markup.intensity_values[trialIndex] *
+          -this.MARKUP_HEIGHT *
+          heightScale
       )
       .attr("r", 4)
       .attr("fill", function(markup) {

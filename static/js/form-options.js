@@ -80,6 +80,10 @@ class FormOptions {
     return $("#lollipop-colour-by-value").is(":checked");
   }
 
+  static lollipopScale() {
+    return d3.select("#lollipop-scale").node().value;
+  }
+
   static populateInterpolatorField() {
     let heatmapInterpSelect = $("select#heatmap-interpolator");
     $.each(FormOptions.INTERPOLATORS, function(i, optgroup) {

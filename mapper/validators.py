@@ -17,7 +17,9 @@ class ValidUniProtProteins():
                 raise ValidationError("Unable to connect to UniProt database.")
             if stat != 200:
                 raise ValidationError(
-                    f"Unable to fetch '{accessions[i]}' from UniProt database."
+                    "Unable to fetch '{}' from UniProt database.".format(
+                        accessions[i]
+                    )
                 )
 
 

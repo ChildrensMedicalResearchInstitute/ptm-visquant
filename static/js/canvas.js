@@ -1,5 +1,19 @@
 var canvasInstance = null;
 
+class BooleanBomb {
+  constructor(initalState=true, usesRemaining=1) {
+    this.bool = initalState;
+    this.usesRemaining = usesRemaining;
+  }
+
+  eval() {
+    if (this.usesRemaining-- > 0) {
+      return this.bool;
+    }
+    return !this.bool;
+  }
+}
+
 class Canvas {
   constructor() {
     if (canvasInstance) {
@@ -10,8 +24,9 @@ class Canvas {
     this.svg = d3.select("div.vis-box").append("svg");
     this.MARGIN = { top: 0, right: 10, bottom: 10, left: 10 };
     this.ROW_PADDING = 40;
-    this.AXIS_HEIGHT = this.ROW_PADDING * 2;
-    this.CURRENT_HEIGHT = this.AXIS_HEIGHT;
+    this.CURRENT_HEIGHT = this.ROW_PADDING;
+    this.CURRENT_WIDTH = 0;
+    this.CURRENT_ROW_HEIGHT = 0;
   }
 
   clear() {
@@ -91,7 +106,7 @@ class Canvas {
       .attr("transform", "translate(20,0)")
       .call(legendStyle);
 
-    this.fit(legend);
+    return legend;
   }
 
   addMarkupLegend(data) {
@@ -124,7 +139,7 @@ class Canvas {
       .attr("transform", "translate(20,0)")
       .call(legendStyle);
 
-    this.fit(legend);
+    return legend;
   }
 
   addHeatmapLegend() {
@@ -146,7 +161,7 @@ class Canvas {
       .attr("transform", "translate(20,0)")
       .call(legendStyle);
 
-    this.fit(legend);
+    return legend;
   }
 
   addProtein(data) {
@@ -165,22 +180,36 @@ class Canvas {
       this.fit(slate);
 
       // Add legends beneath last protein object
+      let newRow = new BooleanBomb(true);
       if (i === nTrials - 1) {
+        let legend = null;
         if (protein.hasMotifs) {
-          this.addMotifLegend(data);
+          legend = this.addMotifLegend(data);
+          this.fit(legend, newRow.eval());
         }
         if (protein.hasMarkup) {
-          this.addMarkupLegend(data);
+          legend = this.addMarkupLegend(data);
+          this.fit(legend, newRow.eval());
         }
         if (visType === "heatmap" && protein.hasHeatmap) {
-          this.addHeatmapLegend(data);
+          legend = this.addHeatmapLegend(data);
+          this.fit(legend, newRow.eval());
         }
       }
     }
   }
 
-  // Fit element to the bottom of the canvas and update canvas height
-  fit(element) {
+  // Fit element to the bottom of the canvas
+  fit(element, beginNewRow=true) {
+    const elementHeight = element.node().getBBox().height;
+    const elementWidth = element.node().getBBox().width;
+
+    if (beginNewRow) {
+      this.CURRENT_HEIGHT += this.CURRENT_ROW_HEIGHT + this.ROW_PADDING;
+      this.CURRENT_WIDTH = 0;
+      this.CURRENT_ROW_HEIGHT = 0;
+    }
+
     let currentX = undefined;
     try {
       // Maintain current transformed x-coordinate
@@ -191,11 +220,15 @@ class Canvas {
     element.attr(
       "transform",
       `translate(
-        ${this.MARGIN.left + currentX},
+        ${this.CURRENT_WIDTH + this.MARGIN.left + currentX},
         ${this.CURRENT_HEIGHT - element.node().getBBox().y}
       )`
     );
-    this.CURRENT_HEIGHT += element.node().getBBox().height + this.ROW_PADDING;
+
+    this.CURRENT_WIDTH += elementWidth + this.ROW_PADDING;
+    if (elementHeight > this.CURRENT_ROW_HEIGHT) {
+      this.CURRENT_ROW_HEIGHT = elementHeight;
+    }
   }
 
   // Expand the canvas to fit all elements in this.svg

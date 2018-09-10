@@ -21,3 +21,14 @@ label.left-label {
 .container-fluid {
     width: 90%;
 }
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 4px;
+    font: 16px monospace;
+    background: lemonchiffon;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}

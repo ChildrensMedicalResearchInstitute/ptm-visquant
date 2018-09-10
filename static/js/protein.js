@@ -188,6 +188,12 @@ class Protein {
       })
       .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
 
+    let tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
     this.svg
       .selectAll("markup")
       .data(markup_display)
@@ -205,7 +211,18 @@ class Protein {
         }
         return markup.lineColour;
       })
-      .attr("stroke", "white");
+      .attr("stroke", "white")
+      .on("mouseover", function(d) {
+        d3.select(this).raise();
+        tooltip.style("opacity", 0.8);
+        tooltip
+          .html(d.intensity_values[trialIndex])
+          .style("left", d3.event.pageX + "px")
+          .style("top", d3.event.pageY - 28 + "px");
+      })
+      .on("mouseout", function(d) {
+        tooltip.style("opacity", 0);
+      });
   }
 
   drawHeatmap() {
@@ -228,6 +245,12 @@ class Protein {
         d => `translate(${scale(d.start)}, ${this.HEATMAP_Y})`
       );
 
+    let tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
     heatmap_column.each(function(markup) {
       if (markup.intensity_values) {
         _this.hasHeatmap = true;
@@ -239,7 +262,18 @@ class Protein {
           .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * index)
           .attr("height", _this.HEATMAP_CELL_HEIGHT)
           .attr("width", _this.HEATMAP_CELL_WIDTH)
-          .attr("fill", value => scale_chromatic(value));
+          .attr("fill", value => scale_chromatic(value))
+          .on("mouseover", function(d) {
+            d3.select(this).raise();
+            tooltip.style("opacity", 0.8);
+            tooltip
+              .html(d)
+              .style("left", d3.event.pageX + "px")
+              .style("top", d3.event.pageY - 28 + "px");
+          })
+          .on("mouseout", function(d) {
+            tooltip.style("opacity", 0);
+          });
       }
     });
 

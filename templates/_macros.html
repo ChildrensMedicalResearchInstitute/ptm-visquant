@@ -33,3 +33,17 @@
         <button type="submit" class="{{ btn_class }}" id="{{ btn_id }}">{{ action_text }} </button>
     </form>
 {%- endmacro %}
+
+{% macro drawing_option_section_label(label='') -%}
+<label class="col-sm-4 col-form-label bold-label">{{ label }}</label>
+{%- endmacro %}
+
+{% macro drawing_option_form_label(label='') -%}
+<label class="col-sm-2 col-form-label left-label">{{ label }}</label>
+{%- endmacro %}
+
+{% macro drawing_option_input_field(type, id, default_value) -%}
+<div class="col-sm-2">
+    <input type="{{ type }}" class="form-control vis-option" id="{{ id }}" value="{{ default_value }}">
+</div>
+{%- endmacro %}

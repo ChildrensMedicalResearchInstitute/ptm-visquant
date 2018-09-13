@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
+{% import '_macros.html' as macros %}
 <div class="container">
     <div class="card border-primary">
         <div class="card-body">
             {{ card_content }}
         </div>
     </div>
-    {% from '_macros.html' import render_form %}
-    {{ render_form(
+    {{ macros.render_form(
         form,
         action_url='/',
         action_text='Visualise',
@@ -28,58 +28,46 @@
             <div class="container">
                 {% if hasFileUpload %}
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label bold-label">Visualisation</label>
-                    <label class="col-sm-2 col-form-label left-label">Type</label>
-                    <div class="col-sm-6">
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="vis-type">
-                            <label class="btn btn-outline-secondary active">
-                                <input type="radio" name="option" autocomplete="off" class="vis-option"
-                                id="vis-type-heatmap" value="heatmap" checked> Heatmap
-                            </label>
-                            <label class="btn btn-outline-secondary">
-                                <input type="radio" name="option" autocomplete="off" class="vis-option"
-                                id="vis-type-lollipop" value="lollipop"> Lollipop
-                            </label>
-                        </div>
+                    {{ macros.drawing_option_section_label('Visualisation')}}
+                    {{ macros.drawing_option_form_label('Type')}}
+                    <div class="col-sm-6 btn-group btn-group-toggle" data-toggle="buttons" id="vis-type">
+                        <label class="btn btn-outline-secondary active">
+                            <input type="radio" name="option" autocomplete="off" class="vis-option"
+                            id="vis-type-heatmap" value="heatmap" checked> Heatmap
+                        </label>
+                        <label class="btn btn-outline-secondary">
+                            <input type="radio" name="option" autocomplete="off" class="vis-option"
+                            id="vis-type-lollipop" value="lollipop"> Lollipop
+                        </label>
                     </div>
                 </div>
                 {% endif %}
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label bold-label">Image scale</label>
-                    <label class="col-sm-2 col-form-label left-label">Zoom percentage</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control vis-option" id="zoom-percent" value="100">
-                    </div>
-                    <label class="col-sm-2 col-form-label left-label">Tick distance</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control vis-option" id="tick-step" value="500">
-                    </div>
+                    {{ macros.drawing_option_section_label('Image scale')}}
+                    {{ macros.drawing_option_form_label('Zoom percentage')}}
+                    {{ macros.drawing_option_input_field('number', 'zoom-percent', '100')}}
+                    {{ macros.drawing_option_form_label('Tick distance')}}
+                    {{ macros.drawing_option_input_field('number', 'tick-step', '500')}}
                 </div>
                 {% if hasFileUpload %}
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label bold-label">Heatmap</label>
-                    <label class="col-sm-2 col-form-label left-label">Minimum</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control vis-option" id="heatmap-range-min" value="-3">
-                    </div>
-                    <label class="col-sm-2 col-form-label left-label">Maximum</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control vis-option" id="heatmap-range-max" value="3">
-                    </div>
+                    {{ macros.drawing_option_section_label('Heatmap')}}
+                    {{ macros.drawing_option_form_label('Minimum')}}
+                    {{ macros.drawing_option_input_field('number', 'heatmap-range-min', '-3')}}
+                    {{ macros.drawing_option_form_label('Maximum')}}
+                    {{ macros.drawing_option_input_field('number', 'heatmap-range-max', '3')}}
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label bold-label"></label>
-                    <label class="col-sm-2 col-form-label left-label">Colour scheme</label>
+                    {{ macros.drawing_option_section_label()}}
+                    {{ macros.drawing_option_form_label('Colour scheme')}}
                     <div class="col-sm-6">
-                        <select class="form-control vis-option selectpicker vis-option" id="heatmap-interpolator"></select>
+                        <select class="form-control vis-option selectpicker" id="heatmap-interpolator"></select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label bold-label">Lollipop</label>
-                    <label class="col-sm-2 col-form-label left-label">Scale height</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control vis-option" id="lollipop-scale" value="100">
-                    </div>
+                    {{ macros.drawing_option_section_label('Lollipop')}}
+                    {{ macros.drawing_option_form_label('Scale height')}}
+                    {{ macros.drawing_option_input_field('number', 'lollipop-scale', '100')}}
                     <div class="col-sm-4">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input vis-option" id="lollipop-colour-by-value">

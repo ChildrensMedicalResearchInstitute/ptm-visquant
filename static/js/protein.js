@@ -240,8 +240,8 @@ class Protein {
         tooltip.style("opacity", 0.8);
         tooltip
           .html(describeMarkup(d, trialIndex))
-          .style("left", d3.event.pageX + "px")
-          .style("top", d3.event.pageY - 28 + "px");
+          .style("left", d3.event.pageX + 20 + "px")
+          .style("top", d3.event.pageY + "px");
       })
       .on("mouseout", function(d) {
         tooltip.style("opacity", 0);
@@ -291,8 +291,8 @@ class Protein {
             tooltip.style("opacity", 0.8);
             tooltip
               .html(describeMarkup(markup, index))
-              .style("left", d3.event.pageX + "px")
-              .style("top", d3.event.pageY - 28 + "px");
+              .style("left", d3.event.pageX + 20 + "px")
+              .style("top", d3.event.pageY + "px");
           })
           .on("mouseout", function(d) {
             tooltip.style("opacity", 0);

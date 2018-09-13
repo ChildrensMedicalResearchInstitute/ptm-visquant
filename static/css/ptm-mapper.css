@@ -24,7 +24,6 @@ label.left-label {
 
 div.tooltip {
     position: absolute;
-    text-align: center;
     padding: 4px;
     font: 16px monospace;
     background: lemonchiffon;

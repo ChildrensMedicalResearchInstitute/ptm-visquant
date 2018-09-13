@@ -20,6 +20,14 @@ function getTranslation(transform) {
   return [matrix.e, matrix.f];
 }
 
+function describeMarkup(markup, index=0) {
+  return `
+    type: ${markup.type}<br>
+    start: ${markup.start}<br>
+    intensity: ${markup.intensity_values[index]}<br>
+  `;
+}
+
 class Protein {
   constructor(data, svg, scale) {
     this.BACKBONE_Y = 0;
@@ -231,7 +239,7 @@ class Protein {
         d3.select(this).raise();
         tooltip.style("opacity", 0.8);
         tooltip
-          .html(d.intensity_values[trialIndex])
+          .html(describeMarkup(d, trialIndex))
           .style("left", d3.event.pageX + "px")
           .style("top", d3.event.pageY - 28 + "px");
       })
@@ -278,11 +286,11 @@ class Protein {
           .attr("height", _this.HEATMAP_CELL_HEIGHT)
           .attr("width", _this.HEATMAP_CELL_WIDTH)
           .attr("fill", value => scale_chromatic(value))
-          .on("mouseover", function(d) {
+          .on("mouseover", function(d, index) {
             d3.select(this).raise();
             tooltip.style("opacity", 0.8);
             tooltip
-              .html(d)
+              .html(describeMarkup(markup, index))
               .style("left", d3.event.pageX + "px")
               .style("top", d3.event.pageY - 28 + "px");
           })

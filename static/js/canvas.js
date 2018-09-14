@@ -115,9 +115,6 @@ class Canvas {
   addMarkupLegend(data) {
     let markupTypeColour = {};
     data.markups.forEach(markup => {
-      if (markup.display == false) {
-        return;
-      }
       markupTypeColour[markup.type] = markup.lineColour;
     });
 

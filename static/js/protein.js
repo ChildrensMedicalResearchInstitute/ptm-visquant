@@ -18,6 +18,12 @@ function hasIntensityValues(data) {
   return false;
 }
 
+function filterForUniqueStartSite(data) {
+  return data.markups.filter(function(m, index) {
+    return data.markups.findIndex(n => n.start === m.start) === index;
+  });
+}
+
 // https://stackoverflow.com/questions/38224875/replacing-d3-transform-in-d3-v4/38230545#38230545
 function getTranslation(transform) {
   if (transform === null) {
@@ -131,10 +137,8 @@ class Protein {
   }
 
   drawMarkupLines() {
-    let markup_display = this.data.markups.filter(
-      markup => markup.display !== false
-    );
-
+    const markup_display = filterForUniqueStartSite(this.data);
+    console.log(markup_display)
     if (markup_display.length > 0) {
       this.hasMarkup = true;
     }
@@ -153,10 +157,11 @@ class Protein {
   }
 
   drawMarkupLabels() {
+    const markup_display = filterForUniqueStartSite(this.data);
     const LABEL_HEIGHT = this.svg.node().getBBox().y - 10;
     let markupLabels = this.svg
       .selectAll("markup-label")
-      .data(this.data.markups.filter(markup => markup.display !== false))
+      .data(markup_display)
       .enter()
       .append("text")
       .text(markup => markup.start)
@@ -182,9 +187,7 @@ class Protein {
   }
 
   drawMarkupLollipops(trialIndex) {
-    let markup_display = this.data.markups.filter(
-      markup => markup.display !== false
-    );
+    let markup_display = this.data.markups;
     if (markup_display.length > 0) {
       this.hasMarkup = true;
     }

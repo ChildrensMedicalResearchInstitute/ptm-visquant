@@ -90,14 +90,11 @@ def get_protein_domains(accessions):
 def to_markup_list(csv_file):
     """
     csv_file: an iterable whose elements describe a markup object.
-    Returns a list of dictionaries describing a markup object. If there
-    exist more than one markup with the same start and end positions,
-    later instances are ignored.
+    Returns a list of dictionaries describing a markup object.
     """
     markup = []
     schema = MarkupSchema()
     reader = DictReader(csv_file)
-    coordinates = set()
     intensity_fields = __extract_intensity_labels(reader.fieldnames)
     for row in reader:
         accession = row.get('accession')
@@ -105,9 +102,7 @@ def to_markup_list(csv_file):
         end = row.get('end')
         data = schema.dump(__condense_intensity_attr(row))
         data['intensity_labels'] = intensity_fields
-        if (accession, start, end) not in coordinates:
-            coordinates.add((accession, start, end))
-            markup.append(data)
+        markup.append(data)
     return markup
 
 

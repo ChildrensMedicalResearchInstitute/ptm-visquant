@@ -39,6 +39,7 @@ function describeMarkup(markup, index=0) {
   return `
     type: ${markup.peptide_type_sequence}<br>
     coordinate: ${markup.peptide_coordinate_sequence}<br>
+    trial: ${markup.intensity_labels[index]}<br>
     intensity: ${markup.intensity_values[index]}<br>
   `;
 }
@@ -192,7 +193,7 @@ class Protein {
     }
     const heightScale = FormOptions.lollipopScale() / 100;
 
-    this.svg
+    let lollipopStems = this.svg
       .selectAll("markup")
       .data(markup_display)
       .enter()
@@ -253,5 +254,13 @@ class Protein {
       .on("mouseout", function(d) {
         tooltip.style("opacity", 0);
       });
+
+    // Add label to end of protein
+    const labels = this.data.markups[0].intensity_labels;
+    this.svg
+      .append("text")
+      .attr("x", 20 + this.scale(this.data.length))
+      .attr("y", 6)
+      .text(labels[trialIndex]);
   }
 }

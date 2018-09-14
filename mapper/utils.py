@@ -4,7 +4,9 @@ import requests
 
 from .markup_schema import MarkupSchema
 from bs4 import BeautifulSoup
+from copy import deepcopy
 from csv import DictReader
+from itertools import cycle
 from multiprocessing.dummy import Pool as ThreadPool
 
 PFAM_DATA_PATTERN = r"(?<=({pre}))[\s\S]*?(?=({post}))".format(
@@ -32,6 +34,7 @@ def __request_response(url):
 
 
 def __condense_intensity_attr(dictionary):
+    dictionary = deepcopy(dictionary)
     keys_to_remove = []
     intensity_values = []
     for key, value in dictionary.items():
@@ -87,6 +90,18 @@ def get_protein_domains(accessions):
     return protein_data
 
 
+def __split_type_string(s):
+    return re.split(r'\W', s)
+
+
+def __split_coordinate_string(s):
+    return re.split(r'\D', s)
+
+
+def __split_colour_string(s):
+    return re.split(r'[^\w#]', s)
+
+
 def to_markup_list(csv_file):
     """
     csv_file: an iterable whose elements describe a markup object.
@@ -95,14 +110,22 @@ def to_markup_list(csv_file):
     markup = []
     schema = MarkupSchema()
     reader = DictReader(csv_file)
-    intensity_fields = __extract_intensity_labels(reader.fieldnames)
+    intensity_labels = __extract_intensity_labels(reader.fieldnames)
     for row in reader:
-        accession = row.get('accession')
-        start = row.get('start')
-        end = row.get('end')
-        data = schema.dump(__condense_intensity_attr(row))
-        data['intensity_labels'] = intensity_fields
-        markup.append(data)
+        row = __condense_intensity_attr(row)
+        coordinates = __split_coordinate_string(row.get('start'))
+        types = __split_type_string(row.get('type'))
+        colours = __split_colour_string(row.get('lineColour'))
+        for index, (coord, _type, colour) in enumerate(zip(coordinates, cycle(types), cycle(colours))):
+            data = schema.dump(row)
+            data['type'] = _type
+            data['start'] = coord
+            data['lineColour'] = colour
+            data['display'] = True if index == 0 else False
+            data['peptide_type_sequence'] = row.get('type')
+            data['peptide_coordinate_sequence'] = row.get('start')
+            data['intensity_labels'] = intensity_labels
+            markup.append(data)
     return markup
 
 

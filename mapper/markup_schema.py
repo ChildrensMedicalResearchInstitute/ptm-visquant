@@ -7,23 +7,22 @@ class MarkupSchema(Schema):
     )
     type = fields.String(
         required=True,
-        validate=[validate.Length(min=1, error="Type cannot be empty")],
+        validate=[
+            validate.Regexp(r"\w+(\W\w+)*"),
+        ],
     )
     colour = fields.String()
     lineColour = fields.String()
-    start = fields.Integer(
+    start = fields.String(
         required=True,
-        validate=[validate.Range(min=0)],
-    )
-    end = fields.Integer(
-        validate=[validate.Range(min=0)],
-        default=None,
+        validate=[
+            validate.Regexp(r"\d+(\D\d+)*", error="Invalid site data"),
+        ],
     )
     display = fields.Boolean(default=True)
-    v_align = fields.String(
-        validate=[validate.OneOf(['top', 'bottom'])],
-        default='top',
-    )
+    peptide_type_sequence = fields.String()
+    peptide_coordinate_sequence = fields.String()
+    intensity_labels = fields.List(fields.String())
     intensity_values = fields.List(fields.Float())
 
     @pre_dump

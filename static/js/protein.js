@@ -37,8 +37,8 @@ function getTranslation(transform) {
 
 function describeMarkup(markup, index=0) {
   return `
-    type: ${markup.type}<br>
-    start: ${markup.start}<br>
+    type: ${markup.peptide_type_sequence}<br>
+    coordinate: ${markup.peptide_coordinate_sequence}<br>
     intensity: ${markup.intensity_values[index]}<br>
   `;
 }
@@ -138,7 +138,6 @@ class Protein {
 
   drawMarkupLines() {
     const markup_display = filterForUniqueStartSite(this.data);
-    console.log(markup_display)
     if (markup_display.length > 0) {
       this.hasMarkup = true;
     }

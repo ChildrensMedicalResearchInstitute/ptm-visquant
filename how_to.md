@@ -27,9 +27,8 @@ The first line of the CSV file should be a header which identifies the informati
 |Column name|Required|Description|
 |:-|:-|:-|
 |`accession`|Yes|The protein entry name or accession code where this markup belongs. If the accession value specified in the CSV file does not match any accession in the diagram, the markup will not be drawn.|
-|`type`|Yes|Type of markup (for example: phosphorylation).|
 |`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
-|`display`||A `true` or `false` value denoting whether the markup should be displayed on the graphic. If unspecified, the markup will default to `true`.|
+|`type`|Yes|Type of markup (for example: phosphorylation).|
 |`lineColour`||Colour of markup line. This field accepts any valid HTML colour name or hexadecimal. If unspecified, a random colour will be assigned to each unique value specified in the `type` column.|
 |`intensity_*`||A numerical value to quantify an amount of some modification. Columns will be collapsed into the heatmap in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
 
@@ -42,7 +41,7 @@ bsn_rat,phosphorylation,189
 not_rat,phosphorylation,141
 ```
 
-Another CSV file which includes most fields.
+Another CSV file which includes all fields.
 
 ```
 accession,type,start,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5

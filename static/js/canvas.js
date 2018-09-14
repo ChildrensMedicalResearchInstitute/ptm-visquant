@@ -175,7 +175,7 @@ class Canvas {
         // draw heatmap labels
         d3.select(this)
           .append("text")
-          .text(markup => markup.start)
+          .text(markup => markup.peptide_coordinate_sequence)
           .attr("x", 12)
           .attr("y", HEATMAP_CELL_WIDTH - 6)
           .attr("transform", d => `rotate(270)`);

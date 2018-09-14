@@ -145,6 +145,99 @@ class Canvas {
     return legend;
   }
 
+  addHeatmap(data) {
+    const HEATMAP_CELL_WIDTH = 25;
+    const HEATMAP_CELL_HEIGHT = 25;
+    const slate = this.svg.append("g");
+    const scale = this.scale;
+    let scale_chromatic = d3
+      .scaleSequential(FormOptions.selectedInterpolator())
+      .domain([FormOptions.heatmapMin(), FormOptions.heatmapMax()]);
+
+    let markup_display = data.markups.filter(
+      markup => markup.display !== false
+    );
+    let heatmap_column = slate
+      .selectAll("heatmap_column")
+      .data(markup_display)
+      .enter()
+      .append("g")
+      .attr(
+        "transform",
+        d => `translate(${scale(d.start)}, 0)`
+      );
+
+    let tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+    heatmap_column.each(function(markup) {
+      if (markup.intensity_values) {
+        // draw heatmap labels
+        d3.select(this)
+          .append("text")
+          .text(markup => markup.start)
+          .attr("x", 12)
+          .attr("y", HEATMAP_CELL_WIDTH - 6)
+          .attr("transform", d => `rotate(270)`);
+        // draw column cells
+        d3.select(this)
+          .selectAll("heatmap_values")
+          .data(markup.intensity_values)
+          .enter()
+          .append("rect")
+          .attr("y", (d, index) => HEATMAP_CELL_HEIGHT * index)
+          .attr("height", HEATMAP_CELL_HEIGHT)
+          .attr("width", HEATMAP_CELL_WIDTH)
+          .attr("fill", value => scale_chromatic(value))
+          .on("mouseover", function(d, index) {
+            d3.select(this).raise();
+            tooltip.style("opacity", 0.8);
+            tooltip
+              .html(describeMarkup(markup, index))
+              .style("left", d3.event.pageX + 20 + "px")
+              .style("top", d3.event.pageY + "px");
+          })
+          .on("mouseout", function(d) {
+            tooltip.style("opacity", 0);
+          });
+      }
+    });
+
+    // Update heatmap locations to prevent overlap
+    heatmap_column.sort((a, b) => a.start - b.start).each(function() {
+      const that = this;
+      heatmap_column.each(function() {
+        if (this !== that && intersects(this, that)) {
+          const thatLeft = getTranslation(d3.select(that).attr("transform"))[0];
+          d3.select(this).attr(
+            "transform",
+            `translate(${thatLeft + HEATMAP_CELL_WIDTH}, 0)`
+          );
+        }
+      });
+    });
+
+    // Add heatmap label to last heatmap column
+    const lastHeatMapColumn = heatmap_column.nodes()[heatmap_column.size() - 1];
+    d3.select(lastHeatMapColumn).each(function(markup) {
+      if (markup.intensity_labels) {
+        d3.select(this)
+          .selectAll("heatmap_labels")
+          .data(markup.intensity_labels)
+          .enter()
+          .append("text")
+          .attr("x", HEATMAP_CELL_WIDTH * 2)
+          .attr("y", (d, index) => HEATMAP_CELL_HEIGHT * (index + 1))
+          .text(d => d);
+      }
+    });
+
+    return slate;
+  }
+
   addHeatmapLegend() {
     let legendScale = d3
       .scaleSequential(FormOptions.selectedInterpolator())
@@ -182,6 +275,11 @@ class Canvas {
       let protein = builder.build(i);
       this.fit(slate);
 
+      if (visType === "heatmap" && hasIntensityValues(data)) {
+        const heatmap = this.addHeatmap(data);
+        this.fit(heatmap);
+      }
+
       // Add legends beneath last protein object
       let newRow = new BooleanBomb(true);
       if (i === nTrials - 1) {
@@ -194,7 +292,7 @@ class Canvas {
           legend = this.addMarkupLegend(data);
           this.fit(legend, newRow.eval());
         }
-        if (visType === "heatmap" && protein.hasHeatmap) {
+        if (visType === "heatmap" && hasIntensityValues(data)) {
           legend = this.addHeatmapLegend(data);
           this.fit(legend, newRow.eval());
         }

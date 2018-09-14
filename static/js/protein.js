@@ -9,6 +9,15 @@ function intersects(elem1, elem2) {
   );
 }
 
+function hasIntensityValues(data) {
+  for (markup of data.markups) {
+    if (markup.intensity_values) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // https://stackoverflow.com/questions/38224875/replacing-d3-transform-in-d3-v4/38230545#38230545
 function getTranslation(transform) {
   if (transform === null) {
@@ -39,16 +48,12 @@ class Protein {
     this.REGION_RECT_RADIUS = 16;
     this.MARKUP_HEIGHT = this.REGION_HEIGHT;
     this.MARKUP_Y = this.BACKBONE_Y - this.MARKUP_HEIGHT;
-    this.HEATMAP_Y = this.BACKBONE_Y + this.MARKUP_HEIGHT * 2;
-    this.HEATMAP_CELL_WIDTH = this.MOTIF_HEIGHT * 1.2;
-    this.HEATMAP_CELL_HEIGHT = this.MOTIF_HEIGHT * 1.2;
     this.MARKUP_STROKE_WIDTH = 2;
 
     this.data = data;
     this.svg = svg;
     this.scale = scale;
     this.hasMotifs = false;
-    this.hasHeatmap = false;
     this.hasMarkup = false;
   }
 
@@ -246,89 +251,5 @@ class Protein {
       .on("mouseout", function(d) {
         tooltip.style("opacity", 0);
       });
-  }
-
-  drawHeatmap() {
-    let _this = this;
-    let scale = this.scale;
-    let scale_chromatic = d3
-      .scaleSequential(FormOptions.selectedInterpolator())
-      .domain([FormOptions.heatmapMin(), FormOptions.heatmapMax()]);
-
-    let markup_display = this.data.markups.filter(
-      markup => markup.display !== false
-    );
-    let heatmap_column = this.svg
-      .selectAll("heatmap_column")
-      .data(markup_display)
-      .enter()
-      .append("g")
-      .attr(
-        "transform",
-        d => `translate(${scale(d.start)}, ${this.HEATMAP_Y})`
-      );
-
-    let tooltip = d3
-      .select("body")
-      .append("div")
-      .attr("class", "tooltip")
-      .style("opacity", 0);
-
-    heatmap_column.each(function(markup) {
-      if (markup.intensity_values) {
-        _this.hasHeatmap = true;
-        d3.select(this)
-          .selectAll("heatmap_values")
-          .data(markup.intensity_values)
-          .enter()
-          .append("rect")
-          .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * index)
-          .attr("height", _this.HEATMAP_CELL_HEIGHT)
-          .attr("width", _this.HEATMAP_CELL_WIDTH)
-          .attr("fill", value => scale_chromatic(value))
-          .on("mouseover", function(d, index) {
-            d3.select(this).raise();
-            tooltip.style("opacity", 0.8);
-            tooltip
-              .html(describeMarkup(markup, index))
-              .style("left", d3.event.pageX + 20 + "px")
-              .style("top", d3.event.pageY + "px");
-          })
-          .on("mouseout", function(d) {
-            tooltip.style("opacity", 0);
-          });
-      }
-    });
-
-    // Update heatmap locations to prevent overlap
-    heatmap_column.sort((a, b) => a.start - b.start).each(function() {
-      const that = this;
-      heatmap_column.each(function() {
-        if (this !== that && intersects(this, that)) {
-          const thatLeft = getTranslation(d3.select(that).attr("transform"))[0];
-          d3.select(this).attr(
-            "transform",
-            `translate(${thatLeft + _this.HEATMAP_CELL_WIDTH}, ${
-              _this.HEATMAP_Y
-            })`
-          );
-        }
-      });
-    });
-
-    // Add heatmap label to last heatmap column
-    const lastHeatMapColumn = heatmap_column.nodes()[heatmap_column.size() - 1];
-    d3.select(lastHeatMapColumn).each(function(markup) {
-      if (markup.intensity_labels) {
-        d3.select(this)
-          .selectAll("heatmap_labels")
-          .data(markup.intensity_labels)
-          .enter()
-          .append("text")
-          .attr("x", _this.HEATMAP_CELL_WIDTH * 2)
-          .attr("y", (d, index) => _this.HEATMAP_CELL_HEIGHT * (index + 1))
-          .text(d => d);
-      }
-    });
   }
 }

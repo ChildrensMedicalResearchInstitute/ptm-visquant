@@ -15,7 +15,6 @@ class ProteinBuilder {
     if (visType === "heatmap") {
       this.protein.drawMarkupLines();
       this.protein.drawMarkupLabels();
-      this.protein.drawHeatmap();
     } else if (visType === "lollipop") {
       this.protein.drawMarkupLollipops(trialIndex);
       if (trialIndex === 0) {

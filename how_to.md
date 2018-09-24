@@ -1,6 +1,6 @@
 ## How to use PTM Mapper
 
-##### Protein Entry Name or Accession
+### Protein Entry Name or Accession
 
 Specify a protein of interest using the UniProt entry name or accession (for example, BSN_RAT or O88778). Proteins entries are restricted to the UniProt release currently being used by Pfam, which provides the evolutionarily conserved domain information.
 
@@ -18,7 +18,7 @@ BSN_RAT,TAU_RAT
 
 A valid UniProt entry must be supplied in this field.
 
-##### Post-translational modifications file
+### Post-translational modifications file
 
 Your post-translational modification site information must be provided via a file in CSV (comma-separated value) format. The application will use this information for display on the evolutionarily conserved protein domain structure diagram.
 
@@ -52,23 +52,23 @@ not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099
 
 [Download example CSV file](/example-csv). This CSV will generate this [example view](/example).
 
-##### Drawing options
+### Drawing options
 
 Options for changing the appearance of the drawing will appear after you click the 'Visualise' button. To reflect any changes in the drawing options form, you must click on the 'Update' button.
 
-**Visualisation**
+#### Visualisation
 
 Quantitative markup data can be viewed as either heatmaps or as lollipops. For the heatmap view, each protein will be drawn once and experimental trials will appear as rows on the heatmap below each protein. For the lollipop view, each protein will be repeated for each experimental trial.
 
 ![](./static/images/draw-opts-vistype.gif)
 
-**Image scale**
+#### Image scale
 
 You can scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%).
 
 ![](./static/images/draw-opts-scale.gif)
 
-**Heatmap range and colour**
+#### Heatmap range and colour
 
 'Heatmap range' and 'heatmap colour' allow you to adjust the heatmap range and colour scheme.
 

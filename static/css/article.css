@@ -1,3 +1,22 @@
+h1 {
+    margin: 1rem 0;
+}
+
+h2 {
+    margin: 2rem 0 1rem 0;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin: 2rem 0 1rem 0;
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1.5rem 0 1rem 0;
+}
+
 table {
     border-collapse: separate;
     border-spacing: 1.6em 1em;

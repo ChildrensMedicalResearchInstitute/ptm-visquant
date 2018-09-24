@@ -84,6 +84,10 @@ class FormOptions {
     return d3.select("#lollipop-scale").node().value;
   }
 
+  static lollipopAxisTickDistance() {
+    return d3.select("#lollipop-axis-tick-step").node().value;
+  }
+
   static populateInterpolatorField() {
     let heatmapInterpSelect = $("select#heatmap-interpolator");
     $.each(FormOptions.INTERPOLATORS, function(i, optgroup) {

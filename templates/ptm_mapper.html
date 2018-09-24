@@ -68,7 +68,13 @@
                     {{ macros.drawing_option_section_label('Lollipop')}}
                     {{ macros.drawing_option_form_label('Scale height')}}
                     {{ macros.drawing_option_input_field('number', 'lollipop-scale', '100')}}
-                    <div class="col-sm-4">
+                    {{ macros.drawing_option_form_label('Tick distance')}}
+                    {{ macros.drawing_option_input_field('number', 'lollipop-axis-tick-step', '1')}}
+                </div>
+                <div class="form-group row">
+                    {{ macros.drawing_option_section_label('')}}
+                    {{ macros.drawing_option_form_label('Colour')}}
+                    <div class="col-sm-6">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input vis-option" id="lollipop-colour-by-value">
                             <label class="custom-control-label" for="lollipop-colour-by-value">Colour markup by up or down regulation</label>

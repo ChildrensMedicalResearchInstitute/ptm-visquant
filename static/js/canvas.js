@@ -22,7 +22,7 @@ class Canvas {
     canvasInstance = this;
     this.scale = undefined;
     this.svg = d3.select("div.vis-box").append("svg");
-    this.MARGIN = { top: 0, right: 10, bottom: 10, left: 10 };
+    this.MARGIN = { top: 10, right: 40, bottom: 10, left: 40 };
     this.ROW_PADDING = 40;
 
     this.currentHeight = this.ROW_PADDING;
@@ -332,7 +332,7 @@ class Canvas {
   // Expand the canvas to fit all elements in this.svg
   expand() {
     this.svg
-      .attr("width", this.svg.node().getBBox().width + this.MARGIN.right)
-      .attr("height", this.svg.node().getBBox().height + this.MARGIN.bottom);
+      .attr("width", this.svg.node().getBBox().width + 2*this.MARGIN.right)
+      .attr("height", this.svg.node().getBBox().height + 2*this.MARGIN.bottom);
   }
 }

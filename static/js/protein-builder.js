@@ -17,6 +17,7 @@ class ProteinBuilder {
       this.protein.drawMarkupLabels();
     } else if (visType === "lollipop") {
       this.protein.drawMarkupLollipops(trialIndex);
+      this.protein.drawMarkupLollipopsScale(trialIndex);
       if (trialIndex === 0) {
         this.protein.drawMarkupLabels();
       }

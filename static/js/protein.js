@@ -35,7 +35,7 @@ function getTranslation(transform) {
   return [matrix.e, matrix.f];
 }
 
-function describeMarkup(markup, index=0) {
+function describeMarkup(markup, index = 0) {
   return `
     type: ${markup.peptide_type_sequence}<br>
     coordinate: ${markup.peptide_coordinate_sequence}<br>
@@ -222,7 +222,7 @@ class Protein {
       .attr("class", "tooltip")
       .style("opacity", 0);
 
-    this.svg
+    let lollipopTops = this.svg
       .selectAll("markup")
       .data(markup_display)
       .enter()
@@ -262,5 +262,23 @@ class Protein {
       .attr("x", 20 + this.scale(this.data.length))
       .attr("y", 6)
       .text(labels[trialIndex]);
+  }
+
+  drawMarkupLollipopsScale(trialIndex) {
+    const heightScale =
+      (FormOptions.lollipopScale() / 100) * -this.MARKUP_HEIGHT;
+    const lollipopRange = d3.extent(
+      this.data.markups.map(m => m.intensity_values[trialIndex])
+    );
+    const lollipopScale = d3
+      .scaleLinear()
+      .domain(lollipopRange)
+      .range([lollipopRange[0] * heightScale, lollipopRange[1] * heightScale]);
+    let yAxis = d3
+      .axisLeft(lollipopScale)
+      .tickValues(
+        d3.range(...lollipopRange, FormOptions.lollipopAxisTickDistance())
+      );
+    this.svg.append("g").call(yAxis);
   }
 }

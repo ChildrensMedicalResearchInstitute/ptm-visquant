@@ -35,12 +35,6 @@ d3.select("#download-svg").on("click", function() {
   saveSvg(canvas.svg.node(), filename);
 });
 
-$(".vis-option").on('change', function(event) {
-  let canvas = new Canvas();
-  canvas.clear();
-  setupCanvas(canvas);
-});
-
 function setupCanvas(canvas) {
   const maxLength = d3.max(context, d => d.length);
   canvas.addScale(maxLength);
@@ -54,7 +48,31 @@ function setupForm() {
   if (hasFileUpload) {
     FormOptions.populateInterpolatorField();
   }
+  updateForm();
 }
+
+function updateForm() {
+  const heatmapForm = $("div.heatmap-options");
+  if (FormOptions.selectedVisType() == "heatmap") {
+    heatmapForm.show();
+  } else {
+    heatmapForm.hide();
+  }
+
+  const lollipopForm = $("div.lollipop-options");
+  if (FormOptions.selectedVisType() == "lollipop") {
+    lollipopForm.show();
+  } else {
+    lollipopForm.hide();
+  }
+}
+
+$(".vis-option").on("change", function(event) {
+  let canvas = new Canvas();
+  canvas.clear();
+  updateForm();
+  setupCanvas(canvas);
+});
 
 setupForm();
 setupCanvas(new Canvas());

@@ -91,15 +91,15 @@ def get_protein_domains(accessions):
 
 
 def __split_type_string(s):
-    return re.split(r'\W', s)
+    return re.split(r'\W+', s)
 
 
 def __split_coordinate_string(s):
-    return re.split(r'\D', s)
+    return re.split(r'\D+', s)
 
 
 def __split_colour_string(s):
-    return re.split(r'[^\w#]', s)
+    return re.split(r'[^\w#]+', s)
 
 
 def to_markup_list(csv_file):

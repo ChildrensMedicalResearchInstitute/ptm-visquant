@@ -22,35 +22,35 @@ A valid UniProt entry must be supplied in this field.
 
 Your post-translational modification site information must be provided via a file in CSV (comma-separated value) format. The application will use this information for display on the evolutionarily conserved protein domain structure diagram.
 
-The first line of the CSV file should be a header which identifies the information which can be found in each column. Each line following the header will define a new post-translational modification site and optional information on how the information is displayed and quantitative data.
+The first line of the CSV file should be a header which identifies the information which can be found in each column. Each following line will define a new peptide datum and optional information on how the information is displayed and quantitative data.
 
 |Column name|Required|Description|
 |:-|:-|:-|
 |`accession`|Yes|The protein entry name or accession code where this markup belongs. If the accession value specified in the CSV file does not match any accession in the diagram, the markup will not be drawn.|
-|`start`|Yes|The start coordinate of the markup. Must be an integer with a minimum value of zero.|
-|`type`|Yes|Type of markup (for example: phosphorylation).|
-|`lineColour`||Colour of markup line. This field accepts any valid HTML colour name or hexadecimal. If unspecified, a random colour will be assigned to each unique value specified in the `type` column.|
-|`intensity_*`||A numerical value to quantify an amount of some modification. Columns will be collapsed into the heatmap in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
+|`start`|Yes|A semicolumn-delimited list of integers representing the sites of the modification on the peptide. For example: `110`, or `110;122;140`.|
+|`type`|Yes|A semicolon-delimited list of strings representing the type of modification on the peptide. For example: `phosphorylation`, or `phosphorylation;glycosylation`.|
+|`lineColour`||A semicolon-delimited list of strings representing the colour used to draw the modification. The colour can be any valid HTML colour name or hexadecimal. For example: `purple`, `purple;red`, or `lightcoral;#AA00FF`.If unspecified, a random colour will be assigned to each unique value specified in `type` column.|
+|`intensity_*`||A single numerical value to quantify the amount of modification on the peptide. Intensity columns will be processed in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
 
-Here is an example CSV file which includes only the required fields.
-
-```
-accession,type,start
-bsn_rat,phosphorylation,105
-bsn_rat,phosphorylation,189
-not_rat,phosphorylation,141
-```
-
-Another CSV file which includes all fields.
+Here is a short example of a CSV file which includes only the required fields.
 
 ```
-accession,type,start,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
-bsn_rat,phosphorylation,105,#FE4EDA,0.561635184,0.972558412,0.88684033,0.595734213,0.805348794
-bsn_rat,phosphorylation,189,#FE4EDA,0.748295273,0.356942776,0.691517186,0.332498155,0.5100571
-not_rat,phosphorylation,141,green,0.996835935,0.761265635,0.74546531,0.285868099,0.513450914
+accession,start,type
+tau_rat,105,phosphorylation
+tau_rat,189;200,phosphorylation;glycosylation
 ```
 
-[Download example CSV file](/example-csv). This CSV will generate this [example view](/example).
+Here is a quick example of another CSV file which includes all fields.
+
+```
+accession,start,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
+tau_rat,105,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
+tau_rat,130;140,phosphorylation,#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
+```
+
+Notice that in the second peptide data row, there are many modification sites listed, however only one type and lineColour is specified. In cases like these, the type and lineColour values will be repeated for all modification sites specified on that line.
+
+[Download an example CSV file](/example-csv) to experiment with the schema. This example CSV will generate [this view](/example).
 
 ### Drawing options
 

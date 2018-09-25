@@ -44,35 +44,50 @@ Here is a quick example of another CSV file which includes all fields.
 
 ```
 accession,start,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
-tau_rat,105,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
-tau_rat,130;140,phosphorylation,#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
+syn3_rat,118,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
+syn3_rat,130;140,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
 ```
 
-Notice that in the second peptide data row, there are many modification sites listed, however only one type and lineColour is specified. In cases like these, the type and lineColour values will be repeated for all modification sites specified on that line.
+If `type` and `lineColour` is consistent across many modifications on a peptide, they only need to be specified once.
+
+```
+accession,start,type,lineColour
+syn1_rat,240;287;290,phosphorylation,lightgreen
+```
+
+In the example above, there are many modification sites listed, however only one type and lineColour is specified. In cases like these, the type and lineColour values will be repeated for all modification sites specified on that line.
 
 [Download an example CSV file](/example-csv) to experiment with the schema. This example CSV will generate [this view](/example).
 
 ### Drawing options
 
-Options for changing the appearance of the drawing will appear after you click the 'Visualise' button. To reflect any changes in the drawing options form, you must click on the 'Update' button.
+Options for changing the appearance of the drawing will appear after you click the 'Visualise' button.
 
 #### Visualisation
 
-Quantitative markup data can be viewed as either heatmaps or as lollipops. For the heatmap view, each protein will be drawn once and experimental trials will appear as rows on the heatmap below each protein. For the lollipop view, each protein will be repeated for each experimental trial.
+Quantitative markup data can be viewed as either heatmaps below the protein or as lollipops stemming from the protein backbone. 
 
 ![](./static/images/draw-opts-vistype.gif)
 
+In heatmap view, each protein will be drawn once and experimental trials will appear as rows on the heatmap below each protein. In lollipop view, each protein will be repeated for each experimental trial. Trial labels appear on the far right side of the protein in both visualisation modes.
+
 #### Image scale
 
-You can scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%).
+You can horizontally scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%) and draws a tick on the scale axis every 500 amino acid residues.
 
 ![](./static/images/draw-opts-scale.gif)
 
-#### Heatmap range and colour
+#### Heatmap
 
-'Heatmap range' and 'heatmap colour' allow you to adjust the heatmap range and colour scheme.
+'Minimum' and 'maximum' options allow you to adjust the heatmap range. The 'colour scheme' options allows you to choose from a variety of diverging and sequential colour scales to visualise your data.
 
 ![](./static/images/draw-opts-heatmap.gif)
+
+#### Lollipop
+
+You can increase or decrease the heights of the lollipops by adjusting the 'scale height' setting. The 'tick distance' option will allow you to customise the distance between the tick marks on the lollipop height axis.
+
+By default, the lollipops are coloured as they appear in the heatmap view. You can choose to colour the lollipops based on whether they are upregulated (positive intensity) or downregulated (negative intensity) by selecting the `colour` checkbox.
 
 ## Contact us
 

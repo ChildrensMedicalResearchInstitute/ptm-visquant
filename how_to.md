@@ -59,6 +59,22 @@ In the example above, there are many modification sites listed, however only one
 
 [Download an example CSV file](/example-csv) to experiment with the schema. This example CSV will generate [this view](/example).
 
+### Viewing and saving your visualisation
+
+In the web application, you can hover your mouse over the heatmap cells or lollipop bulbs to display more information about a specific datum. This is useful for larger jobs where the labels may appear off-screen.
+
+You have the option to customise the drawing in the options pane above the visualisation. See the section 'Drawing options' below for more information.
+
+To download the visualisation as a static image, click the 'download' button below the drawing options pane, then select the output format.
+
+Formats include:
+
+* PNG, with white background
+* PNG, with transparent background
+* SVG
+
+*QUICK TIP:* For jobs large jobs which display many proteins down the page, your horizontal scrollbar may be positioned off your screen. You can still scroll left and right by holding down the SHIFT key and scrolling with your mouse.
+
 ### Drawing options
 
 Options for changing the appearance of the drawing will appear after you click the 'Visualise' button.

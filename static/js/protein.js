@@ -168,7 +168,7 @@ class Protein {
       .attr("x", markup => this.scale(markup.start))
       .attr("y", function() {
         const bboxHeight = this.getBBox().height;
-        return LABEL_HEIGHT + bboxHeight/4;
+        return LABEL_HEIGHT + bboxHeight / 4;
       })
       .attr(
         "transform",
@@ -187,6 +187,34 @@ class Protein {
         }
       });
     });
+
+    markupLabels.call(
+      d3
+        .drag()
+        .on("start", dragstart)
+        .on("drag", dragged)
+        .on("end", dragend)
+    );
+
+    function dragstart(d) {
+      d3.select(this)
+        .raise()
+        .classed("active", true);
+    }
+
+    function dragged() {
+      const element = d3.select(this);
+      // Transform to standard coordinate system
+      element.attr("transform", "rotate(0)");
+      // Move element to mouse
+      element.attr("x", d3.event.x).attr("y", d3.event.y);
+      // Transform back to rotated coordinate system
+      element.attr("transform", `rotate(270, ${d3.event.x}, ${d3.event.y})`);
+    }
+
+    function dragend(d) {
+      d3.select(this).classed("active", false);
+    }
   }
 
   drawMarkupLollipops(trialIndex) {

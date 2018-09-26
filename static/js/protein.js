@@ -166,7 +166,10 @@ class Protein {
       .append("text")
       .text(markup => markup.start)
       .attr("x", markup => this.scale(markup.start))
-      .attr("y", LABEL_HEIGHT)
+      .attr("y", function() {
+        const bboxHeight = this.getBBox().height;
+        return LABEL_HEIGHT + bboxHeight/4;
+      })
       .attr(
         "transform",
         d => `rotate(270, ${this.scale(d.start)}, ${LABEL_HEIGHT})`

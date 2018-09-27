@@ -159,61 +159,73 @@ class Protein {
   drawMarkupLabels() {
     const markup_display = filterForUniqueStartSite(this.data);
     const LABEL_HEIGHT = this.svg.node().getBBox().y - 10;
-    let markupLabels = this.svg
-      .selectAll("markup-label")
+
+    let markupCoordinateContainer = this.svg
+      .selectAll("markup-coordinate-container")
       .data(markup_display)
       .enter()
-      .append("text")
-      .text(markup => markup.start)
-      .attr("x", markup => this.scale(markup.start))
-      .attr("y", function() {
-        const bboxHeight = this.getBBox().height;
-        return LABEL_HEIGHT + bboxHeight / 4;
-      })
+      .append("g")
       .attr(
         "transform",
-        d => `rotate(270, ${this.scale(d.start)}, ${LABEL_HEIGHT})`
+        d => `translate(${this.scale(d.start)}, ${LABEL_HEIGHT})`
       );
 
-    // Update label locations to prevent overlap
-    markupLabels.sort((a, b) => a.start - b.start).each(function() {
-      const that = this;
-      markupLabels.each(function() {
-        if (this !== that && intersects(this, that)) {
-          // Move this element upward
-          let currentX = d3.select(this).attr("x");
-          let delta = that.getBBox().width * 1.4;
-          d3.select(this).attr("x", +currentX + delta);
-        }
+    markupCoordinateContainer
+      .append("text")
+      .text(markup => markup.start)
+      .attr("transform", function() {
+        return `rotate(270, 0, ${-this.getBBox().height / 2})`;
       });
-    });
 
-    markupLabels.call(
-      d3
-        .drag()
-        .on("start", dragstart)
-        .on("drag", dragged)
-        .on("end", dragend)
-    );
+    // Update label locations to prevent overlap
+    markupCoordinateContainer
+      .sort((a, b) => a.start - b.start)
+      .each(function() {
+        const that = this;
+        markupCoordinateContainer.each(function() {
+          if (this !== that && intersects(this, that)) {
+            // Move this element upward
+            const currentTranslation = getTranslation(
+              d3.select(this).attr("transform")
+            );
+            const delta = that.getBBox().height * 1.4;
+            d3.select(this).attr(
+              "transform",
+              `translate(
+                ${currentTranslation[0]}, ${currentTranslation[1] - delta}
+              )`
+            );
+          }
+        });
+      });
 
-    function dragstart(d) {
-      d3.select(this)
-        .raise()
-        .classed("active", true);
+    markupCoordinateContainer
+      .call(
+        d3
+          .drag()
+          .on("start", dragstart)
+          .on("drag", drag)
+      )
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
+
+    function dragstart() {
+      d3.select(this).raise();
     }
 
-    function dragged() {
-      const element = d3.select(this);
-      // Transform to standard coordinate system
-      element.attr("transform", "rotate(0)");
-      // Move element to mouse
-      element.attr("x", d3.event.x).attr("y", d3.event.y);
-      // Transform back to rotated coordinate system
-      element.attr("transform", `rotate(270, ${d3.event.x}, ${d3.event.y})`);
+    function drag() {
+      d3.select(this).attr(
+        "transform",
+        `translate(${d3.event.x}, ${d3.event.y})`
+      );
     }
 
-    function dragend(d) {
-      d3.select(this).classed("active", false);
+    function mouseover() {
+      d3.select(this).style("cursor", "pointer");
+    }
+
+    function mouseout() {
+      d3.select(this).style("cursor", "default");
     }
   }
 

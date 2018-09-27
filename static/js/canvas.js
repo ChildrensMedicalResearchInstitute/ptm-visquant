@@ -62,34 +62,15 @@ class Canvas {
   }
 
   addMotifLegend(data) {
-    // As defined by Pfam http://pfam.xfam.org/help#tabview=tab10
-    const motifTypes = [
-      {
-        type: "disorder",
-        colour: "#cccccc"
-      },
-      {
-        type: "low_complexity",
-        colour: "#86bcff"
-      },
-      {
-        type: "coiled_coil",
-        colour: "#9cff00"
-      },
-      {
-        type: "sig_p",
-        colour: "#ff9c00"
-      },
-      {
-        type: "transmembrane",
-        colour: "#F00"
-      }
-    ];
+    const motifMap = {};
+    data.motifs.forEach(function(motif) {
+      motifMap[motif.type] = motif.colour;
+    })
 
     let legendScale = d3
       .scaleOrdinal()
-      .domain(motifTypes.map(d => d.type))
-      .range(motifTypes.map(d => d.colour));
+      .domain(Object.keys(motifMap))
+      .range(Object.values(motifMap));
 
     let legendStyle = d3
       .legendColor()
@@ -98,8 +79,6 @@ class Canvas {
         "M-3,-3h18v12h-18Z"
       )
       .shapePadding(10)
-      // filter out motifs which do not appear in this context
-      .cellFilter(d => data.motifs.map(m => m.type).indexOf(d.label) > -1)
       .title("Motifs")
       .scale(legendScale);
 

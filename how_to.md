@@ -61,11 +61,16 @@ In the example above, there are many modification sites listed, however only one
 
 ### Viewing and saving your visualisation
 
-In the web application, you can hover your mouse over the heatmap cells or lollipop bulbs to display more information about a specific datum. This is useful for larger jobs where the labels may appear off-screen.
+In the web application, you can hover your mouse over the heatmap cells or lollipop bulbs to display more information about a specific datum. This is useful for larger jobs where the labels may appear off-screen. Coordinate labels can be repositioned by clicking and dragging the text.
+
+![](./static/images/draw-opts-interactive.gif)
 
 You have the option to customise the drawing in the options pane above the visualisation. See the section 'Drawing options' below for more information.
 
 To download the visualisation as a static image, click the 'download' button below the drawing options pane, then select the output format.
+
+![](./static/images/download-button.png)
+
 
 Formats include:
 
@@ -81,7 +86,7 @@ Options for changing the appearance of the drawing will appear after you click t
 
 #### Visualisation
 
-Quantitative markup data can be viewed as either heatmaps below the protein or as lollipops stemming from the protein backbone. 
+Quantitative markup data can be viewed as either heatmaps below the protein or as lollipops stemming from the protein backbone.
 
 ![](./static/images/draw-opts-vistype.gif)
 
@@ -105,6 +110,8 @@ You can increase or decrease the heights of the lollipops by adjusting the 'scal
 
 By default, the lollipops are coloured as they appear in the heatmap view. You can choose to colour the lollipops based on whether they are upregulated (positive intensity) or downregulated (negative intensity) by selecting the `colour` checkbox.
 
+![](./static/images/draw-opts-lollipop.gif)
+
 ## Contact us
 
-For any enquiries, please send us an email to [questions@cmri.org.au](mailto:questions@cmri.org.au).
+For further enquiries, please email us at [questions@cmri.org.au](mailto:questions@cmri.org.au).

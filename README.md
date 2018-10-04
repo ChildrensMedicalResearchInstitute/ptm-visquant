@@ -20,7 +20,6 @@ Post-translational modification mapper (PTM Mapper) is a simple web application 
 ## Launching the development server
 
 1. Change to the project directory and execute the run-script.
-
    ```
    # for MacOS and Linux
    cd ptm-mapper
@@ -30,5 +29,4 @@ Post-translational modification mapper (PTM Mapper) is a simple web application 
    dir ptm-mapper
    runserver.bat
    ```
-
 2. Navigate to http://127.0.0.1:5000/ in your browser.

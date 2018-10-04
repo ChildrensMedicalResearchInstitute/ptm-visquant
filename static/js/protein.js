@@ -24,6 +24,22 @@ function filterForUniqueStartSite(data) {
   });
 }
 
+// Returns an array of tick values from start to stop, by step.
+// The range will extend to include zero. For example, (2, 3, 1) => [0, 1, 2, 3]
+function tickValuesInRange(start, stop, step) {
+  let values = [0];
+  if (step <= 0) {
+    return values;
+  }
+  for (let i = 1; i * step <= stop; i++) {
+    values.push(i * step);
+  }
+  for (let i = -1; i * step >= start; i--) {
+    values.push(i * step);
+  }
+  return values;
+}
+
 // https://stackoverflow.com/questions/38224875/replacing-d3-transform-in-d3-v4/38230545#38230545
 function getTranslation(transform) {
   if (transform === null) {
@@ -320,7 +336,10 @@ class Protein {
     let yAxis = d3
       .axisLeft(lollipopScale)
       .tickValues(
-        d3.range(...lollipopRange, FormOptions.lollipopAxisTickDistance())
+        tickValuesInRange(
+          ...lollipopRange,
+          FormOptions.lollipopAxisTickDistance()
+        )
       );
     this.svg.append("g").call(yAxis);
   }

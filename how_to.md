@@ -108,7 +108,7 @@ You can horizontally scale the image and the distance between tick marks under t
 
 You can increase or decrease the heights of the lollipops by adjusting the 'scale height' setting. The 'tick distance' option will allow you to customise the distance between the tick marks on the lollipop height axis.
 
-By default, the lollipops are coloured as they appear in the heatmap view. You can choose to colour the lollipops based on whether they are upregulated (positive intensity) or downregulated (negative intensity) by selecting the `colour` checkbox.
+By default, the lollipops are coloured as they appear in the heatmap view. You can choose to colour the lollipops based on whether they are upregulated (positive intensity) or downregulated (negative intensity) by selecting the 'colour' checkbox.
 
 ![](./static/images/draw-opts-lollipop.gif)
 

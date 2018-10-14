@@ -12,9 +12,9 @@ Post-translational modification mapper (PTM Mapper) is a simple web application 
    ```
    git clone https://bitbucket.cmri.com.au/scm/bioinf/ptm-mapper.git
    ```
-3. Create a python3 environment from the `environments.yml` file.
+3. Create a python3 environment from the `environment.yml` file.
    ```
-   conda create env -f ptm-mapper/environment.yml
+   conda env create -f ptm-mapper/environment.yml
    ```
 
 ## Launching the development server

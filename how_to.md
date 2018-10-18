@@ -1,4 +1,4 @@
-## How to use PTM Mapper
+## How to use PTM VisQuant
 
 ### Protein Entry Name or Accession
 

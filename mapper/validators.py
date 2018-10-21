@@ -14,10 +14,14 @@ class ValidUniProtProteins():
         status = make_requests(urls, status_only=True)
         for i, stat in enumerate(status):
             if stat is None:
-                raise ValidationError("Unable to connect to UniProt database.")
+                raise ValidationError(
+                    "Unable to connect to {}:"
+                    " UniProt is taking too long to respond."
+                    .format(self.ENDPOINT.format(accessions[i]))
+                )
             if stat != 200:
                 raise ValidationError(
-                    "Unable to fetch '{}' from UniProt database.".format(
+                    "Uniprot does not recognise the protein '{}'.".format(
                         accessions[i]
                     )
                 )

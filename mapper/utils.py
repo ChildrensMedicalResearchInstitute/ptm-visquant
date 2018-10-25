@@ -113,9 +113,9 @@ def to_markup_list(csv_file):
     intensity_labels = __extract_intensity_labels(reader.fieldnames)
     for row in reader:
         row = __condense_intensity_attr(row)
-        coordinates = __split_coordinate_string(row.get('start'))
+        coordinates = __split_coordinate_string(row.get('site'))
         types = __split_type_string(row.get('type'))
-        colours = __split_colour_string(row.get('lineColour'))
+        colours = __split_colour_string(row.get('lineColour')) if row.get('lineColour') else [None]
         for index, (coord, _type, colour) in enumerate(zip(coordinates, cycle(types), cycle(colours))):
             data = schema.dump(row)
             data['type'] = _type
@@ -123,7 +123,7 @@ def to_markup_list(csv_file):
             data['lineColour'] = colour
             data['display'] = True if index == 0 else False
             data['peptide_type_sequence'] = row.get('type')
-            data['peptide_coordinate_sequence'] = row.get('start')
+            data['peptide_coordinate_sequence'] = row.get('site')
             data['intensity_labels'] = intensity_labels
             markup.append(data)
     return markup

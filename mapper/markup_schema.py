@@ -13,7 +13,7 @@ class MarkupSchema(Schema):
     )
     colour = fields.String()
     lineColour = fields.String()
-    start = fields.String(
+    site = fields.String(
         required=True,
         validate=[
             validate.Regexp(r"\d+(\D\d+)*", error="Invalid site data"),

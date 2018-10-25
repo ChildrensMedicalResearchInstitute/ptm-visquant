@@ -1,4 +1,4 @@
-accession,start,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
+accession,site,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
 bsn_rat,105;110,phosphorylation;phosphorylation,#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
 bsn_rat,105,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
 bsn_rat,142,glycosylation,purple,1.55204,-0.727857,-0.9395206,-0.1641333,-0.7408412

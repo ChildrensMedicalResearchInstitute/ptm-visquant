@@ -27,7 +27,7 @@ The first line of the CSV file should be a header which identifies the informati
 |Column name|Required|Description|
 |:-|:-|:-|
 |`accession`|Yes|The protein entry name or accession code where this markup belongs. If the accession value specified in the CSV file does not match any accession in the diagram, the markup will not be drawn.|
-|`start`|Yes|A semicolumn-delimited list of integers representing the sites of the modification on the peptide. For example: `110`, or `110;122;140`.|
+|`site`|Yes|A semicolumn-delimited list of integers representing the sites of the modification on the peptide. For example: `110`, or `110;122;140`.|
 |`type`|Yes|A semicolon-delimited list of strings representing the type of modification on the peptide. For example: `phosphorylation`, or `phosphorylation;glycosylation`.|
 |`lineColour`||A semicolon-delimited list of strings representing the colour used to draw the modification. The colour can be any valid HTML colour name or hexadecimal. For example: `purple`, `purple;red`, or `lightcoral;#AA00FF`.If unspecified, a random colour will be assigned to each unique value specified in `type` column.|
 |`intensity_*`||A single numerical value to quantify the amount of modification on the peptide. Intensity columns will be processed in the order in which they are specified. This column may be repeated as many times as necessary for each set of heatmap values.|
@@ -35,7 +35,7 @@ The first line of the CSV file should be a header which identifies the informati
 Here is a short example of a CSV file which includes only the required fields.
 
 ```
-accession,start,type
+accession,site,type
 tau_rat,105,phosphorylation
 tau_rat,189;200,phosphorylation;glycosylation
 ```
@@ -43,7 +43,7 @@ tau_rat,189;200,phosphorylation;glycosylation
 Here is a quick example of another CSV file which includes all fields.
 
 ```
-accession,start,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
+accession,site,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
 syn3_rat,118,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
 syn3_rat,130;140,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
 ```
@@ -51,7 +51,7 @@ syn3_rat,130;140,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.4
 If `type` and `lineColour` is consistent across many modifications on a peptide, they only need to be specified once.
 
 ```
-accession,start,type,lineColour
+accession,site,type,lineColour
 syn1_rat,240;287;290,phosphorylation,lightgreen
 ```
 

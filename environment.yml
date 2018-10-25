@@ -9,5 +9,5 @@ dependencies:
   - requests
   - lxml
   - markdown
-  - marshmallow=3
+  - marshmallow=3.0.0b8
   - wtforms

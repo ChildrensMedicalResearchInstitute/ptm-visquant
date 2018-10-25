@@ -120,7 +120,9 @@ def to_markup_list(csv_file):
             data = schema.dump(row)
             data['type'] = _type
             data['start'] = coord
-            data['lineColour'] = colour
+            if colour is not None:
+                data['lineColour'] = colour
+            # avoid displaying duplicate markup; only one per row
             data['display'] = True if index == 0 else False
             data['peptide_type_sequence'] = row.get('type')
             data['peptide_coordinate_sequence'] = row.get('site')

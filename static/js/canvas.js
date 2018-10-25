@@ -63,7 +63,7 @@ class Canvas {
 
   addMotifLegend(data) {
     const motifMap = {};
-    data.motifs.forEach(function(motif) {
+    data.motifs.filter(d => d.display !== false).forEach(function(motif) {
       motifMap[motif.type] = motif.colour;
     })
 

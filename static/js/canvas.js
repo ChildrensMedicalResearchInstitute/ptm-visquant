@@ -150,7 +150,7 @@ class Canvas {
       .style("opacity", 0);
 
     heatmap_column.each(function(markup) {
-      if (markup.intensity_values) {
+      if (markup.intensity_values.length !== 0) {
         // draw heatmap labels
         d3.select(this)
           .append("text")
@@ -199,7 +199,7 @@ class Canvas {
     // Add heatmap label to last heatmap column
     const lastHeatMapColumn = heatmap_column.nodes()[heatmap_column.size() - 1];
     d3.select(lastHeatMapColumn).each(function(markup) {
-      if (markup.intensity_labels) {
+      if (markup.intensity_labels.length !== 0) {
         d3.select(this)
           .selectAll("heatmap_labels")
           .data(markup.intensity_labels)

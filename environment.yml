@@ -1,4 +1,4 @@
-name: ptm-mapper
+name: ptm-visquant
 channels:
   - default
   - conda-forge

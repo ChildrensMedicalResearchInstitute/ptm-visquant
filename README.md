@@ -1,6 +1,6 @@
-# PTM Mapper
+# PTM VisQuant
 
-Post-translational modification mapper (PTM Mapper) is a simple web application designed for visualising post-translational modification sites alongside protein motif and family domain information.
+PTM VisQuant is a simple web application designed for visualising post-translational modification sites alongside protein motif and family domain information.
 
 ## Installing project dependencies
 
@@ -10,11 +10,11 @@ Post-translational modification mapper (PTM Mapper) is a simple web application 
    ```
 2. Clone this repository, then change to the project directory.
    ```
-   git clone https://bitbucket.cmri.com.au/scm/bioinf/ptm-mapper.git
+   git clone https://bitbucket.cmri.com.au/scm/bioinf/ptm-visquant.git
    ```
 3. Create a python3 environment from the `environment.yml` file.
    ```
-   conda env create -f ptm-mapper/environment.yml
+   conda env create -f ptm-visquant/environment.yml
    ```
 
 ## Launching the development server
@@ -22,11 +22,11 @@ Post-translational modification mapper (PTM Mapper) is a simple web application 
 1. Change to the project directory and execute the run-script.
    ```
    # for MacOS and Linux
-   cd ptm-mapper
+   cd ptm-visquant
    bash runserver.sh
 
    # for Windows
-   dir ptm-mapper
+   dir ptm-visquant
    runserver.bat
    ```
 2. Navigate to http://127.0.0.1:5000/ in your browser.

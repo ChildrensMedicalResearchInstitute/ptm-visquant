@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Activate virtual environment
-source activate ptm-mapper
+source activate ptm-visquant
 # Restart server on change
 export FLASK_DEBUG=TRUE
 # Move to this directory and run app

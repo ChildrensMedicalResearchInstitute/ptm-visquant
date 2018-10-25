@@ -28,8 +28,8 @@ def index():
             lines = [line.decode() for line in f.readlines()]
             add_markup_to_context(to_markup_list(lines), context)
     return render_template(
-        'ptm_mapper.html',
-        card_content=read_markdown('ptm_mapper.md'),
+        'ptm-visquant.html',
+        card_content=read_markdown('instruction_card.md'),
         form=form,
         hasFileUpload=hasFileUpload,
         context=context,
@@ -50,8 +50,8 @@ def example():
     with open('static/files/BSN_RAT_EXAMPLE.csv') as f:
         add_markup_to_context(to_markup_list(f), context)
     return render_template(
-        'ptm_mapper.html',
-        card_content=read_markdown('ptm_mapper.md'),
+        'ptm-visquant.html',
+        card_content=read_markdown('instruction_card.md'),
         form=form,
         hasFileUpload=True,
         context=context,

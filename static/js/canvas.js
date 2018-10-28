@@ -1,7 +1,7 @@
 var canvasInstance = null;
 
 class BooleanBomb {
-  constructor(initalState=true, usesRemaining=1) {
+  constructor(initalState = true, usesRemaining = 1) {
     this.bool = initalState;
     this.usesRemaining = usesRemaining;
   }
@@ -65,7 +65,7 @@ class Canvas {
     const motifMap = {};
     data.motifs.filter(d => d.display !== false).forEach(function(motif) {
       motifMap[motif.type] = motif.colour;
-    })
+    });
 
     let legendScale = d3
       .scaleOrdinal()
@@ -74,10 +74,7 @@ class Canvas {
 
     let legendStyle = d3
       .legendColor()
-      .shape(
-        "path",
-        "M-3,-3h18v12h-18Z"
-      )
+      .shape("path", "M-3,-3h18v12h-18Z")
       .shapePadding(10)
       .title("Motifs")
       .scale(legendScale);
@@ -104,10 +101,7 @@ class Canvas {
 
     let legendStyle = d3
       .legendColor()
-      .shape(
-        "path",
-        "M-3,-3h6v18h-6Z"
-      )
+      .shape("path", "M-3,-3h6v18h-6Z")
       .shapePadding(10)
       .title("Modifications")
       .scale(legendScale);
@@ -126,22 +120,19 @@ class Canvas {
     const HEATMAP_CELL_HEIGHT = 25;
     const slate = this.svg.append("g");
     const scale = this.scale;
-    let scale_chromatic = d3
+    let scaleChromatic = d3
       .scaleSequential(FormOptions.selectedInterpolator())
       .domain([FormOptions.heatmapMin(), FormOptions.heatmapMax()]);
 
-    let markup_display = data.markups.filter(
+    let markupDisplay = data.markups.filter(
       markup => markup.display !== false
     );
-    let heatmap_column = slate
-      .selectAll("heatmap_column")
-      .data(markup_display)
+    let heatmapColumns = slate
+      .selectAll("heatmap-columns")
+      .data(markupDisplay)
       .enter()
       .append("g")
-      .attr(
-        "transform",
-        d => `translate(${scale(d.start)}, 0)`
-      );
+      .attr("transform", d => `translate(${scale(d.start)}, 0)`);
 
     let tooltip = d3
       .select("body")
@@ -149,7 +140,7 @@ class Canvas {
       .attr("class", "tooltip")
       .style("opacity", 0);
 
-    heatmap_column.each(function(markup) {
+    heatmapColumns.each(function(markup) {
       if (markup.intensity_values.length !== 0) {
         // draw heatmap labels
         d3.select(this)
@@ -167,7 +158,7 @@ class Canvas {
           .attr("y", (d, index) => HEATMAP_CELL_HEIGHT * index)
           .attr("height", HEATMAP_CELL_HEIGHT)
           .attr("width", HEATMAP_CELL_WIDTH)
-          .attr("fill", value => scale_chromatic(value))
+          .attr("fill", value => scaleChromatic(value))
           .on("mouseover", function(d, index) {
             d3.select(this).raise();
             tooltip.style("opacity", 0.8);
@@ -183,9 +174,10 @@ class Canvas {
     });
 
     // Update heatmap locations to prevent overlap
-    heatmap_column.sort((a, b) => a.start - b.start).each(function() {
+    heatmapColumns = heatmapColumns.sort((a, b) => a.start - b.start);
+    heatmapColumns.each(function() {
       const that = this;
-      heatmap_column.each(function() {
+      heatmapColumns.each(function() {
         if (this !== that && intersects(this, that)) {
           const thatLeft = getTranslation(d3.select(that).attr("transform"))[0];
           d3.select(this).attr(
@@ -197,7 +189,7 @@ class Canvas {
     });
 
     // Add heatmap label to last heatmap column
-    const lastHeatMapColumn = heatmap_column.nodes()[heatmap_column.size() - 1];
+    const lastHeatMapColumn = heatmapColumns.nodes()[heatmapColumns.size() - 1];
     d3.select(lastHeatMapColumn).each(function(markup) {
       if (markup.intensity_labels.length !== 0) {
         d3.select(this)
@@ -277,7 +269,7 @@ class Canvas {
   }
 
   // Fit element to the bottom of the canvas
-  fit(element, beginNewRow=true) {
+  fit(element, beginNewRow = true) {
     const elementHeight = element.node().getBBox().height;
     const elementWidth = element.node().getBBox().width;
 
@@ -311,7 +303,10 @@ class Canvas {
   // Expand the canvas to fit all elements in this.svg
   expand() {
     this.svg
-      .attr("width", this.svg.node().getBBox().width + 2*this.MARGIN.right)
-      .attr("height", this.svg.node().getBBox().height + 2*this.MARGIN.bottom);
+      .attr("width", this.svg.node().getBBox().width + 2 * this.MARGIN.right)
+      .attr(
+        "height",
+        this.svg.node().getBBox().height + 2 * this.MARGIN.bottom
+      );
   }
 }

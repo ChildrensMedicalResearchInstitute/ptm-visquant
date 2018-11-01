@@ -59,7 +59,7 @@ class TestUtils(unittest.TestCase):
 
     def test_to_markup_list_simple(self):
         csv_file = """
-        accession,type,start
+        accession,type,site
         bsn_rat,phosphorylation,105
         bsn_rat,phosphorylation,130
         bsn_rat,glycosylation,142
@@ -71,30 +71,34 @@ class TestUtils(unittest.TestCase):
         ]
         self.compare_markup_lists(expected, utils.to_markup_list(csv_file))
 
-    def test_to_markup_list_overlapping_markup(self):
+    def test_multisite_markup(self):
         csv_file = """
-        accession,type,start
+        accession,type,site
         bsn_rat,phosphorylation,105
-        bsn_rat,phosphorylation,105
-        bsn_rat,glycosylation,142
+        bsn_rat,phosphorylation,105;120
+        bsn_rat,glycosylation,142;144;149
         """.split()
         expected = [
             {"accession": "bsn_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 120},
             {"accession": "bsn_rat", "type": "glycosylation", "start": 142},
+            {"accession": "bsn_rat", "type": "glycosylation", "start": 144},
+            {"accession": "bsn_rat", "type": "glycosylation", "start": 149},
         ]
         self.compare_markup_lists(expected, utils.to_markup_list(csv_file))
 
-    def test_to_markup_list_overlapping_markup_different_accession(self):
+    def test_multisite_markup_with_multiple_type(self):
         csv_file = """
-        accession,type,start
-        bsn_rat,phosphorylation,105
-        tau_rat,phosphorylation,105
-        bsn_rat,glycosylation,142
+        accession,type,site
+        bsn_rat,phosphorylation;phosphorylation,100;102
+        bsn_rat,glycosylation;phosphorylation,142;144
         """.split()
         expected = [
-            {"accession": "bsn_rat", "type": "phosphorylation", "start": 105},
-            {"accession": "tau_rat", "type": "phosphorylation", "start": 105},
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 100},
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 102},
             {"accession": "bsn_rat", "type": "glycosylation", "start": 142},
+            {"accession": "bsn_rat", "type": "phosphorylation", "start": 144},
         ]
         self.compare_markup_lists(expected, utils.to_markup_list(csv_file))
 

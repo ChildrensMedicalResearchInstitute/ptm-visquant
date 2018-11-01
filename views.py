@@ -16,19 +16,19 @@ from markdown.extensions.extra import ExtraExtension
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = PtmForm()
-    hasFileUpload = False
+    has_file_upload = False
     context = None
     if request.method == 'POST' and form.validate():
         context = get_protein_domains(form.accession_list)
         context = remove_all_markup(context)
         if form.has_file_upload:
-            hasFileUpload = True
+            has_file_upload = True
             add_markup_to_context(form.markup_list, context)
     return render_template(
         'ptm-visquant.html',
         card_content=read_markdown('static/content/instruction_card.md'),
         form=form,
-        hasFileUpload=hasFileUpload,
+        has_file_upload=has_file_upload,
         context=context,
     )
 
@@ -50,7 +50,7 @@ def example():
         'ptm-visquant.html',
         card_content=read_markdown('static/content/instruction_card.md'),
         form=form,
-        hasFileUpload=True,
+        has_file_upload=True,
         context=context,
     )
 

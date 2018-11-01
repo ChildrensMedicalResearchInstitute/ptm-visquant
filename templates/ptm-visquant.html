@@ -26,7 +26,7 @@
     <div class="card">
         <div class="card-body">
             <div class="container">
-                {% if hasFileUpload %}
+                {% if has_file_upload %}
                 <div class="form-group row">
                     {{ macros.drawing_option_section_label('Visualisation')}}
                     {{ macros.drawing_option_form_label('Type')}}
@@ -49,7 +49,7 @@
                     {{ macros.drawing_option_form_label('Tick distance')}}
                     {{ macros.drawing_option_input_field('number', 'tick-step', '500')}}
                 </div>
-                {% if hasFileUpload %}
+                {% if has_file_upload %}
                 <div class="heatmap-options">
                     <div class="form-group row">
                         {{ macros.drawing_option_section_label('Heatmap')}}
@@ -122,7 +122,7 @@
 </script>
 {% if context %}
     <script>
-        const hasFileUpload = {% if hasFileUpload %} true {% else %} false {% endif %};
+        const hasFileUpload = {% if has_file_upload %} true {% else %} false {% endif %};
         const context = JSON.parse('{{ context | tojson | safe }}');
     </script>
     <script src="{{ url_for('static', filename='js/bootstrap-select.min.js') }}"></script>

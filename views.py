@@ -4,7 +4,6 @@ from mapper.utils import (
     add_markup_to_context,
     get_protein_domains,
     remove_all_markup,
-    split_accessions,
     to_markup_list,
 )
 
@@ -20,13 +19,11 @@ def index():
     hasFileUpload = False
     context = None
     if request.method == 'POST' and form.validate():
-        context = get_protein_domains(split_accessions(form.accession.data))
+        context = get_protein_domains(form.accession_list)
         context = remove_all_markup(context)
-        f = form.csv_file.data
-        if f:
+        if form.has_file_upload:
             hasFileUpload = True
-            lines = [line.decode() for line in f.readlines()]
-            add_markup_to_context(to_markup_list(lines), context)
+            add_markup_to_context(form.markup_list, context)
     return render_template(
         'ptm-visquant.html',
         card_content=read_markdown('static/content/instruction_card.md'),
@@ -76,13 +73,8 @@ def example_csv():
 
 
 def read_markdown(filename):
-    try:
-        with open(filename) as about_file:
-            extras = [ExtraExtension(), ]
-            content = Markup(markdown(
-                about_file.read(),
-                extensions=extras,
-            ))
-    except FileNotFoundError as e:
-        raise e
-    return content
+    with open(filename) as about_file:
+        return Markup(markdown(
+            about_file.read(),
+            extensions=[ExtraExtension(), ],
+        ))

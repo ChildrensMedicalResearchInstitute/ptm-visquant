@@ -34,13 +34,10 @@ class ValidMarkupFile():
         self.message = message
 
     def __call__(self, form, field):
-        f = form.csv_file.data
-        if f is None:
+        if not form.has_file_upload:
             return
         schema = MarkupSchema()
-        lines = [line.decode() for line in f.readlines()]
-        f.seek(0)  # Return cursor to top of file for later parsing
-        reader = DictReader(lines)
+        reader = DictReader(form.file_lines)
         for line_num, row in enumerate(reader, start=2):
             errors = schema.validate(row)
             if errors:

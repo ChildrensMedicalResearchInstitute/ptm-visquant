@@ -95,7 +95,7 @@ def __split_type_string(s):
 
 
 def __split_coordinate_string(s):
-    return re.split(r'\D+', s)
+    return map(int, re.split(r'\D+', s))
 
 
 def __split_colour_string(s):

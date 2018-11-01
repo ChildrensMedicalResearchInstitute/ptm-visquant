@@ -29,7 +29,7 @@ def index():
             add_markup_to_context(to_markup_list(lines), context)
     return render_template(
         'ptm-visquant.html',
-        card_content=read_markdown('instruction_card.md'),
+        card_content=read_markdown('static/content/instruction_card.md'),
         form=form,
         hasFileUpload=hasFileUpload,
         context=context,
@@ -51,7 +51,7 @@ def example():
         add_markup_to_context(to_markup_list(f), context)
     return render_template(
         'ptm-visquant.html',
-        card_content=read_markdown('instruction_card.md'),
+        card_content=read_markdown('static/content/instruction_card.md'),
         form=form,
         hasFileUpload=True,
         context=context,
@@ -62,7 +62,7 @@ def example():
 def how_to():
     return render_template(
         'article.html',
-        content=read_markdown('how_to.md'),
+        content=read_markdown('static/content/how_to.md'),
     )
 
 

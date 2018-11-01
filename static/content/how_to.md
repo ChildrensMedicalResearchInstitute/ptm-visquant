@@ -1,4 +1,6 @@
-## How to use PTM VisQuant
+# How to use PTM VisQuant
+
+## Submitting your query
 
 ### Protein Entry Name or Accession
 
@@ -63,7 +65,7 @@ In the example above, there are many modification sites listed, however only one
 
 This tool is deliberately peptide-centric since all proteomics-based quantitative data is peptide-centric. The site tables from MaxQuant are in the format of one site per row. However, the intensity data for each row can be from mono- or multiply modified peptides. When displaying quantitative information, we suggest either (a) extracting the multi-site information using knowledge of your protein sequence, site localisation probabilities and the ‘modified sequence’ column to convert your table to our CSV format, or (b) ordering your rows such that the number of modifications is known to you (e.g., sort the ‘Number of …’ column from lowest to highest). You may then supply the multiplicity of modification information by editing the image file produced from this tool. An alternative is to process the MaxQuant ‘evidence’ file to derive a peptide-centric table. In the future, we may provide a file format conversion tool or display option to achieve these suggestions.
 
-### Viewing and saving your visualisation
+## Viewing and saving your visualisation
 
 In the web application, you can hover your mouse over the heatmap cells or lollipop bulbs to display more information about a specific datum. This is useful for larger jobs where the labels may appear off-screen. Coordinate labels can be repositioned by clicking and dragging the text.
 
@@ -84,11 +86,11 @@ Formats include:
 
 *QUICK TIP:* For large jobs which display many proteins down the page, your horizontal scrollbar may be positioned off your screen. You can still scroll left and right by holding down the SHIFT key and scrolling with your mouse.
 
-### Drawing options
+## Drawing options
 
 Options for changing the appearance of the drawing will appear after you click the 'Visualise' button.
 
-#### Visualisation
+### Visualisation
 
 Quantitative data can be viewed as either heatmaps below the protein or as lollipops stemming from the protein backbone.
 
@@ -96,19 +98,19 @@ Quantitative data can be viewed as either heatmaps below the protein or as lolli
 
 In heatmap view, each protein will be drawn once and experimental trials will appear as rows on the heatmap below each protein. In lollipop view, each protein will be repeated for each experimental trial. Trial labels appear on the far right side of the protein in both visualisation modes.
 
-#### Image scale
+### Image scale
 
 You can horizontally scale the image and the distance between tick marks under the 'image scale' options. By default, the application draws the protein at 1 pixel per amino acid residue (100%) and draws a tick on the scale axis every 500 amino acid residues.
 
 ![](./static/images/draw-opts-scale.gif)
 
-#### Heatmap
+### Heatmap
 
 'Minimum' and 'maximum' options allow you to adjust the heatmap range. The 'colour scheme' options allow you to choose from a variety of diverging and sequential colour scales to visualise your data.
 
 ![](./static/images/draw-opts-heatmap.gif)
 
-#### Lollipop
+### Lollipop
 
 You can increase or decrease the heights of the lollipops by adjusting the 'scale height' setting. The 'tick distance' option will allow you to customise the distance between the tick marks on the lollipop height axis.
 

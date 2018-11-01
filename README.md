@@ -10,7 +10,7 @@ PTM VisQuant is a simple web application designed for visualising post-translati
    ```
 2. Clone this repository, then change to the project directory.
    ```
-   git clone https://bitbucket.cmri.com.au/scm/bioinf/ptm-visquant.git
+   git clone https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant.git
    ```
 3. Create a python3 environment from the `environment.yml` file.
    ```

@@ -19,7 +19,10 @@ class ProteinBuilder {
       this.protein.drawMarkupLollipops(trialIndex);
       this.protein.drawMarkupLollipopsScale(trialIndex);
       if (trialIndex === 0) {
-        this.protein.drawMarkupLabels();
+        const markup_with_intensities = this.protein.data.markups.filter(
+          d => d.intensity_values.length !== 0
+        );
+        this.protein.drawMarkupLabels(markup_with_intensities);
       }
     }
     return this.protein;

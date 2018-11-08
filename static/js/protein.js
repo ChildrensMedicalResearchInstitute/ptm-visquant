@@ -18,9 +18,9 @@ function hasIntensityValues(data) {
   return false;
 }
 
-function filterForUniqueStartSite(data) {
-  return data.markups.filter(function(m, index) {
-    return data.markups.findIndex(n => n.start === m.start) === index;
+function filterForUniqueStartSite(markups) {
+  return markups.filter(function(m, index) {
+    return markups.findIndex(n => n.start === m.start) === index;
   });
 }
 
@@ -154,7 +154,7 @@ class Protein {
   }
 
   drawMarkupLines() {
-    const markup_display = filterForUniqueStartSite(this.data);
+    const markup_display = filterForUniqueStartSite(this.data.markups);
     if (markup_display.length > 0) {
       this.hasMarkup = true;
     }
@@ -172,8 +172,8 @@ class Protein {
       .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
   }
 
-  drawMarkupLabels() {
-    const markup_display = filterForUniqueStartSite(this.data);
+  drawMarkupLabels(markups=this.data.markups) {
+    const markup_display = filterForUniqueStartSite(markups);
     const LABEL_HEIGHT = this.svg.node().getBBox().y - 10;
 
     let markupCoordinateContainer = this.svg
@@ -246,7 +246,9 @@ class Protein {
   }
 
   drawMarkupLollipops(trialIndex) {
-    let markup_display = this.data.markups;
+    let markup_display = this.data.markups.filter(
+      d => d.intensity_values.length !== 0
+    );
     if (markup_display.length > 0) {
       this.hasMarkup = true;
     }

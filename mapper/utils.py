@@ -43,6 +43,9 @@ def __condense_intensity_attr(dictionary):
             keys_to_remove.append(key)
     for key in keys_to_remove:
         dictionary.pop(key)
+    # ignore intensity values for given site if it contains missing data
+    if "" in intensity_values:
+        intensity_values = []   
     dictionary['intensity_values'] = intensity_values
     return dictionary
 
@@ -100,6 +103,12 @@ def __split_coordinate_string(s):
 
 def __split_colour_string(s):
     return re.split(r'[^\w#]+', s)
+
+
+def count_experimental_trials(csv_file):
+    reader = DictReader(csv_file)
+    trials = [x for x in reader.fieldnames if x.startswith('intensity_')]
+    return len(trials)
 
 
 def to_markup_list(csv_file):

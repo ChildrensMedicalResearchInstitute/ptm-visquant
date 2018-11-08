@@ -232,7 +232,7 @@ class Canvas {
     const visType = FormOptions.selectedVisType();
     let nTrials;
     if (visType === "lollipop") {
-      nTrials = data.markups[0].intensity_values.length;
+      nTrials = d3.max(data.markups.map(d => d.intensity_values.length));
     } else {
       nTrials = 1;
     }

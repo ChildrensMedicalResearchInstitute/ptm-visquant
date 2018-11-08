@@ -327,7 +327,7 @@ class Protein {
     const heightScale =
       (FormOptions.lollipopScale() / 100) * -this.MARKUP_HEIGHT;
     const lollipopRange = d3.extent(
-      this.data.markups.map(m => m.intensity_values[trialIndex])
+      this.data.markups.map(m => m.intensity_values[trialIndex]).concat([0])
     );
     const lollipopScale = d3
       .scaleLinear()

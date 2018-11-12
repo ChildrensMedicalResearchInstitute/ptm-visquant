@@ -38,14 +38,14 @@ def __condense_intensity_attr(dictionary):
     keys_to_remove = []
     intensity_values = []
     for key, value in dictionary.items():
-        if key.startswith('intensity_'):
+        if key is not None and key.startswith('intensity_'):
             intensity_values.append(value)
             keys_to_remove.append(key)
     for key in keys_to_remove:
         dictionary.pop(key)
     # ignore intensity values for given site if it contains missing data
     if "" in intensity_values:
-        intensity_values = []   
+        intensity_values = []
     dictionary['intensity_values'] = intensity_values
     return dictionary
 

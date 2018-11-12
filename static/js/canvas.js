@@ -158,7 +158,9 @@ class Canvas {
           .attr("y", (d, index) => HEATMAP_CELL_HEIGHT * index)
           .attr("height", HEATMAP_CELL_HEIGHT)
           .attr("width", HEATMAP_CELL_WIDTH)
-          .attr("fill", value => scaleChromatic(value))
+          .attr("fill", value =>
+            value === null ? "white" : scaleChromatic(value)
+          )
           .on("mouseover", function(d, index) {
             d3.select(this).raise();
             tooltip.style("opacity", 0.8);

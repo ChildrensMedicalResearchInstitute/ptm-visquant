@@ -1,0 +1,12 @@
+accession,site,type,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4
+bsn_rat,1,normal_case,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
+bsn_rat,100,missing_intensity_values,,-0.4202376,0.2043132,0.1221804
+bsn_rat,100,missing_intensity_values,,,0.2043132,0.1221804
+bsn_rat,100,missing_intensity_values,,,,
+bsn_rat,100,missing_intensity_values,,-0.4202376,0.2043132,0.1221804
+bsn_rat,200,duplicate_site,1.437837,0.9898816,0.1745114,0.4425308
+bsn_rat,200,duplicate_site,1.55204,-0.727857,-0.9395206,-0.1641333
+bsn_rat,300,duplicate_multisite,1.006098,0.2971586,0.8160321,2.186459
+bsn_rat,300;310;320,duplicate_multisite,1.437837,0.9898816,0.1745114,0.4425308
+bsn_rat,300;310,duplicate_multisite,0.5726894,-1.980257,0.3336099,0.4725594
+bsn_rat,310;320,duplicate_multisite,0.5726894,-1.980257,0.8160321,0.4725594

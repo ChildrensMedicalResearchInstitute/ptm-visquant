@@ -4,29 +4,58 @@ PTM VisQuant is a simple web application designed for visualising post-translati
 
 ## Installing project dependencies
 
-1. Install Python3.7 from [Conda](https://www.anaconda.com/download/#linux) or [MiniConda](https://conda.io/miniconda.html) (light-weight Conda installation). Verify that conda has installed successfully.
-   ```
-   conda --version
-   ```
-2. Clone this repository, then change to the project directory.
-   ```
-   git clone https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant.git
-   ```
-3. Create a python3 environment from the `environment.yml` file.
-   ```
-   conda env create -f ptm-visquant/environment.yml
-   ```
+### Python dependencies
+
+This project uses Python 3.7 for the backend and Conda to manage required Python packages. You can install Python3.7 from [Conda](https://www.anaconda.com/download/#linux) or [MiniConda](https://conda.io/miniconda.html) (light-weight Conda installation). Verify that Conda has installed successfully.
+
+```
+conda --version
+```
+
+Clone this repository.
+
+```
+git clone https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant.git
+```
+
+Then create a python3 environment with Python package dependencies as defined by the `environment.yml` file.
+
+```
+conda env create -f ptm-visquant/environment.yml
+```
+
+Verify the environment has been successfully created.
+
+```
+source activate ptm-visquant
+```
+
+### Javascript dependencies
+
+This project uses npm to manage JavaScript dependencies in the frontend. Install [Node.js](https://nodejs.org/en/download/), which comes with the node package manager (npm).
+
+Verify that npm has been installed successfully.
+
+```
+npm --version
+```
+
+All Javascript dependencies are listed in the `static/package.json` file. Navigate to the `static` directory and install all dependencies there.
+
+```
+cd ptm-visquant/static
+npm install
+```
 
 ## Launching the development server
 
-1. Change to the project directory and execute the run-script.
-   ```
-   # for MacOS and Linux
-   cd ptm-visquant
-   bash runserver.sh
+Execute the run-script in the project's root directory.
 
-   # for Windows
-   dir ptm-visquant
-   runserver.bat
-   ```
-2. Navigate to http://127.0.0.1:5000/ in your browser.
+```
+# for MacOS and Linux systems
+bash runserver.sh
+# for Windows systems
+runserver.bat
+```
+
+Navigate to http://127.0.0.1:5000/ in your browser.

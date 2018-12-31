@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='node_modules/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/ptm-visquant.css') }}">
 {% endblock %}
 
@@ -125,10 +125,10 @@
         const hasFileUpload = {% if has_file_upload %} true {% else %} false {% endif %};
         const context = JSON.parse('{{ context | tojson | safe }}');
     </script>
-    <script src="{{ url_for('static', filename='js/bootstrap-select.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/d3.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/d3-legend.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/saveSvgAsPng.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/d3/dist/d3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/d3-svg-legend/d3-legend.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/save-svg-as-png/lib/saveSvgAsPng.js') }}"></script>
 
     <script src="{{ url_for('static', filename='js/protein.js') }}"></script>
     <script src="{{ url_for('static', filename='js/protein-builder.js') }}"></script>

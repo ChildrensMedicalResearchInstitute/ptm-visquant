@@ -1,0 +1,28 @@
+{
+  "name": "ptm-visquant",
+  "version": "1.0.0",
+  "description": "PTM VisQuant is a simple web application designed for visualising post-translational modification sites alongside protein motif and family domain information.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant.git"
+  },
+  "author": "Jonathan Du",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant/issues"
+  },
+  "homepage": "https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant#readme",
+  "dependencies": {
+    "bootstrap": "^4.2",
+    "bootstrap-select": "^1.13.1",
+    "d3": "^5.7.0",
+    "d3-svg-legend": "^2.25.6",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.6",
+    "save-svg-as-png": "^1.4.6"
+  }
+}

@@ -30,7 +30,7 @@ class PtmForm(FlaskForm):
     def file_lines(self):
         if self.has_file_upload and self.csv_file_contents is None:
             self.csv_file_contents = [
-                line.decode() for line in self.csv_file.data.readlines()
+                line.decode().replace(";","+") for line in self.csv_file.data.readlines()
             ]
         return self.csv_file_contents
 

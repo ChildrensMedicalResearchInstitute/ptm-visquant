@@ -2,6 +2,8 @@
 
 PTM VisQuant is a simple web application designed for visualising post-translational modification sites alongside protein motif and family domain information.
 
+https://visquant.cmri.org.au/
+
 ## Installing project dependencies
 
 ### Python dependencies

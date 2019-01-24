@@ -55,11 +55,23 @@ def example():
     )
 
 
-@app.route('/how-to')
-def how_to():
+@app.route('/how-to', defaults={'path': ''})
+@app.route('/how-to/<path:path>')
+def how_to(path):
+    if not path:
+        filename = 'how_to.md'
+    else:
+        filename = 'how_to_{}.md'.format(path.replace('-', '_'))
     return render_template(
         'article.html',
-        content=read_markdown('static/content/how_to.md'),
+        content=read_markdown('static/content/{}'.format(filename)),
+    )
+
+@app.route('/contact-us')
+def contact_us():
+    return render_template(
+        'article.html',
+        content=read_markdown('static/content/contact_us.md'),
     )
 
 

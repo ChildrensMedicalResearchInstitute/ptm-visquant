@@ -120,4 +120,6 @@ By default, the lollipops are coloured as they appear in the heatmap view. You c
 
 ## Contact us
 
+To raise any bugs with the application, please submit an issue on [GitHub](https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant).
+
 For further enquiries, please email us at [questions@cmri.org.au](mailto:questions@cmri.org.au).

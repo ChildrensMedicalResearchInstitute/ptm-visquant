@@ -7,6 +7,10 @@ body {
   margin-bottom: 20px;
 }
 
+.card-body p {
+  margin: 0.5rem 0;
+}
+
 .footer {
   background-color: whitesmoke;
 }

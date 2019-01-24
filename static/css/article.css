@@ -1,8 +1,9 @@
 h1 {
-    margin: 1rem 0;
+    font-size: 2rem;
 }
 
 h2 {
+    font-size: 1.5rem;
     margin: 2rem 0 1rem 0;
 }
 
@@ -31,10 +32,14 @@ td {
     vertical-align: top;
 }
 
+code {
+    color: royalblue;
+}
+
 pre {
     background: #f4f4f4;
     border: 1px solid #ddd;
-    border-left: 3px solid #f36d33;
+    border-left: 3px solid dodgerblue;
     color: #666;
     page-break-inside: avoid;
     font-family: monospace;

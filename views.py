@@ -63,6 +63,14 @@ def how_to():
     )
 
 
+@app.route('/license')
+def license():
+    return render_template(
+        'article.html',
+        content=read_markdown('static/content/license.md'),
+    )
+
+
 @app.route('/example-csv')
 def example_csv():
     return send_from_directory(

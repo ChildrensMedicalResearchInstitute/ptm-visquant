@@ -11,11 +11,11 @@ Creative Commons Attribution – Non-Commercial 4.0 International License (CC BY
 
 CMRI developed PTM VisQuant and is making this tool freely available to the wider scientific community under the terms of the Creative Commons Attribution – Non-Commercial 4.0 International License on as ‘as is’ basis and makes no representations or warranties of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose.
 
-By using the PTM VisQuant you accept all the terms and conditions of the Licence. You are free to share and adapt the PTM VisQuant non-commercially. If you do so, you must give appropriate credit, provide a link to the license and indicate if changes have been made. You cannot suggest that CMRI endorses you or your use of the PTM VisQuant. You may not use the tool for commercial purposes.
+By using PTM VisQuant you accept all the terms and conditions of the Licence. You are free to share and adapt PTM VisQuant non-commercially. If you do so, you must give appropriate credit, provide a link to the license and indicate if changes have been made. You cannot suggest that CMRI endorses you or your use of PTM VisQuant. You may not use the tool for commercial purposes.
 
-To the extent possible for CMRI to do so, CMRI excludes any liability to you for damages, including any general, special, incidental or consequential damages arising out of the use or inability to use the PTM VisQuant (including but not limited to loss of data or data being rendered inaccurately or losses sustained by you or third parties or a failure of the program to operate with any other programs).
+To the extent possible for CMRI to do so, CMRI excludes any liability to you for damages, including any general, special, incidental or consequential damages arising out of the use or inability to use PTM VisQuant (including but not limited to loss of data or data being rendered inaccurately or losses sustained by you or third parties or a failure of the program to operate with any other programs).
 
-If you do not agree with the terms of the License, do not use the PTM VisQuant.
+If you do not agree with the terms of the License, do not use PTM VisQuant.
 
 **3RD PARTY COMPONENTS & LICENSES**
 

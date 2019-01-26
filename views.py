@@ -8,7 +8,7 @@ from mapper.utils import (
 )
 
 from flask import Flask, Markup
-from flask import render_template, request, send_from_directory
+from flask import abort, render_template, request, send_from_directory
 from markdown import markdown
 from markdown.extensions.extra import ExtraExtension
 
@@ -93,8 +93,11 @@ def example_csv():
 
 
 def read_markdown(filename):
-    with open(filename) as about_file:
-        return Markup(markdown(
-            about_file.read(),
-            extensions=[ExtraExtension(), ],
-        ))
+    try:
+        with open(filename) as about_file:
+            return Markup(markdown(
+                about_file.read(),
+                extensions=[ExtraExtension(), ],
+            ))
+    except FileNotFoundError:
+        abort(404)

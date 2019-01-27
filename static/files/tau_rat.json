@@ -1,0 +1,436 @@
+[
+  {
+    "length": 752,
+    "regions": [
+      {
+        "modelStart": 9,
+        "modelEnd": 31,
+        "colour": "#2dcf00",
+        "endStyle": "straight",
+        "end": 585,
+        "display": null,
+        "startStyle": "straight",
+        "aliEnd": 585,
+        "modelLength": 31,
+        "text": "Tubulin-binding",
+        "href": "/family/PF00418",
+        "type": "pfama",
+        "metadata": {
+          "scoreName": "e-value",
+          "score": "3.7e-07",
+          "description": "Tau and MAP protein, tubulin-binding repeat",
+          "end": 585,
+          "accession": "PF00418",
+          "database": "pfam",
+          "identifier": "Tubulin-binding",
+          "aliEnd": 585,
+          "type": "Family",
+          "aliStart": 563,
+          "start": 555
+        },
+        "aliStart": 563,
+        "start": 555
+      },
+      {
+        "modelStart": 1,
+        "modelEnd": 30,
+        "colour": "#2dcf00",
+        "endStyle": "straight",
+        "end": 616,
+        "display": null,
+        "startStyle": "straight",
+        "aliEnd": 615,
+        "modelLength": 31,
+        "text": "Tubulin-binding",
+        "href": "/family/PF00418",
+        "type": "pfama",
+        "metadata": {
+          "scoreName": "e-value",
+          "score": "1.4e-13",
+          "description": "Tau and MAP protein, tubulin-binding repeat",
+          "end": 616,
+          "accession": "PF00418",
+          "database": "pfam",
+          "identifier": "Tubulin-binding",
+          "aliEnd": 615,
+          "type": "Family",
+          "aliStart": 586,
+          "start": 586
+        },
+        "aliStart": 586,
+        "start": 586
+      },
+      {
+        "modelStart": 1,
+        "modelEnd": 31,
+        "colour": "#2dcf00",
+        "endStyle": "straight",
+        "end": 647,
+        "display": null,
+        "startStyle": "straight",
+        "aliEnd": 647,
+        "modelLength": 31,
+        "text": "Tubulin-binding",
+        "href": "/family/PF00418",
+        "type": "pfama",
+        "metadata": {
+          "scoreName": "e-value",
+          "score": "3.1e-10",
+          "description": "Tau and MAP protein, tubulin-binding repeat",
+          "end": 647,
+          "accession": "PF00418",
+          "database": "pfam",
+          "identifier": "Tubulin-binding",
+          "aliEnd": 647,
+          "type": "Family",
+          "aliStart": 617,
+          "start": 617
+        },
+        "aliStart": 617,
+        "start": 617
+      },
+      {
+        "modelStart": 1,
+        "modelEnd": 31,
+        "colour": "#2dcf00",
+        "endStyle": "straight",
+        "end": 679,
+        "display": null,
+        "startStyle": "straight",
+        "aliEnd": 679,
+        "modelLength": 31,
+        "text": "Tubulin-binding",
+        "href": "/family/PF00418",
+        "type": "pfama",
+        "metadata": {
+          "scoreName": "e-value",
+          "score": "7e-12",
+          "description": "Tau and MAP protein, tubulin-binding repeat",
+          "end": 679,
+          "accession": "PF00418",
+          "database": "pfam",
+          "identifier": "Tubulin-binding",
+          "aliEnd": 679,
+          "type": "Family",
+          "aliStart": 648,
+          "start": 648
+        },
+        "aliStart": 648,
+        "start": 648
+      }
+    ],
+    "markups": [
+      {
+        "lineColour": "#ff0000",
+        "colour": "#aaaaaa",
+        "end": 633,
+        "display": null,
+        "v_align": "top",
+        "metadata": {
+          "database": "UniProt",
+          "type": "disulphide",
+          "start": 602,
+          "end": 633
+        },
+        "type": "disulphide",
+        "start": 602
+      }
+    ],
+    "metadata": {
+      "database": "uniprot",
+      "identifier": "TAU_RAT",
+      "organism": "Rattus norvegicus (Rat)",
+      "description": "Microtubule-associated protein tau",
+      "taxid": "10116",
+      "accession": "P19332"
+    },
+    "motifs": [
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "start": 617,
+        "end": 617,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 619,
+          "end": 620
+        },
+        "start": 619,
+        "end": 620,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 632,
+          "end": 655
+        },
+        "start": 648,
+        "end": 655,
+        "display": false
+      },
+      {
+        "colour": "#00ffff",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 668,
+          "end": 677
+        },
+        "start": 668,
+        "end": 677,
+        "display": false
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 679,
+          "end": 693
+        },
+        "start": 680,
+        "end": 693,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 700,
+          "end": 710
+        },
+        "start": 700,
+        "end": 710,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 714,
+          "end": 727
+        },
+        "start": 714,
+        "end": 727,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 730,
+          "end": 731
+        },
+        "start": 730,
+        "end": 731,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 733,
+          "end": 735
+        },
+        "start": 733,
+        "end": 735,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "type": "disorder",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 739,
+          "end": 740
+        },
+        "start": 739,
+        "end": 740,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 215,
+          "end": 228
+        },
+        "start": 215,
+        "end": 228,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 278,
+          "end": 292
+        },
+        "start": 278,
+        "end": 292,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 484,
+          "end": 503
+        },
+        "start": 484,
+        "end": 503,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 501,
+          "end": 524
+        },
+        "start": 504,
+        "end": 524,
+        "display": null
+      },
+      {
+        "colour": "#86bcff",
+        "type": "low_complexity",
+        "metadata": {
+          "database": "segmasker",
+          "type": "low_complexity",
+          "start": 515,
+          "end": 533
+        },
+        "start": 525,
+        "end": 533,
+        "display": null
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 554,
+        "start": 534
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 585,
+        "start": 586
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 214,
+        "start": 1
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 277,
+        "start": 229
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 483,
+        "start": 293
+      },
+      {
+        "colour": "#00ffff",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": false,
+        "end": 503,
+        "start": 504
+      },
+      {
+        "colour": "#cccccc",
+        "metadata": {
+          "database": "IUPred",
+          "type": "disorder",
+          "start": 1,
+          "end": 617
+        },
+        "type": "disorder",
+        "display": null,
+        "end": 524,
+        "start": 525
+      }
+    ]
+  }
+]

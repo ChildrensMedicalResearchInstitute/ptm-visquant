@@ -39,12 +39,12 @@ def example():
     Skip external HTTP requests and load JSON from file.
     """
     form = PtmForm(request.form)
-    form.accession.data = "BSN_RAT"
+    form.accession.data = "tau_rat"
     import json
-    with open('static/files/BSN_RAT.json') as f:
+    with open('static/files/tau_rat.json') as f:
         context = json.load(f)
         context = remove_all_markup(context)
-    with open('static/files/BSN_RAT_EXAMPLE.csv') as f:
+    with open('static/files/tau_rat_example.csv') as f:
         add_markup_to_context(to_markup_list(f), context)
     return render_template(
         'ptm-visquant.html',
@@ -67,6 +67,7 @@ def how_to(path):
         content=read_markdown('static/content/{}'.format(filename)),
     )
 
+
 @app.route('/contact-us')
 def contact_us():
     return render_template(
@@ -87,7 +88,7 @@ def license():
 def example_csv():
     return send_from_directory(
         'static/files',
-        filename='BSN_RAT_EXAMPLE.csv',
+        filename='tau_rat_example.csv',
         as_attachment=True,
     )
 

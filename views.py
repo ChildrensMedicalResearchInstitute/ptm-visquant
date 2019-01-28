@@ -80,7 +80,7 @@ def contact_us():
 def license():
     return render_template(
         'article.html',
-        content=read_markdown('static/content/license.md'),
+        content=read_markdown('./LICENSE.md'),
     )
 
 

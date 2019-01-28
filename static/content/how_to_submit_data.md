@@ -8,13 +8,13 @@ Specify a protein of interest using the UniProt entry name or accession (for exa
 A single value may be specified. For example:
 
 ```
-BSN_RAT
+tau_rat
 ```
 
 More than one protein can be displayed by separating the values with a comma.
 
 ```
-BSN_RAT,TAU_RAT
+tau_rat,bsn_rat
 ```
 
 A valid UniProt entry must be supplied in this field.
@@ -37,23 +37,23 @@ Here is a short example of a CSV file which includes only the required fields.
 
 ```
 accession,site,type
-tau_rat,105,phosphorylation
-tau_rat,189;200,phosphorylation;glycosylation
+tau_rat,667,phosphorylation
+tau_rat,711;727,glycosylation;phosphorylation
 ```
 
 Here is a quick example of another CSV file which includes all fields.
 
 ```
-accession,site,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3,intensity_trial_4,intensity_trial_5
-syn3_rat,118,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114,0.4425308,0.09422488
-syn3_rat,130;140,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.4202376,0.2043132,0.1221804,0.9935178
+accession,site,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3
+tau_rat,542,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114
+tau_rat,546;667,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.4202376,0.2043132
 ```
 
 If `type` and `lineColour` is consistent across many modifications on a peptide, they only need to be specified once.
 
 ```
 accession,site,type,lineColour
-syn1_rat,240;287;290,phosphorylation,lightgreen
+tau_rat,542;546;667,phosphorylation,lightgreen
 ```
 
 In the example above, there are many modification sites listed, however only one type and lineColour is specified. In cases like these, the type and lineColour values will be repeated for all modification sites specified on that line.

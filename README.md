@@ -8,11 +8,7 @@ https://visquant.cmri.org.au/
 
 ### Python dependencies
 
-This project uses Python 3.7 for the backend and Conda to manage required Python packages. You can install Python3.7 from [Conda](https://www.anaconda.com/download/#linux) or [MiniConda](https://conda.io/miniconda.html) (light-weight Conda installation). Verify that Conda has installed successfully.
-
-```
-conda --version
-```
+This project uses Python 3.7. Python dependencies are managed using [pipenv](https://docs.pipenv.org/en/latest/).
 
 Clone this repository.
 
@@ -20,21 +16,16 @@ Clone this repository.
 git clone https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant.git
 ```
 
-Then create a python3 environment with Python package dependencies as defined by the `environment.yml` file.
+Then create a python3 environment with pipenv.
 
 ```
-conda env create -f ptm-visquant/environment.yml
-```
-
-Verify the environment has been successfully created.
-
-```
-source activate ptm-visquant
+cd ptm-visquant
+pipenv install
 ```
 
 ### Javascript dependencies
 
-This project uses npm to manage JavaScript dependencies in the frontend. Install [Node.js](https://nodejs.org/en/download/), which comes with the node package manager (npm).
+This project uses NPM to manage JavaScript dependencies in the frontend. Install [Node.js](https://nodejs.org/en/download/), which comes with the node package manager (npm).
 
 Verify that npm has been installed successfully.
 
@@ -45,7 +36,7 @@ npm --version
 All Javascript dependencies are listed in the `static/package.json` file. Navigate to the `static` directory and install all dependencies there.
 
 ```
-cd ptm-visquant/static
+cd static
 npm install
 ```
 

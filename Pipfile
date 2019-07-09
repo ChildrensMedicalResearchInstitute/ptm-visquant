@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pep8 = "*"
+autopep8 = "*"
+
+[packages]
+beautifulsoup4 = "*"
+flask = "*"
+requests = "*"
+lxml = "*"
+markdown = "*"
+wtforms = "*"
+uwsgi = "*"
+marshmallow = "==3.0.0b8"
+flask-wtf = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

@@ -121,17 +121,19 @@ def to_markup_list(csv_file):
         row = __condense_intensity_attr(row)
         coordinates = __split_coordinate_string(row.get('site'))
         types = __split_type_string(row.get('type'))
-        colours = __split_colour_string(row.get('lineColour')) if row.get('lineColour') else [None]
-        for index, (coord, _type, colour) in enumerate(zip(coordinates, cycle(types), cycle(colours))):
+        colours = __split_colour_string(
+            row.get('lineColour')) if row.get('lineColour') else [None]
+        site_sets = enumerate(zip(coordinates, cycle(types), cycle(colours)))
+        for index, (coord, type_, colour) in site_sets:
             data = schema.dump(row)
-            data['type'] = _type
+            data['type'] = type_
             data['start'] = coord
             if colour is not None:
                 data['lineColour'] = colour
             # avoid displaying duplicate markup; only one per row
             data['display'] = True if index == 0 else False
-            data['peptide_type_sequence'] = row.get('type')
-            data['peptide_coordinate_sequence'] = row.get('site')
+            data['peptide_type_sequence'] = data['type']
+            data['peptide_coordinate_sequence'] = data['site']
             data['intensity_labels'] = intensity_labels
             markup.append(data)
     return markup

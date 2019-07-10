@@ -15,7 +15,7 @@ PFAM_DATA_PATTERN = r"(?<=({pre}))[\s\S]*?(?=({post}))".format(
 )
 
 
-def __request_status(url):
+def _request_status(url):
     try:
         return requests.head(
             url,
@@ -26,14 +26,14 @@ def __request_status(url):
         return None
 
 
-def __request_response(url):
+def _request_response(url):
     try:
         return requests.get(url, timeout=10)
     except requests.exceptions.Timeout:
         return None
 
 
-def __condense_intensity_attr(dictionary):
+def _condense_intensity_attr(dictionary):
     dictionary = deepcopy(dictionary)
     keys_to_remove = []
     intensity_values = []
@@ -47,7 +47,7 @@ def __condense_intensity_attr(dictionary):
     return dictionary
 
 
-def __extract_intensity_labels(fields):
+def _extract_intensity_labels(fields):
     intensity_labels = []
     for field in fields:
         if field.startswith('intensity_'):
@@ -62,9 +62,9 @@ def split_accessions(ids):
 def make_requests(urls, status_only=False):
     num_threads = len(urls)
     pool = ThreadPool(num_threads)
-    request_method = __request_response
+    request_method = _request_response
     if status_only:
-        request_method = __request_status
+        request_method = _request_status
     return pool.map(request_method, urls)
 
 
@@ -90,15 +90,15 @@ def get_protein_domains(accessions):
     return protein_data
 
 
-def __split_type_string(s):
+def _split_type_string(s):
     return re.split(r'\W+', s)
 
 
-def __split_coordinate_string(s):
+def _split_coordinate_string(s):
     return map(int, re.split(r'\D+', s))
 
 
-def __split_colour_string(s):
+def _split_colour_string(s):
     return re.split(r'[^\w#]+', s)
 
 
@@ -116,22 +116,24 @@ def to_markup_list(csv_file):
     markup = []
     schema = MarkupSchema()
     reader = DictReader(csv_file)
-    intensity_labels = __extract_intensity_labels(reader.fieldnames)
+    intensity_labels = _extract_intensity_labels(reader.fieldnames)
     for row in reader:
-        row = __condense_intensity_attr(row)
-        coordinates = __split_coordinate_string(row.get('site'))
-        types = __split_type_string(row.get('type'))
-        colours = __split_colour_string(row.get('lineColour')) if row.get('lineColour') else [None]
-        for index, (coord, _type, colour) in enumerate(zip(coordinates, cycle(types), cycle(colours))):
+        row = _condense_intensity_attr(row)
+        coordinates = _split_coordinate_string(row.get('site'))
+        types = _split_type_string(row.get('type'))
+        colours = _split_colour_string(
+            row.get('lineColour')) if row.get('lineColour') else [None]
+        site_sets = enumerate(zip(coordinates, cycle(types), cycle(colours)))
+        for index, (coord, type_, colour) in site_sets:
             data = schema.dump(row)
-            data['type'] = _type
+            data['type'] = type_
             data['start'] = coord
             if colour is not None:
                 data['lineColour'] = colour
             # avoid displaying duplicate markup; only one per row
             data['display'] = True if index == 0 else False
-            data['peptide_type_sequence'] = row.get('type')
-            data['peptide_coordinate_sequence'] = row.get('site')
+            data['peptide_type_sequence'] = data['type']
+            data['peptide_coordinate_sequence'] = data['site']
             data['intensity_labels'] = intensity_labels
             markup.append(data)
     return markup

@@ -1,16 +1,36 @@
-from app import app
-from forms import PtmForm
+import importlib.resources as pkg_resources
+
+from flask import Flask, Markup
+from flask import abort, render_template, request, send_from_directory
 from mapper.utils import (
     add_markup_to_context,
     get_protein_domains,
     remove_all_markup,
     to_markup_list,
 )
-
-from flask import Flask, Markup
-from flask import abort, render_template, request, send_from_directory
 from markdown import markdown
 from markdown.extensions.extra import ExtraExtension
+from pathlib import Path
+from werkzeug.utils import secure_filename
+
+from .app import app
+from .forms import PtmForm
+
+
+def resolve_static_file(filepath):
+    base_path = Path(__file__).parent
+    return (base_path / 'static' / filepath).resolve()
+
+
+def read_markdown(filepath):
+    try:
+        with open(resolve_static_file(filepath)) as f:
+            return Markup(markdown(
+                f.read(),
+                extensions=[ExtraExtension()],
+            ))
+    except FileNotFoundError:
+        abort(404, description="Missing markdown file.")
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -26,7 +46,7 @@ def index():
             add_markup_to_context(form.markup_list, context)
     return render_template(
         'ptm-visquant.html',
-        card_content=read_markdown('static/content/instruction_card.md'),
+        card_content=read_markdown('content/instruction_card.md'),
         form=form,
         has_file_upload=has_file_upload,
         context=context,
@@ -41,14 +61,14 @@ def example():
     form = PtmForm(request.form)
     form.accession.data = "tau_rat"
     import json
-    with open('static/files/tau_rat.json') as f:
+    with open(resolve_static_file('files/tau_rat.json')) as f:
         context = json.load(f)
         context = remove_all_markup(context)
-    with open('static/files/tau_rat_example.csv') as f:
+    with open(resolve_static_file('files/tau_rat_example.csv')) as f:
         add_markup_to_context(to_markup_list(f), context)
     return render_template(
         'ptm-visquant.html',
-        card_content=read_markdown('static/content/instruction_card.md'),
+        card_content=read_markdown('content/instruction_card.md'),
         form=form,
         has_file_upload=True,
         context=context,
@@ -61,10 +81,10 @@ def how_to(path):
     if not path:
         filename = 'how_to.md'
     else:
-        filename = 'how_to_{}.md'.format(path.replace('-', '_'))
+        filename = f"how_to_{path.replace('-', '_')}.md"
     return render_template(
         'article.html',
-        content=read_markdown('static/content/{}'.format(filename)),
+        content=read_markdown(f'content/{secure_filename(filename)}'),
     )
 
 
@@ -72,7 +92,7 @@ def how_to(path):
 def contact_us():
     return render_template(
         'article.html',
-        content=read_markdown('static/content/contact_us.md'),
+        content=read_markdown('content/contact_us.md'),
     )
 
 
@@ -80,25 +100,14 @@ def contact_us():
 def license():
     return render_template(
         'article.html',
-        content=read_markdown('./LICENSE.md'),
+        content=read_markdown('../../LICENSE.md'),
     )
 
 
 @app.route('/example-csv')
 def example_csv():
     return send_from_directory(
-        'static/files',
+        resolve_static_file('files'),
         filename='tau_rat_example.csv',
         as_attachment=True,
     )
-
-
-def read_markdown(filename):
-    try:
-        with open(filename) as about_file:
-            return Markup(markdown(
-                about_file.read(),
-                extensions=[ExtraExtension(), ],
-            ))
-    except FileNotFoundError:
-        abort(404)

@@ -21,9 +21,8 @@ class ValidUniProtProteins():
                 )
             if stat != 200:
                 raise ValidationError(
-                    "Uniprot does not recognise the protein '{}'.".format(
-                        accessions[i]
-                    )
+                    "Uniprot does not recognise the protein '{}'."
+                    .format(accessions[i])
                 )
 
 

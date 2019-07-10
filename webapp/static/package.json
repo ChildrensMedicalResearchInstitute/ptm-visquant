@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant#readme",
   "dependencies": {
-    "bootstrap": "^4.2",
-    "bootstrap-select": "^1.13.1",
-    "d3": "^5.7.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-select": "^1.13.10",
+    "d3": "^5.9.7",
     "d3-svg-legend": "^2.25.6",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.6",
-    "save-svg-as-png": "^1.4.6"
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "save-svg-as-png": "^1.4.14"
   }
 }

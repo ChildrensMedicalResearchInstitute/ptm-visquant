@@ -8,7 +8,7 @@ https://visquant.cmri.org.au/
 
 ### Python dependencies
 
-This project uses Python 3.7. Python dependencies are managed using [pipenv](https://docs.pipenv.org/en/latest/).
+This project uses Python 3.7. Python dependencies are managed using [pipenv](https://pipenv.kennethreitz.org/en/latest/).
 
 Clone this repository.
 

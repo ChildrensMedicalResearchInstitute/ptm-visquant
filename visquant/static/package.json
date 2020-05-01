@@ -21,7 +21,7 @@
     "bootstrap-select": "^1.13.10",
     "d3": "^5.9.7",
     "d3-svg-legend": "^2.25.6",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.15.0",
     "save-svg-as-png": "^1.4.14"
   }

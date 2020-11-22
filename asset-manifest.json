@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ptm-visquant/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/ptm-visquant/static/js/main.b6360be3.chunk.js",
+    "main.js.map": "/ptm-visquant/static/js/main.b6360be3.chunk.js.map",
+    "runtime-main.js": "/ptm-visquant/static/js/runtime-main.3690df26.js",
+    "runtime-main.js.map": "/ptm-visquant/static/js/runtime-main.3690df26.js.map",
+    "static/js/2.55b11dab.chunk.js": "/ptm-visquant/static/js/2.55b11dab.chunk.js",
+    "static/js/2.55b11dab.chunk.js.map": "/ptm-visquant/static/js/2.55b11dab.chunk.js.map",
+    "static/js/3.3d443554.chunk.js": "/ptm-visquant/static/js/3.3d443554.chunk.js",
+    "static/js/3.3d443554.chunk.js.map": "/ptm-visquant/static/js/3.3d443554.chunk.js.map",
+    "index.html": "/ptm-visquant/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/ptm-visquant/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.55b11dab.chunk.js.LICENSE.txt": "/ptm-visquant/static/js/2.55b11dab.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/ptm-visquant/static/media/logo.103b5fa1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3690df26.js",
+    "static/js/2.55b11dab.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.b6360be3.chunk.js"
+  ]
+}

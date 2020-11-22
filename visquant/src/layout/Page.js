@@ -1,24 +1,21 @@
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
+import { Route, Switch } from 'react-router-dom';
+import PageNotFound from './PageNotFound';
+import EmptyContent from './EmptyContent';
+import TopNav from './TopNav';
+import HowToPage from './HowToPage';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const Page = () => (
   <Layout className="layout">
-    <Header>
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
-      </Menu>
-    </Header>
+    <TopNav></TopNav>
     <Content style={{ padding: '0 50px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
-      <div className="site-layout-content">Content</div>
+      <Switch>
+        <Route path="/" exact component={EmptyContent} />
+        <Route path="/help" exact component={HowToPage} />
+        <Route component={PageNotFound} />
+      </Switch>
     </Content>
     <Footer style={{ textAlign: 'center' }}>Copyright © 2019 Children’s Medical Research Institute</Footer>
   </Layout>

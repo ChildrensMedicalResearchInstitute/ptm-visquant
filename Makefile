@@ -13,7 +13,7 @@ build:
 	yarn --cwd ${APP_DIRECTORY} build
 
 .PHONY: deploy
-build:
+deploy:
 	yarn --cwd ${APP_DIRECTORY} run deploy
 
 .PHONY: test

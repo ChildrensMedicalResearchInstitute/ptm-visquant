@@ -8,10 +8,6 @@ dev:
 start:
 	yarn --cwd ${APP_DIRECTORY} start
 
-.PHONY: build
-build:
-	yarn --cwd ${APP_DIRECTORY} build
-
 .PHONY: deploy
 deploy:
 	yarn --cwd ${APP_DIRECTORY} run deploy

@@ -4,7 +4,7 @@ PTM VisQuant is a static web application designed for visualising
 post-translational modification sites alongside protein motif and family domain
 information.
 
-https://visquant.cmri.org.au/
+[childrensmedicalresearchinstitute.github.io/ptm-visquant/](https://childrensmedicalresearchinstitute.github.io/ptm-visquant/)
 
 ## Development
 

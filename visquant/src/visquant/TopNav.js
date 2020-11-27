@@ -1,11 +1,11 @@
-import React from "react";
-import { Layout, Menu } from "antd";
 import {
   CopyrightOutlined,
   GithubOutlined,
   PushpinOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons";
+import { Layout, Menu } from "antd";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 const { Header } = Layout;
@@ -18,17 +18,19 @@ const MenuKey = {
 };
 
 class TopNav extends React.Component {
-  state = {
-    currentSelectedKey: MenuKey.MENU_KEY_DRAW,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentSelectedKey: MenuKey.MENU_KEY_DRAW,
+    };
+  }
 
-  handleClick = (e) => {
-    console.log(e.key);
+  handlecheck(e) {
     if (e.key === MenuKey.MENU_KEY_GITHUB) {
       return;
     }
     this.setState({ currentSelectedKey: e.key });
-  };
+  }
 
   render() {
     return (
@@ -58,6 +60,7 @@ class TopNav extends React.Component {
             <a
               href="https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant"
               target="_blank"
+              rel="noreferrer"
             >
               GitHub
             </a>

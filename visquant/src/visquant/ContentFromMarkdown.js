@@ -1,7 +1,6 @@
+import { Result, Button, Skeleton } from "antd";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-
-import { Result, Button, Skeleton } from "antd";
 import { Link } from "react-router-dom";
 
 const Status = {

@@ -1,9 +1,9 @@
+import ContentFromMarkdown from "./ContentFromMarkdown";
+import EmptyContent from "./EmptyContent";
+import PageNotFound from "./PageNotFound";
+import TopNav from "./TopNav";
 import { Layout } from "antd";
 import { Route, Switch } from "react-router-dom";
-import PageNotFound from "./PageNotFound";
-import EmptyContent from "./EmptyContent";
-import TopNav from "./TopNav";
-import ContentFromMarkdown from "./ContentFromMarkdown";
 
 const { Content, Footer } = Layout;
 

@@ -1,7 +1,7 @@
 import "./App.css";
-
-import { HashRouter } from "react-router-dom";
 import Page from "./visquant/Page";
+import React from "react";
+import { HashRouter } from "react-router-dom";
 
 function App() {
   return (

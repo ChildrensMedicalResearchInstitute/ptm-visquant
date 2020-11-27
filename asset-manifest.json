@@ -1,23 +1,25 @@
 {
   "files": {
-    "main.css": "/ptm-visquant/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/ptm-visquant/static/js/main.47305acb.chunk.js",
-    "main.js.map": "/ptm-visquant/static/js/main.47305acb.chunk.js.map",
-    "runtime-main.js": "/ptm-visquant/static/js/runtime-main.687741c5.js",
-    "runtime-main.js.map": "/ptm-visquant/static/js/runtime-main.687741c5.js.map",
-    "static/js/2.2ccc8be8.chunk.js": "/ptm-visquant/static/js/2.2ccc8be8.chunk.js",
-    "static/js/2.2ccc8be8.chunk.js.map": "/ptm-visquant/static/js/2.2ccc8be8.chunk.js.map",
-    "static/js/3.53af2ce2.chunk.js": "/ptm-visquant/static/js/3.53af2ce2.chunk.js",
-    "static/js/3.53af2ce2.chunk.js.map": "/ptm-visquant/static/js/3.53af2ce2.chunk.js.map",
+    "main.css": "/ptm-visquant/static/css/main.22b6e383.chunk.css",
+    "main.js": "/ptm-visquant/static/js/main.897a4ff8.chunk.js",
+    "main.js.map": "/ptm-visquant/static/js/main.897a4ff8.chunk.js.map",
+    "runtime-main.js": "/ptm-visquant/static/js/runtime-main.0be50da8.js",
+    "runtime-main.js.map": "/ptm-visquant/static/js/runtime-main.0be50da8.js.map",
+    "static/css/2.ea9b1cc9.chunk.css": "/ptm-visquant/static/css/2.ea9b1cc9.chunk.css",
+    "static/js/2.8b2e7031.chunk.js": "/ptm-visquant/static/js/2.8b2e7031.chunk.js",
+    "static/js/2.8b2e7031.chunk.js.map": "/ptm-visquant/static/js/2.8b2e7031.chunk.js.map",
+    "static/js/3.d839b3b0.chunk.js": "/ptm-visquant/static/js/3.d839b3b0.chunk.js",
+    "static/js/3.d839b3b0.chunk.js.map": "/ptm-visquant/static/js/3.d839b3b0.chunk.js.map",
     "index.html": "/ptm-visquant/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/ptm-visquant/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.2ccc8be8.chunk.js.LICENSE.txt": "/ptm-visquant/static/js/2.2ccc8be8.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/ptm-visquant/static/media/logo.103b5fa1.svg"
+    "static/css/2.ea9b1cc9.chunk.css.map": "/ptm-visquant/static/css/2.ea9b1cc9.chunk.css.map",
+    "static/css/main.22b6e383.chunk.css.map": "/ptm-visquant/static/css/main.22b6e383.chunk.css.map",
+    "static/js/2.8b2e7031.chunk.js.LICENSE.txt": "/ptm-visquant/static/js/2.8b2e7031.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.687741c5.js",
-    "static/js/2.2ccc8be8.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.47305acb.chunk.js"
+    "static/js/runtime-main.0be50da8.js",
+    "static/css/2.ea9b1cc9.chunk.css",
+    "static/js/2.8b2e7031.chunk.js",
+    "static/css/main.22b6e383.chunk.css",
+    "static/js/main.897a4ff8.chunk.js"
   ]
 }

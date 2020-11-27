@@ -20,6 +20,14 @@ start: ## Start application server locally
 format: ## Run prettier formatting on code
 	yarn --cwd ${APP_DIRECTORY} prettier --write .
 
+.PHONY: check-format
+check-format: ## Report prettier formatting issues
+	yarn --cwd ${APP_DIRECTORY} prettier --check .
+
+.PHONY: lint
+lint: ## Run eslint on code
+	yarn --cwd ${APP_DIRECTORY} run eslint src/
+
 .PHONY: deploy
 deploy: ## Deploy application to github
 	yarn --cwd ${APP_DIRECTORY} run deploy

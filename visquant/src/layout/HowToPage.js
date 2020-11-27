@@ -6,7 +6,7 @@ class HowToPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      href: "https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/master/visquant/static/content/how_to_drawing_options.md",
+      href: "https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/docs/how_to_drawing_options.md",
       content: null,
     };
   }
@@ -14,7 +14,11 @@ class HowToPage extends React.Component {
   componentDidMount() {
     fetch(this.state.href)
       .then(response => response.text())
-      .then(data => this.setState({ content: data }));
+      .then(data => this.setState({ content: data }))
+      .catch(error => {
+        this.setState({ content: "Unable to load content." })
+        console.error(error);
+      });
   }
 
   render() {

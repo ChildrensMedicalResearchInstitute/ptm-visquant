@@ -1,4 +1,5 @@
 import { Result, Button, Skeleton } from "antd";
+import PropTypes from "prop-types";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
@@ -28,7 +29,7 @@ class ContentFromMarkdown extends React.Component {
           status: Status.RESOLVED,
         });
       })
-      .catch((_) => {
+      .catch(() => {
         this.setState({
           content: "Unable to load content.",
           status: Status.REJECTED,
@@ -62,5 +63,9 @@ class ContentFromMarkdown extends React.Component {
     }
   }
 }
+
+ContentFromMarkdown.propTypes = {
+  href: PropTypes.string,
+};
 
 export default ContentFromMarkdown;

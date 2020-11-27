@@ -16,16 +16,9 @@ dev: ## Install dev dependencies
 start: ## Start application server locally
 	yarn --cwd ${APP_DIRECTORY} start
 
-.PHONY: format
-format: ## Run prettier formatting on code
-	yarn --cwd ${APP_DIRECTORY} prettier --write .
-
-.PHONY: check-format
-check-format: ## Report prettier formatting issues
-	yarn --cwd ${APP_DIRECTORY} prettier --check .
-
 .PHONY: lint
-lint: ## Run eslint on code
+lint: ## Run prettier formatting and eslint on code
+	yarn --cwd ${APP_DIRECTORY} prettier --write .
 	yarn --cwd ${APP_DIRECTORY} run eslint src/
 
 .PHONY: deploy

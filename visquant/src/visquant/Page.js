@@ -3,6 +3,7 @@ import EmptyContent from "./EmptyContent";
 import PageNotFound from "./PageNotFound";
 import TopNav from "./TopNav";
 import { Layout } from "antd";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 const { Content, Footer } = Layout;

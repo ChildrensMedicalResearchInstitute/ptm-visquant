@@ -1,17 +1,16 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { Result, Button, Skeleton } from 'antd';
+import { Result, Button, Skeleton } from "antd";
 import { Link } from "react-router-dom";
 
 const Status = {
   PENDING: "pending",
   REJECTED: "rejected",
   RESOLVED: "resolved",
-}
+};
 
 class ContentFromMarkdown extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,18 +22,18 @@ class ContentFromMarkdown extends React.Component {
 
   componentDidMount() {
     fetch(this.state.href)
-      .then(response => response.text())
-      .then(data => {
+      .then((response) => response.text())
+      .then((data) => {
         this.setState({
           content: data,
           status: Status.RESOLVED,
-        })
+        });
       })
-      .catch(_ => {
+      .catch((_) => {
         this.setState({
           content: "Unable to load content.",
           status: Status.REJECTED,
-        })
+        });
       });
   }
 
@@ -48,15 +47,19 @@ class ContentFromMarkdown extends React.Component {
     }
 
     if (this.state.status === Status.REJECTED) {
-      return <Result
-        status="warning"
-        title="We were unable to load the content."
-        extra={
-          <Link to="/">
-            <Button type="default" key="home">Back Home</Button>
-          </Link>
-        }
-      />
+      return (
+        <Result
+          status="warning"
+          title="We were unable to load the content."
+          extra={
+            <Link to="/">
+              <Button type="default" key="home">
+                Back Home
+              </Button>
+            </Link>
+          }
+        />
+      );
     }
   }
 }

@@ -1,7 +1,5 @@
-import { Skeleton } from 'antd';
+import { Skeleton } from "antd";
 
-const EmptyContent = () => (
-    <Skeleton />
-);
+const EmptyContent = () => <Skeleton />;
 
 export default EmptyContent;

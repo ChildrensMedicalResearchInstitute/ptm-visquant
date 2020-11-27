@@ -13,7 +13,7 @@ const Page = () => (
     <Content style={{ padding: '0 50px' }}>
       <Switch>
         <Route path="/" exact component={EmptyContent} />
-        <Route path="/help" exact component={HowToPage} />
+        <Route path="/how-to" exact component={HowToPage} />
         <Route component={PageNotFound} />
       </Switch>
     </Content>

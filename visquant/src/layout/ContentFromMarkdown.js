@@ -1,16 +1,16 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-class HowToPage extends React.Component {
+class ContentFromMarkdown extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      href: "https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/docs/how_to_drawing_options.md",
+      href: props.href,
       content: null,
     };
   }
-  lkj
+
   componentDidMount() {
     fetch(this.state.href)
       .then(response => response.text())
@@ -28,4 +28,4 @@ class HowToPage extends React.Component {
   }
 }
 
-export default HowToPage;
+export default ContentFromMarkdown;

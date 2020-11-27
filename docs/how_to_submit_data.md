@@ -1,25 +1,24 @@
+# Submitting your data
 
-## Submitting your data
-
-### Protein Entry Name or Accession
+## Protein Entry Name or Accession
 
 Specify a protein of interest using the UniProt entry name or accession (for example, BSN_RAT or O88778). Proteins entries are restricted to the UniProt release currently being used by Pfam, which provides the evolutionarily conserved domain information.
 
 A single value may be specified. For example:
 
-```
+```csv
 tau_rat
 ```
 
 More than one protein can be displayed by separating the values with a comma.
 
-```
+```csv
 tau_rat,bsn_rat
 ```
 
 A valid UniProt entry must be supplied in this field.
 
-### Post-translational modifications input file
+## Post-translational modifications input file
 
 Your post-translational modification site information must be provided via a file in CSV (comma-separated value) format. The application will use this information for display on the evolutionarily conserved protein domain structure diagram.
 
@@ -35,7 +34,7 @@ The first line of the CSV file should be a header which identifies the informati
 
 Here is a short example of a CSV file which includes only the required fields.
 
-```
+```csv
 accession,site,type
 tau_rat,667,phosphorylation
 tau_rat,711;727,glycosylation;phosphorylation
@@ -43,7 +42,7 @@ tau_rat,711;727,glycosylation;phosphorylation
 
 Here is a quick example of another CSV file which includes all fields.
 
-```
+```csv
 accession,site,type,lineColour,intensity_trial_1,intensity_trial_2,intensity_trial_3
 tau_rat,542,phosphorylation,#FE4EDA,1.437837,0.9898816,0.1745114
 tau_rat,546;667,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.4202376,0.2043132
@@ -51,16 +50,16 @@ tau_rat,546;667,phosphorylation;phosphorylation,#FE4EDA;#FE4EDA,-0.8414064,-0.42
 
 If `type` and `lineColour` is consistent across many modifications on a peptide, they only need to be specified once.
 
-```
+```csv
 accession,site,type,lineColour
 tau_rat,542;546;667,phosphorylation,lightgreen
 ```
 
 In the example above, there are many modification sites listed, however only one type and lineColour is specified. In cases like these, the type and lineColour values will be repeated for all modification sites specified on that line.
 
-[Download an example CSV file](/example-csv) to experiment with the schema. This example CSV will generate [this view](/example).
+[Download an example CSV file](https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/examples/tau_rat_example.csv) to experiment with the schema. This example CSV will generate [this view](/example).
 
-#### My data is from MaxQuant and is site-centric. How do I make it peptide-centric?
+### My data is from MaxQuant and is site-centric. How do I make it peptide-centric?
 
 This tool is deliberately designed for peptide-centric data since all proteomics-based quantitative data is peptide-centric. The site tables from MaxQuant are in the format of one site per row. However, the intensity data for each row can be from mono- or multiply modified peptides.
 

@@ -13,3 +13,4 @@ node_modules/
 # Hidden files and directories, except .gitignore
 .*
 !/.gitignore
+!/visquant/.gitignore

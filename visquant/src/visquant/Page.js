@@ -32,7 +32,17 @@ const Page = () => (
       </Switch>
     </Content>
     <Footer style={{ textAlign: "center" }}>
-      Copyright © 2019 Children’s Medical Research Institute
+      <p>
+        Made with ♡ by{" "}
+        <a
+          href="https://github.com/digitalpoetry"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jonathan Du
+        </a>
+        . Copyright © 2019 Children’s Medical Research Institute
+      </p>
     </Footer>
   </Layout>
 );

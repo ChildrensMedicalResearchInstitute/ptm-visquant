@@ -8,6 +8,8 @@ information.
 
 ## Development
 
+The source code for this project is available at [github.com/ChildrensMedicalResearchInstitute/ptm-visquant](https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant)
+
 This project uses [Yarn](https://classic.yarnpkg.com/en/docs/install) to manage
 dependencies.
 

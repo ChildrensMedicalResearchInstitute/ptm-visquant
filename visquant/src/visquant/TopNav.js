@@ -60,7 +60,7 @@ class TopNav extends React.Component {
             <a
               href="https://github.com/ChildrensMedicalResearchInstitute/ptm-visquant"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               GitHub
             </a>

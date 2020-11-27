@@ -16,6 +16,10 @@ dev: ## Install dev dependencies
 start: ## Start application server locally
 	yarn --cwd ${APP_DIRECTORY} start
 
+.PHONY: format
+format: ## Run prettier formatting on code
+	yarn --cwd ${APP_DIRECTORY} prettier --write .
+
 .PHONY: deploy
 deploy: ## Deploy application to github
 	yarn --cwd ${APP_DIRECTORY} run deploy

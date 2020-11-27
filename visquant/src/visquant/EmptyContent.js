@@ -1,5 +1,7 @@
+import { Skeleton } from 'antd';
+
 const EmptyContent = () => (
-    <p>Nothing to see here.</p>
+    <Skeleton />
 );
 
 export default EmptyContent;

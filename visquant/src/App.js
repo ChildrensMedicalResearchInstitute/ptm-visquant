@@ -1,7 +1,7 @@
 import './App.css';
 
-import { HashRouter, Route, Switch } from "react-router-dom";
-import Page from './layout/Page';
+import { HashRouter } from "react-router-dom";
+import Page from './visquant/Page';
 
 
 function App() {

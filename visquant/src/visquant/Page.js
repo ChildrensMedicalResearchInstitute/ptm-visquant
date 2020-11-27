@@ -1,7 +1,7 @@
 import ContentFromMarkdown from "./ContentFromMarkdown";
-import EmptyContent from "./EmptyContent";
 import PageNotFound from "./PageNotFound";
 import TopNav from "./TopNav";
+import UnderConstruction from "./UnderConstruction";
 import { Layout } from "antd";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
@@ -13,7 +13,7 @@ const Page = () => (
     <TopNav></TopNav>
     <Content style={{ padding: "0 50px" }}>
       <Switch>
-        <Route path="/" exact component={EmptyContent} />
+        <Route path="/" exact component={UnderConstruction} />
         <Route
           path="/how-to"
           exact

@@ -21,15 +21,18 @@ class TopNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSelectedKey: MenuKey.MENU_KEY_DRAW,
+      selectedKeys: [],
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handlecheck(e) {
+  handleClick(e) {
+    console.log(e);
     if (e.key === MenuKey.MENU_KEY_GITHUB) {
       return;
     }
-    this.setState({ currentSelectedKey: e.key });
+    this.setState({ selectedKeys: [e.key] });
   }
 
   render() {
@@ -38,7 +41,7 @@ class TopNav extends React.Component {
         <Menu
           theme="dark"
           onClick={this.handleClick}
-          selectedKeys={[this.state.currentSelectedKey]}
+          selectedKeys={this.state.selectedKeys}
           mode="horizontal"
         >
           <Menu.Item key={MenuKey.MENU_KEY_DRAW} icon={<PushpinOutlined />}>

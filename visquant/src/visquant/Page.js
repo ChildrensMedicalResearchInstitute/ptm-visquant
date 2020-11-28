@@ -10,7 +10,7 @@ import { Route, Switch } from "react-router-dom";
 const { Content, Footer } = Layout;
 
 const Page = () => (
-  <Layout className="layout">
+  <Layout className="layout" style={{ minHeight: "100vh" }}>
     <TopNav></TopNav>
     <Content style={{ padding: "0 50px" }}>
       <Switch>

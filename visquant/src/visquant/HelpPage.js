@@ -5,7 +5,7 @@ import React from "react";
 const HelpPage = ({ match }) => {
   const { subpage } = match.params;
   const resourceFile = `how-to${subpage ? "-" + subpage : ""}.md`;
-  const resourcePath = `https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/docs/${resourceFile}`;
+  const resourcePath = `https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/master/docs/${resourceFile}`;
   return <ContentFromMarkdown href={resourcePath} />;
 };
 

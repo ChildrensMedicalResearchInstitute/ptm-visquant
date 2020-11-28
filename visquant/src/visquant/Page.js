@@ -1,6 +1,6 @@
 import ContentFromMarkdown from "./ContentFromMarkdown";
 import HelpPage from "./HelpPage";
-import PageNotFound from "./PageNotFound";
+import { PageNotFound } from "./HttpResult";
 import TopNav from "./TopNav";
 import UnderConstruction from "./UnderConstruction";
 import { Layout } from "antd";

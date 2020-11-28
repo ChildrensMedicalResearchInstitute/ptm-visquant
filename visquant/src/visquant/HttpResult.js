@@ -15,4 +15,17 @@ const PageNotFound = () => (
   />
 );
 
-export default PageNotFound;
+const ServerError = () => (
+  <Result
+    status="500"
+    title="Blip in the network"
+    subTitle="Something went wrong. Please try again later."
+    extra={
+      <Button type="default" key="home" onClick={() => location.reload()}>
+        Refresh
+      </Button>
+    }
+  />
+);
+
+export { PageNotFound, ServerError };

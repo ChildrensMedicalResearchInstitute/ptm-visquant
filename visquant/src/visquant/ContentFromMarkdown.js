@@ -1,8 +1,8 @@
-import { Result, Button, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import PropTypes from "prop-types";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
+import { PageNotFound, ServerError } from "./HttpResult";
 
 const Status = {
   PENDING: "pending",
@@ -15,6 +15,7 @@ class ContentFromMarkdown extends React.Component {
     super(props);
     this.state = {
       href: props.href,
+      httpResponseCode: null,
       status: Status.PENDING,
       content: null,
     };
@@ -35,7 +36,10 @@ class ContentFromMarkdown extends React.Component {
 
   fetchContent() {
     fetch(this.state.href)
-      .then((response) => response.text())
+      .then((response) => {
+        this.setState({ httpResponseCode: response.status });
+        return response.text();
+      })
       .then((data) => {
         this.setState({
           status: Status.RESOLVED,
@@ -45,7 +49,7 @@ class ContentFromMarkdown extends React.Component {
       .catch(() => {
         this.setState({
           status: Status.REJECTED,
-          content: "Unable to load content.",
+          content: null,
         });
       });
   }
@@ -55,21 +59,11 @@ class ContentFromMarkdown extends React.Component {
       case Status.PENDING:
         return <Skeleton active />;
       case Status.RESOLVED:
-        return <ReactMarkdown source={this.state.content} />;
+        return this.state.httpResponseCode === 404
+          ? <PageNotFound />
+          : <ReactMarkdown source={this.state.content} />;
       case Status.REJECTED:
-        return (
-          <Result
-            status="warning"
-            title="We were unable to load the content."
-            extra={
-              <Link to="/">
-                <Button type="default" key="home">
-                  Back Home
-                </Button>
-              </Link>
-            }
-          />
-        );
+        return <ServerError />;
     }
   }
 }

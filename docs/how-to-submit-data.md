@@ -83,7 +83,7 @@ tau_rat,542;546;667,phosphorylation,lightgreen
 
 In the example above, there are many modification sites listed, however only one type and lineColour is specified. In cases like these, the type and lineColour values will be repeated for all modification sites specified on that line.
 
-[Download an example CSV file](https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/examples/tau_rat_example.csv) to experiment with the schema.
+[Download an example CSV file](https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/master/examples/tau_rat_example.csv) to experiment with the schema.
 This example CSV will generate [this view](#example).
 
 ### My data is from MaxQuant and is site-centric. How do I make it peptide-centric?

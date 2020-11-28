@@ -20,7 +20,7 @@ const Page = () => (
           path="/license"
           exact
           component={() => (
-            <ContentFromMarkdown href="https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/LICENSE.md" />
+            <ContentFromMarkdown href="https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/master/LICENSE.md" />
           )}
         />
         <Route component={PageNotFound} />

@@ -1,14 +1,14 @@
-# License
+#
 
-## COPYRIGHT
+## Copyright
 
 Copyright 2019 &copy; Children’s Medical Research Institute
 
-## LICENSE
+## License
 
 Creative Commons Attribution – Non-Commercial 4.0 International License (CC BY-NC 4.0). [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/) Follow the hyperlink to see the License for the specific language governing permissions and limitations under the License.
 
-## TERMS OF USE & DISCLAIMER
+## Terms Of Use & Disclaimer
 
 CMRI developed PTM VisQuant and is making this tool freely available to the wider scientific community under the terms of the Creative Commons Attribution – Non-Commercial 4.0 International License on as ‘as is’ basis and makes no representations or warranties of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose.
 
@@ -18,7 +18,7 @@ To the extent possible for CMRI to do so, CMRI excludes any liability to you for
 
 If you do not agree with the terms of the License, do not use PTM VisQuant.
 
-## 3RD PARTY COMPONENTS & LICENSES
+## 3rd Party Components & Licenses
 
 PTM VisQuant includes code, tools and other components developed by others, and the use of such contributions is subject solely to the terms of the respective developers’ license agreements, copies of which may be found in the accompanying files.
 

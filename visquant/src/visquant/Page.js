@@ -12,7 +12,7 @@ const { Content, Footer } = Layout;
 const Page = () => (
   <Layout className="layout" style={{ minHeight: "100vh" }}>
     <TopNav></TopNav>
-    <Content style={{ padding: "0 50px" }}>
+    <Content style={{ padding: "50px" }}>
       <Switch>
         <Route path="/" exact component={UnderConstruction} />
         <Route path="/how-to/:subpage?" component={HelpPage} />

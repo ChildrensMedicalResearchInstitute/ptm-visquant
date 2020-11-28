@@ -1,8 +1,8 @@
+import { PageNotFound, ServerError } from "./HttpResult";
 import { Skeleton } from "antd";
 import PropTypes from "prop-types";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { PageNotFound, ServerError } from "./HttpResult";
 
 const Status = {
   PENDING: "pending",
@@ -59,9 +59,10 @@ class ContentFromMarkdown extends React.Component {
       case Status.PENDING:
         return <Skeleton active />;
       case Status.RESOLVED:
-        return this.state.httpResponseCode === 404
-          ? <PageNotFound />
-          : <ReactMarkdown source={this.state.content} />;
+        if (this.state.httpResponseCode === 404) {
+          <PageNotFound />;
+        }
+        return <ReactMarkdown source={this.state.content} />;
       case Status.REJECTED:
         return <ServerError />;
     }

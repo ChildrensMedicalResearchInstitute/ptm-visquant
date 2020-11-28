@@ -21,45 +21,55 @@ class ContentFromMarkdown extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchContent();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.href !== this.props.href) {
+      this.setState(
+        { href: this.props.href, status: Status.PENDING },
+        this.fetchContent
+      );
+    }
+  }
+
+  fetchContent() {
     fetch(this.state.href)
       .then((response) => response.text())
       .then((data) => {
         this.setState({
-          content: data,
           status: Status.RESOLVED,
+          content: data,
         });
       })
       .catch(() => {
         this.setState({
-          content: "Unable to load content.",
           status: Status.REJECTED,
+          content: "Unable to load content.",
         });
       });
   }
 
   render() {
-    if (this.state.status === Status.PENDING) {
-      return <Skeleton active />;
-    }
-
-    if (this.state.status === Status.RESOLVED) {
-      return <ReactMarkdown source={this.state.content} />;
-    }
-
-    if (this.state.status === Status.REJECTED) {
-      return (
-        <Result
-          status="warning"
-          title="We were unable to load the content."
-          extra={
-            <Link to="/">
-              <Button type="default" key="home">
-                Back Home
-              </Button>
-            </Link>
-          }
-        />
-      );
+    switch (this.state.status) {
+      case Status.PENDING:
+        return <Skeleton active />;
+      case Status.RESOLVED:
+        return <ReactMarkdown source={this.state.content} />;
+      case Status.REJECTED:
+        return (
+          <Result
+            status="warning"
+            title="We were unable to load the content."
+            extra={
+              <Link to="/">
+                <Button type="default" key="home">
+                  Back Home
+                </Button>
+              </Link>
+            }
+          />
+        );
     }
   }
 }

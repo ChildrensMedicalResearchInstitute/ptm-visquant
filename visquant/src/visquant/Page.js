@@ -1,4 +1,5 @@
 import ContentFromMarkdown from "./ContentFromMarkdown";
+import HelpPage from "./HelpPage";
 import PageNotFound from "./PageNotFound";
 import TopNav from "./TopNav";
 import UnderConstruction from "./UnderConstruction";
@@ -14,13 +15,7 @@ const Page = () => (
     <Content style={{ padding: "0 50px" }}>
       <Switch>
         <Route path="/" exact component={UnderConstruction} />
-        <Route
-          path="/how-to"
-          exact
-          component={() => (
-            <ContentFromMarkdown href="https://raw.githubusercontent.com/ChildrensMedicalResearchInstitute/ptm-visquant/redesign/docs/how_to.md" />
-          )}
-        />
+        <Route path="/how-to/:subpage?" component={HelpPage} />
         <Route
           path="/license"
           exact
@@ -41,7 +36,7 @@ const Page = () => (
         >
           Jonathan Du
         </a>
-        . Copyright © 2019 Children’s Medical Research Institute
+        . Copyright © 2019 Children’s Medical Research Institute.
       </p>
     </Footer>
   </Layout>

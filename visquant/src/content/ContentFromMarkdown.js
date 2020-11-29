@@ -1,22 +1,16 @@
+import ComponentStatus from "../common/ComponentStatus";
 import { PageNotFound, ServerError } from "./HttpResult";
 import { Skeleton } from "antd";
 import PropTypes from "prop-types";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-const Status = {
-  PENDING: "pending",
-  REJECTED: "rejected",
-  RESOLVED: "resolved",
-};
-
 class ContentFromMarkdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      href: props.href,
       httpResponseCode: null,
-      status: Status.PENDING,
+      status: ComponentStatus.PENDING,
       content: null,
     };
   }
@@ -28,27 +22,27 @@ class ContentFromMarkdown extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.href !== this.props.href) {
       this.setState(
-        { href: this.props.href, status: Status.PENDING },
+        { href: this.props.href, status: ComponentStatus.PENDING },
         this.fetchContent
       );
     }
   }
 
   fetchContent() {
-    fetch(this.state.href)
+    fetch(this.props.href)
       .then((response) => {
         this.setState({ httpResponseCode: response.status });
         return response.text();
       })
       .then((data) => {
         this.setState({
-          status: Status.RESOLVED,
+          status: ComponentStatus.RESOLVED,
           content: data,
         });
       })
       .catch(() => {
         this.setState({
-          status: Status.REJECTED,
+          status: ComponentStatus.REJECTED,
           content: null,
         });
       });
@@ -56,14 +50,14 @@ class ContentFromMarkdown extends React.Component {
 
   render() {
     switch (this.state.status) {
-      case Status.PENDING:
+      case ComponentStatus.PENDING:
         return <Skeleton active />;
-      case Status.RESOLVED:
+      case ComponentStatus.RESOLVED:
         if (this.state.httpResponseCode === 404) {
           <PageNotFound />;
         }
         return <ReactMarkdown source={this.state.content} />;
-      case Status.REJECTED:
+      case ComponentStatus.REJECTED:
         return <ServerError />;
     }
   }

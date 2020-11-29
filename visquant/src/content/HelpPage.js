@@ -1,4 +1,4 @@
-import ContentFromMarkdown from "./ContentFromMarkdown";
+import ContentFromMarkdown from "../content/ContentFromMarkdown";
 import { PropTypes } from "prop-types";
 import React from "react";
 

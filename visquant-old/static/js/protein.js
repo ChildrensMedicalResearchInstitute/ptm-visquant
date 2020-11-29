@@ -19,7 +19,7 @@ function hasIntensityValues(data) {
 }
 
 function filterForUniqueStartSite(markups) {
-  return markups.filter(function(m, index) {
+  return markups.filter(function (m, index) {
     return markups.findIndex(n => n.start === m.start) === index;
   });
 }
@@ -143,9 +143,9 @@ class Protein {
       .text(region => region.metadata.identifier);
 
     // Remove any labels which intersect a former label
-    regionLabels.sort((a, b) => a.start - b.start).each(function() {
+    regionLabels.sort((a, b) => a.start - b.start).each(function () {
       const that = this;
-      regionLabels.each(function() {
+      regionLabels.each(function () {
         if (this !== that && intersects(this, that)) {
           d3.select(this).remove();
         }
@@ -172,7 +172,7 @@ class Protein {
       .attr("stroke-width", this.MARKUP_STROKE_WIDTH);
   }
 
-  drawMarkupLabels(markups=this.data.markups) {
+  drawMarkupLabels(markups = this.data.markups) {
     const markup_display = filterForUniqueStartSite(markups);
     const LABEL_HEIGHT = this.svg.node().getBBox().y - 10;
 
@@ -189,16 +189,16 @@ class Protein {
     markupCoordinateContainer
       .append("text")
       .text(markup => markup.start)
-      .attr("transform", function() {
+      .attr("transform", function () {
         return `rotate(270, 0, ${-this.getBBox().height / 2})`;
       });
 
     // Update label locations to prevent overlap
     markupCoordinateContainer
       .sort((a, b) => a.start - b.start)
-      .each(function() {
+      .each(function () {
         const that = this;
-        markupCoordinateContainer.each(function() {
+        markupCoordinateContainer.each(function () {
           if (this !== that && intersects(this, that)) {
             // Move this element upward
             const currentTranslation = getTranslation(
@@ -269,7 +269,7 @@ class Protein {
           -this.MARKUP_HEIGHT *
           heightScale
       )
-      .attr("stroke", function(markup) {
+      .attr("stroke", function (markup) {
         if (FormOptions.lollipopColourByValue()) {
           return markup.intensity_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
         }
@@ -297,14 +297,14 @@ class Protein {
           heightScale
       )
       .attr("r", 4)
-      .attr("fill", function(markup) {
+      .attr("fill", function (markup) {
         if (FormOptions.lollipopColourByValue()) {
           return markup.intensity_values[trialIndex] > 0 ? "RED" : "SEAGREEN";
         }
         return markup.lineColour;
       })
       .attr("stroke", "white")
-      .on("mouseover", function(d) {
+      .on("mouseover", function (d) {
         d3.select(this).raise();
         tooltip.style("opacity", 0.8);
         tooltip
@@ -312,7 +312,7 @@ class Protein {
           .style("left", d3.event.pageX + 20 + "px")
           .style("top", d3.event.pageY + "px");
       })
-      .on("mouseout", function(d) {
+      .on("mouseout", function (d) {
         tooltip.style("opacity", 0);
       });
 
@@ -346,3 +346,5 @@ class Protein {
     this.svg.append("g").call(yAxis);
   }
 }
+
+export default Protein;

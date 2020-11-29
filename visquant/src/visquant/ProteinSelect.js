@@ -11,6 +11,7 @@ const ProteinSelect = (props) => {
       allowClear={true}
       autoFocus={true}
       tokenSeparators={[","]}
+      placeholder="Protein entry name or accession"
       defaultValue={props.defaultValue}
     />
   );

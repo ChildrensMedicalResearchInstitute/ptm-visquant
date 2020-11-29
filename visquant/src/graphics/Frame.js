@@ -13,7 +13,7 @@ const Frame = (props) => {
   React.useEffect(() => fetchGraphics(props.id), [props.id]);
 
   function fetchGraphics(proteinId) {
-    fetch(`http://pfam.xfam.org/protein/${proteinId}/graphic`)
+    fetch(`https://pfam.xfam.org/protein/${proteinId}/graphic`)
       .then((response) => {
         return response.json();
       })

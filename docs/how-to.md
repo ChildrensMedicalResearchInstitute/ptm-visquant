@@ -19,4 +19,4 @@ All you need to do is provide
 
 [use the drawing options?](#how-to/drawing-options)
 
-[contact the developers?](#contact-us)
+[contact the developers?](#how-to/contact-us)

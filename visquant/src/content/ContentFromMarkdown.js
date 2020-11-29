@@ -5,63 +5,46 @@ import PropTypes from "prop-types";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-class ContentFromMarkdown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      httpResponseCode: null,
-      status: ComponentStatus.PENDING,
-      content: null,
-    };
-  }
+const { PENDING, RESOLVED, REJECTED } = ComponentStatus;
 
-  componentDidMount() {
-    this.fetchContent();
-  }
+const ContentFromMarkdown = (props) => {
+  const [httpResponseCode, setHttpResponseCode] = React.useState(null);
+  const [status, setStatus] = React.useState(PENDING);
+  const [content, setContent] = React.useState(null);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.href !== this.props.href) {
-      this.setState(
-        { href: this.props.href, status: ComponentStatus.PENDING },
-        this.fetchContent
-      );
-    }
-  }
+  React.useEffect(() => {
+    setStatus(PENDING);
+    fetchContent();
+  }, [props.href]);
 
-  fetchContent() {
-    fetch(this.props.href)
+  function fetchContent() {
+    fetch(props.href)
       .then((response) => {
-        this.setState({ httpResponseCode: response.status });
+        setHttpResponseCode(response.status);
         return response.text();
       })
       .then((data) => {
-        this.setState({
-          status: ComponentStatus.RESOLVED,
-          content: data,
-        });
+        setStatus(RESOLVED);
+        setContent(data);
       })
       .catch(() => {
-        this.setState({
-          status: ComponentStatus.REJECTED,
-          content: null,
-        });
+        setStatus(REJECTED);
+        setContent(null);
       });
   }
 
-  render() {
-    switch (this.state.status) {
-      case ComponentStatus.PENDING:
-        return <Skeleton active />;
-      case ComponentStatus.RESOLVED:
-        if (this.state.httpResponseCode === 404) {
-          <PageNotFound />;
-        }
-        return <ReactMarkdown source={this.state.content} />;
-      case ComponentStatus.REJECTED:
-        return <ServerError />;
-    }
+  switch (status) {
+    case PENDING:
+      return <Skeleton active />;
+    case RESOLVED:
+      if (httpResponseCode === 404) {
+        <PageNotFound />;
+      }
+      return <ReactMarkdown source={content} />;
+    case REJECTED:
+      return <ServerError />;
   }
-}
+};
 
 ContentFromMarkdown.propTypes = {
   href: PropTypes.string,

@@ -1,8 +1,8 @@
-import ContentFromMarkdown from "./ContentFromMarkdown";
-import HelpPage from "./HelpPage";
-import { PageNotFound } from "./HttpResult";
+import ContentFromMarkdown from "../content/ContentFromMarkdown";
+import HelpPage from "../content/HelpPage";
+import { PageNotFound } from "../content/HttpResult";
+import Mapper from "../visquant/Mapper";
 import TopNav from "./TopNav";
-import UnderConstruction from "./UnderConstruction";
 import { Layout } from "antd";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
@@ -12,9 +12,9 @@ const { Content, Footer } = Layout;
 const Page = () => (
   <Layout className="layout" style={{ minHeight: "100vh" }}>
     <TopNav></TopNav>
-    <Content style={{ padding: "50px" }}>
+    <Content style={{ margin: "50px" }}>
       <Switch>
-        <Route path="/" exact component={UnderConstruction} />
+        <Route path="/" exact component={Mapper} />
         <Route path="/how-to/:subpage?" component={HelpPage} />
         <Route
           path="/license"

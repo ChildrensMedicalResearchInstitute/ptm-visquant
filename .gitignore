@@ -10,7 +10,8 @@ instance/
 # Node / NPM
 node_modules/
 
-# Hidden files and directories, except .gitignore
+# Hidden files and directories
 .*
+!/.github
 !/.gitignore
 !/visquant/.gitignore

@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@ant-design/colors@^5.0.0":
-  version "5.1.1"
-  resolved "https://packages.atlassian.com/api/npm/npm-remote/@ant-design/colors/-/colors-5.1.1.tgz#800b2186b1e27e66432e67d03ed96af3e21d8940"
-  integrity sha1-gAshhrHifmZDLmfQPtlq8+IdiUA=
-  dependencies:
-    "@ctrl/tinycolor" "^3.3.1"
-
 "@ant-design/colors@^6.0.0":
   version "6.0.0"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@ant-design/colors/-/colors-6.0.0.tgz#9b9366257cffcc47db42b9d0203bb592c13c0298"
@@ -1259,7 +1252,7 @@
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha1-8JULuhiBlRLUL3GX5WxRiqSRzxg=
 
-"@ctrl/tinycolor@^3.3.1", "@ctrl/tinycolor@^3.4.0":
+"@ctrl/tinycolor@^3.4.0":
   version "3.4.0"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
   integrity sha1-w8WuVDyJfKqcKmhjC+01W+X5mQ8=

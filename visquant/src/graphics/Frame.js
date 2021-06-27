@@ -50,7 +50,15 @@ const Frame = (props) => {
 
   return (
     <div style={{ margin: "20px 0", overflow: "visible" }}>
-      {getFrameContent()}
+      <div>
+        {graphics ? graphics.metadata.identifier : ""}
+      </div>
+      <div style={{ color: "grey" }}>
+        {graphics ? graphics.metadata.accession : ""}
+      </div>
+      <div>
+        {getFrameContent()}
+      </div>
     </div>
   );
 };

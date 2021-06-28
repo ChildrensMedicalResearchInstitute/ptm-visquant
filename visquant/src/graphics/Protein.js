@@ -71,7 +71,11 @@ const Protein = (props) => {
     drawMotifs(svg);
   }
 
-  return <svg ref={ref} />;
+  return (
+    <div style={{ overflowX: "scroll" }}>
+      <svg ref={ref} width={props.scale(props.graphics.length)} height={100} />
+    </div>
+  );
 };
 
 Protein.propTypes = {

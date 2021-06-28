@@ -45,7 +45,11 @@ const Mapper = (props) => {
         />
       );
     }
-    return proteins.map((id) => <Frame key={id} id={id} scale={scale} />);
+    return (
+      proteins.map((id) => (
+        <Frame key={id} id={id} scale={scale} />
+      )) 
+    );
   }
 
   // Render proteins from query string when component mounts
